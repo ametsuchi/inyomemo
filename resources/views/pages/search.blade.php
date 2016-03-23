@@ -6,7 +6,12 @@
 <body>
 @foreach ($results as $item)
 	<h5>{{ $item["title"]}}</h5>
-	<img src="{{ $item['image']}}">
+	<a href="/item/{{ $item['isbn'] }}"> <img src="{{ $item['image']}}"></a>
+@endforeach
+
+<!-- ページャ -->
+@foreach ($pages as $page)
+	<a href="/search/{{$keyword}}/{{$page}}">{{$page}}</a>
 @endforeach
 </body>
 </html>

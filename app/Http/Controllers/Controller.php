@@ -64,7 +64,7 @@ class Controller extends BaseController
     	return $results;
     }
 
-    protected function amazonItemSearch($str)
+    protected function amazonItemSearch($str,$page)
     {
     	$params = array();
  
@@ -81,8 +81,11 @@ class Controller extends BaseController
     	$params['Operation'] = 'ItemSearch';
     	$params['SearchIndex'] = 'Books';
     	$params['Keywords'] = $str;
+    	$params['ItemPage'] = $page;
     	$params['ResponseGroup'] = 'ItemAttributes,Images';
     	$params['Timestamp'] = gmdate('Y-m-d\TH:i:s\Z');
+    	// とりあえずKindle除外
+    	$params['Power'] = "binding:not kindle";
     	ksort($params);
  
     	// 送信用URL・シグネチャ作成
@@ -109,7 +112,9 @@ class Controller extends BaseController
     	foreach ($data["Items"]->Item as $item) {
     		$result = array();
     		$result["title"] = $item->ItemAttributes->Title;
+    		$result["author"] = $item->ItemAttributes->Author;
     		$result["image"] = $item->MediumImage->URL;
+    		$result["isbn"] = $item->ItemAttributes->ISBN;
     		// MediumImageになかった場合はImageSetsに入ってるはず
     		/*
     		if($result["image"] == null){
@@ -127,9 +132,9 @@ class Controller extends BaseController
     				$result["image"] = $item->ImageSets->ImageSet->MediumImage->URL;
     			}
     		}*/
-
     		array_push($results,$result);
     	}
+    	$results["totalPages"] = intval($data["Items"]->TotalPages);
 
 
     	return $results;
