@@ -29,3 +29,8 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+// amaon api testing
+Route::get('item/','NoteController@item');
+Route::get('search/','NoteController@search');
