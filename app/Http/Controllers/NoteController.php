@@ -14,7 +14,14 @@ class NoteController extends Controller
     	return view('pages.note',$res);
     }
 
-	public function search($keyword,$page = "1"){
+    public function search(Request $request){
+		$keyword = $request->input('keyword');
+		return redirect('/searchbooklists?keyword='.$keyword);
+    }
+
+	public function searchBookLists(Request $request,$page = "1"){
+		$keyword = $request->input('keyword');
+
     	$results = $this->amazonItemSearch($keyword,$page);
     	$data = [];
     	$data["results"] = $results;
@@ -27,5 +34,9 @@ class NoteController extends Controller
     	$data["pages"] = $pages;
     	$data["keyword"] = $keyword;
     	return view('pages.search',$data);
+    }
+
+    public function index(Request $request){
+    	return view('pages.index');
     }
 }

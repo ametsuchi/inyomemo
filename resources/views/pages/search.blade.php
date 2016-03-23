@@ -5,13 +5,14 @@
 </head>
 <body>
 @foreach ($results as $item)
-	<h5>{{ $item["title"]}}</h5>
+	<h5>{{ $item["title"] }}</h5>
+	<h6>{{ $item["author"] }}</h6>
 	<a href="/item/{{ $item['isbn'] }}"> <img src="{{ $item['image']}}"></a>
 @endforeach
 
-<!-- ページャ -->
+<!-- ページャ(仮) -->
 @foreach ($pages as $page)
-	<a href="/search/{{$keyword}}/{{$page}}">{{$page}}</a>
+	<a href="/searchbooklists/{{$page}}?keyword={{$keyword}}">{{$page}}</a>
 @endforeach
 </body>
 </html>
