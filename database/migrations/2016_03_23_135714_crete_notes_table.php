@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBookdataToNotesTable extends Migration
+class CreteNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,16 @@ class AddBookdataToNotesTable extends Migration
      */
     public function up()
     {
-        Schema::table('notes', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('userid');
+            $table->string('isbn');
             $table->string('title');
             $table->string('author');
+            $table->integer('page');
+            $table->text('quote');
+            $table->text('note');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +32,6 @@ class AddBookdataToNotesTable extends Migration
      */
     public function down()
     {
-        Schema::table('notes', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('notes');
     }
 }

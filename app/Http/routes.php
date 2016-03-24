@@ -36,3 +36,4 @@ Route::get('item/{isbn}','NoteController@item');
 Route::post('search','NoteController@search');
 Route::get('searchbooklists/{page?}','NoteController@searchBookLists');
 Route::get('index','NoteController@index');
+Route::post('notesubmit','NoteController@notesubmit');
