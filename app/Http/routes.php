@@ -37,3 +37,30 @@ Route::post('search','NoteController@search');
 Route::get('searchbooklists/{page?}','NoteController@searchBookLists');
 Route::get('index','NoteController@index');
 Route::post('notesubmit','NoteController@notesubmit');
+
+// 認証
+//Route::get('auth/github','Auth\AuthController@rediretToProvider');
+//Route::get('auth/github/callback','Auth\AuthController@handleProvider');
+
+
+Route::group(['middleware' =>'web'],function()
+{
+	Route::get('/',function()
+	{
+	    if (!Auth::check()) {
+        	// ログイン済でなければリダイレクト
+        	return view('pages.login');
+    	}
+    	return 'index';
+	});
+
+
+});
+
+
+Route::group(['middleware' => 'web'],function()
+{
+	Route::auth();
+	Route::get('auth/{provider}', 'LoginController@login');
+	Route::get('callback/{provider}', 'LoginController@callback');
+});

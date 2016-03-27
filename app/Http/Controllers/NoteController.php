@@ -71,6 +71,16 @@ class NoteController extends Controller
     	}
 
     	$res['notes'] = $notes;
+
+        // ユーザー情報
+        $res['avatar'] = null;// 適当な一時画像をつかう
+        $res['name'] = "";
+        if($request->user()){
+            info("userとれた");
+            $res['avatar'] = $request->user()->avatar;
+            $res['name'] = $request->user()->name;
+        }
+
     	return view('pages.index',$res);
     }
 
@@ -90,4 +100,6 @@ class NoteController extends Controller
 		 $show = Note::all();
 		 redirect("/index");
     }
+
+
 }

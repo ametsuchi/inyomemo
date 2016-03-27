@@ -22,6 +22,8 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use ..\Socialite;
+    use Illuminate\Routing\Controller;
 
     /**
      * Where to redirect users after login / registration.
@@ -29,6 +31,31 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    /*
+     * ユーザをGitHubの認証ページへリダイレクト
+     * 
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect;
+    }
+
+    /*
+     * ユーザーの情報をGitHubから取得
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('github')->user();
+        info($user->getId());
+        info($user->getNickName());
+        info($user->getName());
+        info($user->getEmail());
+        info($user->getAvatar());
+    }
 
     /**
      * Create a new authentication controller instance.
