@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Note;
+use Auth;
 
 class NoteController extends Controller
 {
@@ -58,14 +59,17 @@ class NoteController extends Controller
     	$images = array();
     	// amazonから書影を取得
     	foreach ($notes as $note) {
+            $image = "";
     		if(in_array($note->isbn,$images)){
 	    		$image = $images[$note->isbn];
 	    	}else{
 
     			$amazon = $this->amazonItemLookup($note->isbn);
     			// Todo: データ取れなかった時の処理
-    			$image = $amazon["mimage"];
-    			$images['isbn'] = $image;
+    			if(array_key_exists("mimage", $amazon)){
+                    $image = $amazon["mimage"];
+                    $images['isbn'] = $image;
+                }
     		}
     		$note->image = $image;
     	}
@@ -75,11 +79,9 @@ class NoteController extends Controller
         // ユーザー情報
         $res['avatar'] = null;// 適当な一時画像をつかう
         $res['name'] = "";
-        if($request->user()){
-            info("userとれた");
-            $res['avatar'] = $request->user()->avatar;
-            $res['name'] = $request->user()->name;
-        }
+        $user = Auth::user();
+        $res['avatar'] = $user->avatar;
+        $res['name'] = $user->name;
 
     	return view('pages.index',$res);
     }
@@ -101,5 +103,7 @@ class NoteController extends Controller
 		 redirect("/index");
     }
 
-
+    public function logout(){
+        Auth::logout();
+    }
 }

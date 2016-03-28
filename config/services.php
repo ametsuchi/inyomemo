@@ -41,4 +41,11 @@ return [
         'redirect' => 'http://192.168.33.10:8000/callback/github',
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => 'http://192.168.33.10:8000/callback/twitter',
+    ],
+
+
 ];

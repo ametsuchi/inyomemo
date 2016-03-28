@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,42 +21,25 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
-
-// amaon api testing
-Route::get('item/{isbn}','NoteController@item');
-Route::post('search','NoteController@search');
-Route::get('searchbooklists/{page?}','NoteController@searchBookLists');
-Route::get('index','NoteController@index');
-Route::post('notesubmit','NoteController@notesubmit');
-
-// 認証
-//Route::get('auth/github','Auth\AuthController@rediretToProvider');
-//Route::get('auth/github/callback','Auth\AuthController@handleProvider');
-
-
-Route::group(['middleware' =>'web'],function()
+Route::group(['middleware' => 'web'],function()
 {
+
 	Route::get('/',function()
 	{
-	    if (!Auth::check()) {
-        	// ログイン済でなければリダイレクト
-        	return view('pages.login');
-    	}
-    	return 'index';
+        return view('pages.login');
 	});
 
 
-});
-
-
-Route::group(['middleware' => 'web'],function()
-{
 	Route::auth();
 	Route::get('auth/{provider}', 'LoginController@login');
 	Route::get('callback/{provider}', 'LoginController@callback');
+
+	// amaon api testing
+	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
+	Route::get('item/{isbn}', ['middleware' => 'auth', 'uses' => 'NoteController@item']);
+	Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
+	Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
+	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
+
+
 });

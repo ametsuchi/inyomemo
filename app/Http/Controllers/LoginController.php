@@ -14,6 +14,8 @@ class LoginController extends Controller
 {
 	protected $socialite;
 
+
+
     // ログイン用コンストラクタ
     public function __construct(Socialite $socialite)
     {

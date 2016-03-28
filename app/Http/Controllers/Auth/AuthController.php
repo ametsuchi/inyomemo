@@ -32,6 +32,8 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $loginPath = '/';
+
     /*
      * ユーザをGitHubの認証ページへリダイレクト
      * 

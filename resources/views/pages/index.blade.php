@@ -8,6 +8,8 @@
 		<input type="text" name="keyword">
 		<input type="submit">
 	</form>
+	<img src="{{ $avatar }}" width="50px;" height="50px;">
+	{{ $name }}さん
 
 	<table>
 	@foreach ($notes as $note)
@@ -22,5 +24,6 @@
 			</th>
 		</tr>
 	@endforeach
+	</table>
 </body>
 </html>
