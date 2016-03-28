@@ -24,7 +24,7 @@
 Route::group(['middleware' => 'web'],function()
 {
 
-	Route::get('/',function()
+	Route::get('/auth/login',function()
 	{
         return view('pages.login');
 	});
@@ -35,6 +35,7 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('callback/{provider}', 'LoginController@callback');
 
 	// amaon api testing
+	Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
 	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
 	Route::get('item/{isbn}', ['middleware' => 'auth', 'uses' => 'NoteController@item']);
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
