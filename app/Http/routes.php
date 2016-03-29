@@ -42,5 +42,6 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
 	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
 
+	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 
 });

@@ -23,6 +23,8 @@
 <input type="hidden" name="title" value="{{$title}}">
 <input type="hidden" name="author" value="{{$author}}">
 <input type="hidden" name="isbn" value="{{$isbn}}">
+<input type="hidden" name="image" value="{{$mimage}}">
+{{ csrf_field() }}
 </form>
 <br>
 @foreach ($notes as $note)

@@ -97,6 +97,7 @@ class NoteController extends Controller
 		 $note->page = $request->input("page");
 		 $note->quote = $request->input("quote");
 		 $note->note = $request->input("note");
+         $note->image_url = $request->input("image");
 		 $note->save();
 
 		 $show = Note::all();
