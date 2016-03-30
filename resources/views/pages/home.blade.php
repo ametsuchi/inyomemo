@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>MDL-Static Website</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-light_blue.min.css" />    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="js/all.js"></script>
 </head>
 </head>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--waterfall doc-header">
-            <div class="mdl-layout__header-row doc-logo-row">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
                 <span class="mdl-layout__title">
                     <span class="mdl-layout__title">Simple portfolio website</span>
                 </span>
             </div>
-            <div class="mdl-layout__header-row doc-navigation-row mdl-layout--large-screen-only">
+            <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link is-active" href="/home">Memo</a>
                     <a class="mdl-navigation__link" href="/archive">Archive</a>
@@ -27,14 +27,21 @@
                 </nav>
             </div>
         </header>
-        <main class="mdl-layout__content">
-        <form action="#">
-
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="card_search">
-                            <label for="card_search" class="mdl-textfield__label">本を検索</label>
+        <main class="mdl-layout__content doc-main">
+            <!-- search -->
+            <div class="mdl-grid portfolio-max-width">
+                <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card ">
+                <form action="#">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="doc-search-field">
+                            <input class="doc-search-text" type="text" id="card_search" name="search" placeholder="本を検索">
+                            <button class="doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                <i class="material-icons">search</i>
+                            </button>
                         </div>
-        </form>
+                </form>
+                </div>
+            </div>
 
             @foreach($notes as $note)
             <section class="section--center">

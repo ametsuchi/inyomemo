@@ -20,6 +20,9 @@
   display: none;
 }
 
+.doc-main {
+  background-color:  #f1f1f1;
+}
 
 .is-compact .doc-logo-row {
   min-height: auto;
@@ -70,12 +73,12 @@
 .doc-navigation-row .is-active:after {
   content: "";
   width: 70%;
-  height: 2px;
+  height: 5px;
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgb(255,64,129);
+  background-color: rgb(0,188,212);
   left: 15%;
 }
 
@@ -96,6 +99,21 @@
   border-bottom: 1px solid rgba(0,0,0,.13);
 }
 
+.doc-search-text {
+  width: 80%;
+  height: 30px;
+  margin-left:15px;
+  padding-left: 3px;
+}
+
+.doc-search-button {
+  margin-left: 0px;
+}
+
+.doc-search-card {
+  min-height: 50px;
+  paddng:10px;
+}
 
 .portfolio-blog-card-full-bg {
   background: url(images/example-blog03.jpg) center / cover;
