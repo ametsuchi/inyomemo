@@ -32,7 +32,6 @@ class MemoController extends Controller
     				$notes[$i]->comments = $comments;
     				$comments = [];
     			}else{
-    				// 同一の本はいっこにまとめる
     				unset($notes[$i]);
     			}
     		}else{
@@ -53,5 +52,40 @@ class MemoController extends Controller
         $res['name'] = $user->name;
 
     	return view('pages.home',$res);
+    }
+
+    public function memo($isbn){
+    	$res = [];
+    	$res['isbn'] = $isbn;
+
+    	// 既存メモ
+    	$showNotes = Note::where('userid',0)
+    	->where('isbn',$isbn)
+    	->orderBy('created_at','desc')
+    	->get();
+    	$res['notes'] = $showNotes; 
+
+    	$image_url = "";
+    	$title = "";
+    	$author = "";
+        $amazon_url = "";
+
+    	if(count($showNotes) > 0){
+    		$title = $showNotes[0]->title;
+    		$author = $showNotes[0]->author;
+    		$image_url = $showNotes[0]->image_url;
+            $amazon_url = $showNotes[0]->amazon_url;
+    	}
+
+    	// // Amazon書籍情報
+    	// $amazon = $this->amazonItemLookup($isbn);
+
+    	$res['title'] = $title;
+    	$res['author'] = $author;
+    	$res['image_url'] = $image_url;
+        $res['amazon_url'] = $amazon_url;
+ 
+
+    	return view('pages.memo',$res);
     }
 }

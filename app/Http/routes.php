@@ -43,5 +43,6 @@ Route::group(['middleware' => 'web'],function()
 	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
 
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
+	Route::get('note/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@memo']);
 
 });
