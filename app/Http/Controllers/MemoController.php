@@ -54,7 +54,7 @@ class MemoController extends Controller
     	return view('pages.home',$res);
     }
 
-    public function memo($isbn){
+    public function item($isbn){
     	$res = [];
     	$res['isbn'] = $isbn;
 
@@ -63,6 +63,7 @@ class MemoController extends Controller
     	->where('isbn',$isbn)
     	->orderBy('created_at','desc')
     	->get();
+
     	$res['notes'] = $showNotes; 
 
     	$image_url = "";

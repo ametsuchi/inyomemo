@@ -37,12 +37,11 @@ Route::group(['middleware' => 'web'],function()
 	// amaon api testing
 	Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
 	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	Route::get('item/{isbn}', ['middleware' => 'auth', 'uses' => 'NoteController@item']);
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
 	Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
 	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
 
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
-	Route::get('note/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@memo']);
+	Route::get('item/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@item']);
 
 });
