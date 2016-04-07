@@ -22,10 +22,10 @@
         <div class="mdl-grid portfolio-max-width">
             <div class="mdl-grid mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
                 <div class="mdl-card__media mdl-cell--2-col mdl-cell--1-col-phone">
-                    <a href="/item/{{$note->isbn}}"><img class="book-image" src=" {{ $note->image_url }}" border="0" alt="" style="max-width:113px;"></a>
+                    <a href="/memo/{{$note->isbn}}"><img class="book-image" src=" {{ $note->image_url }}" border="0" alt="" style="max-width:113px;"></a>
                 </div>
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
-                    <a href="/item/{{$note->isbn}}"><h2 class="mdl-card__title-text">{{ $note->title }}</h2></a>
+                    <a href="/memo/{{$note->isbn}}"><h2 class="mdl-card__title-text">{{ $note->title }}</h2></a>
                     <div class="mdl-card__supporting-text padding-top">
                         <span>{{ $note->author }}</span>
                     </div>

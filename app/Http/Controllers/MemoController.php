@@ -12,7 +12,11 @@ class MemoController extends Controller
 {
     public function index(Request $request)
     {	
-    	$notes = Note::where('userid',0)
+        // ユーザー情報
+        $user = Auth::user();
+
+
+    	$notes = Note::where('userid',$user->id)
     	->orderBy('created_at','desc')
     	->take(10)
     	->get();
@@ -40,26 +44,26 @@ class MemoController extends Controller
     		}
     	}
 
-    				info($notes[2]->comments);
-
     	$res['notes'] = $notes;
 
         // ユーザー情報
         $res['avatar'] = null;// 適当な一時画像をつかう
         $res['name'] = "";
-        $user = Auth::user();
         $res['avatar'] = $user->avatar;
         $res['name'] = $user->name;
 
     	return view('pages.home',$res);
     }
 
-    public function item($isbn){
+    public function show($isbn){
     	$res = [];
     	$res['isbn'] = $isbn;
 
+        // ユーザー情報
+        $user = Auth::user();
+
     	// 既存メモ
-    	$showNotes = Note::where('userid',0)
+    	$showNotes = Note::where('userid',$user->id)
     	->where('isbn',$isbn)
     	->orderBy('created_at','desc')
     	->get();
@@ -88,5 +92,23 @@ class MemoController extends Controller
  
 
     	return view('pages.memo',$res);
+    }
+
+    public function edit(Request $request){
+        // varidationとくになし
+        $user = Auth::user();
+        $note = new Note;
+         
+        $note->userid = $user->id;
+        $note->isbn = $request->input("isbn");
+        $note->title = $request->input("title");
+        $note->author = $request->input("author");
+        $note->quote = $request->input("quote");
+        $note->note = $request->input("note");
+        $note->image_url = $request->input("image_url");
+        $note->amazon_url = $request->input("amazon_url");
+        $note->save();
+
+        return redirect("/memo/".$request->input("isbn"));
     }
 }
