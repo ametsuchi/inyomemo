@@ -25,7 +25,7 @@ class AddAmazonUrlToNotes extends Migration
     public function down()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->dropColumn('amazon_url');
+            //$table->dropColumn('amazon_url');
         });
     }
 }

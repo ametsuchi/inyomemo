@@ -12,7 +12,7 @@
 		<div height="30px" style="background-color:rgb(120,167,159)">緑</div>
 		<div height="30px" style="background-color:rgb(255,233,171)">黄色</div>
 
-<a href="/auth/github">GitHubでログイン</a>
+<a href="/auth/github" id="github">GitHubでログイン</a>
 <br><a href="/auth/twitter">Twitterでログイン</a>
 
 		<div height="30px;" width="50px;" style="background-color:rgb(34,43,52)">紺</div>

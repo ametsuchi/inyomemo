@@ -53,9 +53,6 @@
     </div>
     @endforeach
 
-
-
-
 </main>
 <script type="text/javascript" src="/js/autosize.min.js"></script>
 <script type="text/javascript">
