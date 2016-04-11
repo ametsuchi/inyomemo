@@ -21,7 +21,8 @@
     	   <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
            <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" name="note" rows="5" placeholder="メモを記録…"></textarea>
             <div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>
-            <button  type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone mdl-cell--3-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            <button  type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone mdl-cell--3-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                name="save">
                         Save
             </button>
         </div>
