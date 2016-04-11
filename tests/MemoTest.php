@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class MemoTest extends TestCase
 {
-	// DBをテスト用にマイグレーション
+	// DBをトランザクション
 	use DatabaseTransactions;
     /**
      * 認証確認.
@@ -77,6 +77,11 @@ class MemoTest extends TestCase
     		->see($testAmazonUrl);
     }
 
+    /**
+     * Amazonから書籍情報を取得して表示
+     *
+     * @return void
+     */
     public function testShowForAmazon(){
 
         // テスト用ダミーデータ

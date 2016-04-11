@@ -109,13 +109,14 @@ class Controller extends BaseController
     		return array();
     	}
 
-    	$results = array();
+    	$items = array();
     	foreach ($data["Items"]->Item as $item) {
     		$result = array();
     		$result["title"] = $item->ItemAttributes->Title;
     		$result["author"] = $item->ItemAttributes->Author;
     		$result["image"] = $item->MediumImage->URL;
     		$result["isbn"] = $item->ItemAttributes->ISBN;
+            $result["publicationDate"] = $item->ItemAttributes->PublicationDate;
     		// MediumImageになかった場合はImageSetsに入ってるはず
     		/*
     		if($result["image"] == null){
@@ -133,11 +134,11 @@ class Controller extends BaseController
     				$result["image"] = $item->ImageSets->ImageSet->MediumImage->URL;
     			}
     		}*/
-    		array_push($results,$result);
+    		array_push($items,$result);
     	}
+        $results = [];
+        $results["items"] = $items;
     	$results["totalPages"] = intval($data["Items"]->TotalPages);
-
-
     	return $results;
     }
 

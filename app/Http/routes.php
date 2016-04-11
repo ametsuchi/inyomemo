@@ -30,6 +30,7 @@ Route::group(['middleware' => 'web'],function()
 	});
 
 
+	// login
 	Route::auth();
 	Route::get('auth/{provider}', 'LoginController@login');
 	Route::get('callback/{provider}', 'LoginController@callback');
@@ -37,12 +38,17 @@ Route::group(['middleware' => 'web'],function()
 	// amaon api testing
 	Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
 	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
+	//Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
 	Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
 	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
 
+	// memo
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 	Route::get('memo/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@show']);
 	Route::post('memo/edit', ['middleware' => 'auth', 'uses' => 'MemoController@edit']);
+
+	// search
+	Route::post('search', ['middleware' => 'auth', 'uses' => 'SearchController@postSearch']);
+	Route::get('search', ['middleware' => 'auth', 'uses' => 'SearchController@search']);
 
 });

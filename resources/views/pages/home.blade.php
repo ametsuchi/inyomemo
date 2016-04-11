@@ -4,12 +4,13 @@
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">
-            <form action="#">
+            <form action="/search" method="post">
+            {{ csrf_field() }}
               <div class="mdl-grid">
                     <div class="doc-search-field mdl-cell mdl-cell--10-col  mdl-cell--3-col-phone mdl-cell--7-col-tablet">
-                        <input class="doc-search-text" type="text" id="card_search" name="search" placeholder="本を検索">
+                        <input class="doc-search-text" type="text" id="card_search" name="keyword" placeholder="本を検索">
                     </div>
-                        <button class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone mdl-cell--1-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <button type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone mdl-cell--1-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                             <i class="material-icons">search</i>
                         </button>
               </div>
