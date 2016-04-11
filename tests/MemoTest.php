@@ -77,6 +77,29 @@ class MemoTest extends TestCase
     		->see($testAmazonUrl);
     }
 
+    public function testShowForAmazon(){
+
+        // テスト用ダミーデータ
+        $testUserId = -1;
+        $testIsbn = '4121023560';
+        $testTitle = 'イタリア現代史 - 第二次世界大戦からベルルスコーニ後まで (中公新書)';
+        $testAuthor = '伊藤 武';
+        $testImageUrl = "http://ecx.images-amazon.com/images/I/51wlPxGYMRL._SL160_.jpg";
+        $testAmazonUrl = "http://www.amazon.co.jp/%E3%82%A4%E3%82%BF%E3%83%AA%E3%82%A2%E7%8F%BE%E4%BB%A3%E5%8F%B2-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%B8%96%E7%95%8C%E5%A4%A7%E6%88%A6%E3%81%8B%E3%82%89%E3%83%99%E3%83%AB%E3%83%AB%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%8B%E5%BE%8C%E3%81%BE%E3%81%A7-%E4%B8%AD%E5%85%AC%E6%96%B0%E6%9B%B8-%E4%BC%8A%E8%97%A4-%E6%AD%A6/dp/4121023560%3FSubscriptionId%3DAKIAJWHI7FEI3OTZSXWQ%26tag%3Dmomongaa88-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4121023560";
+
+
+        $user = factory(App\User::class)->create();
+        $user->id = -1;
+
+        $this->actingAs($user)
+            ->visit('/memo/'.$testIsbn)
+            ->see($testTitle)
+            ->see($testAuthor)
+            ->see($testImageUrl)
+            ->see($testAmazonUrl);
+
+    }
+
 
     /**
      * 投稿

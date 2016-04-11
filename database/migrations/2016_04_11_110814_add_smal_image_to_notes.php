@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAmazonUrlToNotes extends Migration
+class AddSmalImageToNotes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddAmazonUrlToNotes extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->string("amazon_url",2000);
+            $table->string("small_image_url");
         });
     }
 
@@ -25,7 +25,7 @@ class AddAmazonUrlToNotes extends Migration
     public function down()
     {
         Schema::table('notes', function (Blueprint $table) {
-            //$table->dropColumn('amazon_url');
+            //
         });
     }
 }

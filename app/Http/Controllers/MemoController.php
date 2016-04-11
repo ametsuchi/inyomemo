@@ -10,6 +10,7 @@ use Auth;
 
 class MemoController extends Controller
 {
+
     public function index(Request $request)
     {	
         // ユーザー情報
@@ -76,14 +77,21 @@ class MemoController extends Controller
         $amazon_url = "";
 
     	if(count($showNotes) > 0){
+            // 
     		$title = $showNotes[0]->title;
     		$author = $showNotes[0]->author;
     		$image_url = $showNotes[0]->image_url;
             $amazon_url = $showNotes[0]->amazon_url;
-    	}
+    	}else {
 
-    	// // Amazon書籍情報
-    	// $amazon = $this->amazonItemLookup($isbn);
+            // Amazonから書籍情報取得
+            $amazon = $this->amazonItemLookup($isbn);
+
+            $title = $amazon['title'];
+            $author = $amazon['author'];
+            $image_url = $amazon['mimage'];
+            $amazon_url = $amazon['url'];
+        }
 
     	$res['title'] = $title;
     	$res['author'] = $author;
@@ -111,4 +119,7 @@ class MemoController extends Controller
 
         return redirect("/memo/".$request->input("isbn"));
     }
+
+
+
 }

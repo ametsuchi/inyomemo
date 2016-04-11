@@ -61,6 +61,7 @@ class Controller extends BaseController
     	$results['image'] = $item->LargeImage->URL;
     	$results['mimage'] = $item->MediumImage->URL;
     	$results['simage'] = $item->SmallImage->URL;
+        $results['url'] = $item->DetailPageURL;
     	return $results;
     }
 
