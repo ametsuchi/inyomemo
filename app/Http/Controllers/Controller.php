@@ -116,7 +116,12 @@ class Controller extends BaseController
     		$result["author"] = $item->ItemAttributes->Author;
     		$result["image"] = $item->MediumImage->URL;
     		$result["isbn"] = $item->ItemAttributes->ISBN;
+            // ISBNがない商品はASINをセット
+            if($result["isbn"] == ""){
+                $result["isbn"] = $item->ASIN;
+            }
             $result["publicationDate"] = $item->ItemAttributes->PublicationDate;
+            $result["url"] = $item->DetailPageURL;
     		// MediumImageになかった場合はImageSetsに入ってるはず
     		/*
     		if($result["image"] == null){

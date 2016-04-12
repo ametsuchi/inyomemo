@@ -51,4 +51,8 @@ Route::group(['middleware' => 'web'],function()
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'SearchController@postSearch']);
 	Route::get('search', ['middleware' => 'auth', 'uses' => 'SearchController@search']);
 
+	// wishList
+	Route::post('wishlist/add',['middleware' => 'auth', 'uses' => 'WishListController@addWishList']);
+	Route::post('wishlist/delete',['middleware' => 'auth', 'uses' => 'WishListController@deleteFromWishList']);
+
 });

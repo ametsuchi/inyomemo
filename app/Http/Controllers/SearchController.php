@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Note;
+use App\Wishlist;
 use Auth;
 
 class SearchController extends Controller
@@ -33,17 +34,29 @@ class SearchController extends Controller
 
     	$results = $this->amazonItemSearch($keyword,$page);
     	$data = [];
-    	$data["results"] = $results["items"];
+    	if(count($results) > 0){
+	    	$data["results"] = $results["items"];
+	    	$data["totalPages"] = $results["totalPages"];
 
-    	// ページャーがforだとsyntax errorになるので配列に入れてやる
-    	$pages = array();
-    	for($i=1;$i<$results["totalPages"]+1 ;$i++){
-    		array_push($pages,$i);
+    		// ページャーがforだとsyntax errorになるので配列に入れてやる
+	    	$pages = array();
+    		for($i=1;$i<$results["totalPages"]+1 ;$i++){
+	    		array_push($pages,$i);
+    		}
+
+	    	$data["pages"] = $pages;
+    		$data["keyword"] = $keyword;
+    		$data["currentPage"] = $page;
+
+    	}else{
+	    	$data["results"] = [];
+	    	$data["totalPages"] = 0;
+	    	$data["pages"] = [];
+    		$data["keyword"] = $keyword;
+    		$data["currentPage"] = $page;
     	}
-    	$data["totalPages"] = $results["totalPages"];
-    	$data["pages"] = $pages;
-    	$data["keyword"] = $keyword;
-    	$data["currentPage"] = $page;
+
     	return view('pages.search',$data);
     }
+
 }
