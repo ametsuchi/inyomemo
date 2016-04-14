@@ -16,9 +16,12 @@
               </div>
             </form>
         </div>
+    	<h5 class="doc-sub-title"><i class="material-icons">search</i>検索結果</h5>
     </div>
 
+    
     @foreach($results as $item)
+    <section>
         <div class="mdl-grid portfolio-max-width">
             <div class="mdl-grid mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
                 <!-- row -->
@@ -32,9 +35,9 @@
                     </div>
                 </div>
                 <!-- row -->
-				<div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>
-				<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list">
-  					ADD WISH LIST
+				<div class="mdl-cell mdl-cell--8-col mdl-layout--large-screen-only"></div>
+				<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list-button add">
+  					<i class="material-icons">add</i>ADD WISH LIST
 				</button>
 				{{ csrf_field() }}
 				<input type="hidden" name="isbn" value="{{ $item['isbn'] }}" >
@@ -45,6 +48,7 @@
 				<input type="hidden" name="amazonUrl" value="{{ $item['url'] }}" id="amazonUrl{{ $item['isbn'] }}">
             </div>
         </div>
+    </section>
     @endforeach
 
     <ul class="pageNav01">
@@ -70,13 +74,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript">
-	$('.add-list').click(function(){
+	$('.add-list-button').click(function(){
 		var isbn = $(this).attr('id');
 		var token = $('input[name=_token]').val();
 
-		if($(this).text() === 'DELETE'){
+		if($(this).hasClass('del')){
 			$(this).addClass('mdl-button--colored');
-			$(this).text('ADD WISH LIST');
+			$(this).addClass('add');
+			$(this).removeClass('del');
+			$(this).html('<i class="material-icons">add</i>ADD WISH LIST');
 
 			$.post(
 				'/wishlist/delete',
@@ -88,7 +94,9 @@
 
 		}else{
 			$(this).removeClass('mdl-button--colored');
-			$(this).text('DELETE');
+			$(this).addClass('del');
+			$(this).removeClass('add');
+			$(this).html('<i class="material-icons">remove</i>DELETE FROM LIST');
 
 			$.post(
 				'/wishlist/add',

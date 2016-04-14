@@ -48,7 +48,9 @@ class SearchController extends Controller
     		$data["keyword"] = $keyword;
     		$data["currentPage"] = $page;
 
+
     	}else{
+    		// Todo:Amazonの戻り値、検索結果0と制限引っかかったときの区別つく？
 	    	$data["results"] = [];
 	    	$data["totalPages"] = 0;
 	    	$data["pages"] = [];

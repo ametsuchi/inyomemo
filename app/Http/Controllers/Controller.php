@@ -101,6 +101,7 @@ class Controller extends BaseController
     	$url = $baseurl . '?' . $canonical_string . '&Signature=' . $this->urlencode_RFC3986($signature);
  
     	$amazon_xml = $this->requestbook($url);
+
     	$xmlObj = simplexml_load_string($amazon_xml);
     	$data = get_object_vars($xmlObj);
     	
@@ -108,8 +109,10 @@ class Controller extends BaseController
     		info("not data.");
     		return array();
     	}
-
+        // 検索結果
     	$items = array();
+        // 検索結果のＩＳＢＮのセット
+        $isbns = array();
     	foreach ($data["Items"]->Item as $item) {
     		$result = array();
     		$result["title"] = $item->ItemAttributes->Title;
@@ -140,9 +143,11 @@ class Controller extends BaseController
     			}
     		}*/
     		array_push($items,$result);
+            array_push($isbns,$result["isbn"]);
     	}
         $results = [];
         $results["items"] = $items;
+        $results["isbns"] = $isbns;
     	$results["totalPages"] = intval($data["Items"]->TotalPages);
     	return $results;
     }

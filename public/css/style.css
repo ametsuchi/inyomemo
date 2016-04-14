@@ -103,6 +103,16 @@ a {
   padding-bottom: 0;
 }
 
+.doc-sub-title {
+  padding-left:8px;
+  margin:5px 0 0;
+  color: rgb(34,43,52);
+}
+
+.doc-sub-title i {
+  margin-right: 3px;
+}
+
 .mdl-card__media {
   background-color: white;
 }
@@ -136,6 +146,10 @@ a {
   paddng:10px;
 }
 
+section .mdl-grid .mdl-grid {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .mdl-layout__header {
   background-color: rgb(34,43,52);
 }
@@ -183,6 +197,11 @@ a {
 .doc-time {
   text-align: right;
   font-size: 0.9rem;
+}
+
+/** search **/
+.add-list-button {
+  margin-left: auto;
 }
 
 

@@ -16,6 +16,7 @@
               </div>
             </form>
         </div>
+        <h5 class="doc-sub-title"><i class="fa fa-comment-o"></i>最近の投稿</h5>
     </div>
 
     @foreach($notes as $note)
