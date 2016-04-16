@@ -8,9 +8,56 @@ use App\Http\Requests;
 use App\Note;
 use App\Wishlist;
 use Auth;
+use DB;
 
 class WishListController extends Controller
 {
+    
+    public function show($page = 1){
+        $user = Auth::user();
+        $data = [];
+
+        // 件数
+        $count = DB::table('wishlists')
+                            ->where('userid',$user->id)
+                            ->count();
+        $data["totalPages"] = $count;
+
+
+        // 取得件数
+        $take = 10;
+        $skip = $page * $take - $take;
+
+        // ＤＢからレコード取得
+        $wishlists = DB::table('wishlists')
+                    ->where('userid',$user->id)
+                    ->orderBy('id','asc')
+                    ->skip($skip)
+                    ->take($take)
+                    ->get();
+
+        if(count($wishlists) > 0){
+            $data["results"] = $wishlists;
+
+            // ページャーがforだとsyntax errorになるので配列に入れてやる
+            $pages = array();
+            for($i=1;$i<$count+1 ;$i++){
+                array_push($pages,$i);
+            }
+
+            $data["pages"] = $pages;
+            $data["currentPage"] = $page;
+
+
+        }else{
+            $data["results"] = [];
+            $data["pages"] = [];
+            $data["currentPage"] = $page;
+        }
+
+        return view('pages.wishlist',$data);
+    }
+
         /**
      *
      */

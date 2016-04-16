@@ -234,6 +234,9 @@ ul.pageNav01 li a:hover {
   border-color: #00f;
 }
 
+/** wish list */
+.doc-amazon-button{
+}
 
 .portfolio-blog-card-full-bg {
   background: url(images/example-blog03.jpg) center / cover;

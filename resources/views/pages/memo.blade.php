@@ -18,6 +18,7 @@
         <form action="/memo/edit" method="post">
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col"><i class="material-icons">mode_edit</i>Memo</div>
+            <div class="mdl-cell mdl-cell--12-col">P. <input type="number" name="page" maxlength="5"></div>
     	   <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
            <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" name="note" rows="5" placeholder="メモを記録…"></textarea>
             <div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>

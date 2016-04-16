@@ -115,6 +115,7 @@ class MemoController extends Controller
         $note->note = $request->input("note");
         $note->image_url = $request->input("image_url");
         $note->amazon_url = $request->input("amazon_url");
+        $note->page = $request->input("page");
         $note->save();
 
         return redirect("/memo/".$request->input("isbn"));

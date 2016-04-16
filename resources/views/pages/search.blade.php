@@ -39,7 +39,6 @@
 				<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list-button add">
   					<i class="material-icons">add</i>ADD WISH LIST
 				</button>
-				{{ csrf_field() }}
 				<input type="hidden" name="isbn" value="{{ $item['isbn'] }}" >
 				<input type="hidden" name="title" value="{{ $item['title'] }}" id="title{{ $item['isbn'] }}">
 				<input type="hidden" name="author" value="{{ $item['author'] }}" id="author{{ $item['isbn'] }}">
@@ -71,12 +70,18 @@
 		<li><a href="/search?keyword={{ $keyword }}&amp;page={{ $currentPage +1 }}">次 &raquo;</a></li>
 		@endif
 </ul>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript">
+	$.ajaxSetup({
+        	headers: {
+        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    	    }
+	});
+
 	$('.add-list-button').click(function(){
 		var isbn = $(this).attr('id');
-		var token = $('input[name=_token]').val();
 
 		if($(this).hasClass('del')){
 			$(this).addClass('mdl-button--colored');
@@ -87,8 +92,7 @@
 			$.post(
 				'/wishlist/delete',
 				{
-					'isbn':isbn,
-					'_token':token
+					'isbn':isbn
 				}
 			);			
 
@@ -106,8 +110,7 @@
 					'author':$('#author'+isbn).val(),
 					'imageUrl':$('#imageUrl'+isbn).val(),
 					'amazonUrl'	:$('#amazonUrl'+isbn).val(),
-					'publicationDate':$('#publicationDate'+isbn).val(),
-					'_token':token
+					'publicationDate':$('#publicationDate'+isbn).val()
 				}
 			);			
 		}
