@@ -185,7 +185,12 @@ section .mdl-grid .mdl-grid {
   padding: 5px;
 }
 
-.doc-detail-text {
+.doc-detail-page {
+  padding-left: 15px;
+  margin: 0 0 0 8px;
+}
+
+.doc-detail-note {
   padding-left: 15px;
 }
 

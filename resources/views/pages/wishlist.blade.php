@@ -46,8 +46,10 @@
 		</li>
 		@endforeach
 
+		@if ($totalPages != 1)
 		@if ($currentPage != $totalPages)
 		<li><a href="/wishlist/show/{{ $currentPage +1 }}">次 &raquo;</a></li>
+		@endif
 		@endif
 </ul>
     <meta name="csrf-token" content="{{ csrf_token() }}">

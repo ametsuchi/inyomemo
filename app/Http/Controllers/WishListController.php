@@ -21,17 +21,22 @@ class WishListController extends Controller
         $count = DB::table('wishlists')
                             ->where('userid',$user->id)
                             ->count();
-        $data["totalPages"] = $count;
+        if ($count % 10 == 0){
+            $data["totalPages"] = $count / 10;
+        }else{
+            $data["totalPages"] = floor($count / 10) + 1;
+            info($data["totalPages"]);
+        }
 
 
-        // 取得件数
+        // 取得件数r
         $take = 10;
         $skip = $page * $take - $take;
 
         // ＤＢからレコード取得
         $wishlists = DB::table('wishlists')
                     ->where('userid',$user->id)
-                    ->orderBy('id','asc')
+                    ->orderBy('id','desc')
                     ->skip($skip)
                     ->take($take)
                     ->get();
@@ -41,7 +46,7 @@ class WishListController extends Controller
 
             // ページャーがforだとsyntax errorになるので配列に入れてやる
             $pages = array();
-            for($i=1;$i<$count+1 ;$i++){
+            for($i=1;$i<$data["totalPages"]+1 ;$i++){
                 array_push($pages,$i);
             }
 

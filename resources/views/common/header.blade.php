@@ -17,15 +17,15 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
                 <span class="mdl-layout__title">
-                    <span class="mdl-layout__title"><i class="fa fa-book" style="margin-right:3px;"></i>Inyomemo</span>
+                    <span class="mdl-layout__title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
                 </span>
             </div>
             <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="/home">Memo</a>
-                    <a class="mdl-navigation__link" href="/wishlist/show">WishList</a>
-                    <a class="mdl-navigation__link" href="/archive">Archive</a>
-                    <a class="mdl-navigation__link" href="/search">Search</a>
+                    <a class="mdl-navigation__link is-active" href="/home">メモ</a>
+                    <a class="mdl-navigation__link" href="/wishlist/show">ほしいものリスト</a>
+                    <a class="mdl-navigation__link" href="/archive">読んだ本一覧</a>
+                    <a class="mdl-navigation__link" href="/search">検索</a>
                 </nav>
             </div>
         </header>

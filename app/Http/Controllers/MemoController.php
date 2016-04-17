@@ -102,7 +102,7 @@ class MemoController extends Controller
     	return view('pages.memo',$res);
     }
 
-    public function edit(Request $request){
+    public function post(Request $request){
         // varidationとくになし
         $user = Auth::user();
         $note = new Note;

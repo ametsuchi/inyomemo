@@ -45,7 +45,7 @@ Route::group(['middleware' => 'web'],function()
 	// memo
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 	Route::get('memo/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@show']);
-	Route::post('memo/edit', ['middleware' => 'auth', 'uses' => 'MemoController@edit']);
+	Route::post('memo/post', ['middleware' => 'auth', 'uses' => 'MemoController@post']);
 
 	// search
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'SearchController@postSearch']);
