@@ -190,6 +190,13 @@ section .mdl-grid .mdl-grid {
   margin: 0 0 0 8px;
 }
 
+.doc-detail-icon {
+  text-align: right;
+  padding-left: 15px;
+  margin: 0 0 0 8px;
+  height: 14px;
+}
+
 .doc-detail-note {
   padding-left: 15px;
 }
@@ -202,6 +209,14 @@ section .mdl-grid .mdl-grid {
 .doc-time {
   text-align: right;
   font-size: 0.9rem;
+}
+
+.doc-edit,.doc-delete {
+  display: none;
+}
+
+.doc-page-field {
+  width: 50px;
 }
 
 /** search **/

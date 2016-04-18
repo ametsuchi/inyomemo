@@ -12,7 +12,7 @@ $(function(){
     //post
     $("#save").click(function(){
         var isbn = $("#isbn").val();
-        var title = $("#title").val();
+        var title = $("#title").text();
         var author = $("#author").text();
         var quote = $("#quote").val();
         var note = $("#note").val();
@@ -45,12 +45,12 @@ $(function(){
         }else{
             $("#add_page","#newDiv").text("P." + page);
         }
-        $("#newDiv").show(100);
+        $("#newDiv").show(1000);
         // reset
         $("#page").val("");
         $("#note").val("");
         $("#quote").val("");
-        $("#newDiv").attr("id",isbn);
+        $("#newDiv").attr("id","addDiv");
 
     	$.post(
     		'/memo/post',
@@ -64,10 +64,54 @@ $(function(){
     			'amazon_url': amazon_url,
     			'page': page
 
-    		}
+    		},
+            function(id){
+                $("#addDiv").attr("id","note"+id);
+                $("#add_delete").attr("id","delete"+id);
+                $("#add_edit").attr("id","edit"+id);
+            }
     	);
     });
+
+    // 削除
+    $("section").on("click",function(){
+        var id = $(this).attr("id").replace("delete","");
+        $("#note"+id).remove();
+
+        var url = "/memo/delete/" + id;
+        $.get(
+            {
+                url
+            }
+        );
+    },".doc-delete");
+
+    // 編集
+    $("section").on("click",".doc-edit",function(){
+        var id = $(this).attr("id").replace("edit","");
+        location.href = "/memo/edit/" + id;
+    });
+
+
+    // 編集ボタンと削除ボタン追加
+    $(document).on("mouseenter",".note",function(){
+            var id = $(this).attr("id").replace("note","");
+            console.log("id",id);
+            $("#delete"+id).show();
+            $("#edit"+id).show();
+        }
+    );
+
+    $(document).on("mouseleave",".note",function(){
+            var id = $(this).attr("id").replace("note","");
+            $("#delete"+id).hide();
+            $("#edit"+id).hide();
+        }
+    );
+
 });
+
+
 
 function getLocaleDateString()
 {

@@ -17,7 +17,7 @@
     <!-- edit -->
         <div class="mdl-grid mdl-cell mdl-cell--12-col">
             <div class="mdl-cell mdl-cell--12-col"><i class="material-icons">mode_edit</i>Memo</div>
-            <div class="mdl-cell mdl-cell--12-col">P. <input type="number" name="page" id="page" maxlength="5"></div>
+            <div class="mdl-cell mdl-cell--12-col">P. <input type="number" name="page" id="page" maxlength="5" class="doc-page-field"></div>
     	   <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
            <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="note" name="note" rows="5" placeholder="メモを記録…"></textarea>
             <div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>
@@ -30,12 +30,17 @@
     <hr class="doc-horizontal">
     <section id="memo_section">
     @foreach($notes as $note)
-    <div class="mdl-grid mdl-cell mdl-cell--12-col">
+    <div class="mdl-grid mdl-cell mdl-cell--12-col note" id="note{{$note->id}}">
+        <div class="mdl-cell mdl-cell--4-col doc-detail-page">
         @if($note->page != 0)
-        <div class="mdl-cell mdl-cell--12-col doc-detail-page">
             P.{{$note->page}}
-        </div>
         @endif
+        </div>
+        <div class="mdl-cell mdl-cell--8-col doc-detail-icon" style="text-align:right">
+            <button class="mdl-button mdl-js-button mdl-button--icon doc-edit" id="edit{{$note->id}}"><i class="material-icons">mode_edit</i></button>
+            <button class="mdl-button mdl-js-button mdl-button--icon doc-delete" id="delete{{$note->id}}"><i class="material-icons">delete_forever</i></button>
+        </div>
+        <!-- row -->
         <div class="mdl-cell mdl-cell--12-col">
             @if(strlen($note->quote) != 0)
             <div class="doc-quote-div">
@@ -58,9 +63,13 @@
     </section>
     <!-- post用 -->
     <div id="add_div" style="display:none">
-    <div class="mdl-grid mdl-cell mdl-cell--12-col">
-        <div class="mdl-cell mdl-cell--12-col doc-detail-page" id="add_page">
+    <div class="mdl-grid mdl-cell mdl-cell--12-col note" id="add_note">
+        <div class="mdl-cell mdl-cell--4-col doc-detail-page" id="add_page">
         <!-- page -->
+        </div>
+        <div class="mdl-cell mdl-cell--8-col doc-detail-icon" >
+            <button class="mdl-button mdl-js-button mdl-button--icon doc-edit" id="add_edit"><i class="material-icons">mode_edit</i></button>
+            <button class="mdl-button mdl-js-button mdl-button--icon doc-delete" id="add_delete"><i class="material-icons">delete_forever</i></button>
         </div>
         <div class="mdl-cell mdl-cell--12-col" id="add_quote_div">
             <div class="doc-quote-div">

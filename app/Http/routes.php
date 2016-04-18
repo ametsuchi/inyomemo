@@ -35,6 +35,7 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('auth/{provider}', 'LoginController@login');
 	Route::get('callback/{provider}', 'LoginController@callback');
 
+
 	// amaon api testing
 	Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
 	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
@@ -46,6 +47,9 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 	Route::get('memo/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@show']);
 	Route::post('memo/post', ['middleware' => 'auth', 'uses' => 'MemoController@post']);
+	Route::get('memo/delete/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@logicalDelete']);
+	Route::get('memo/edit/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@edit']);
+	Route::post('memo/edit/{id}/save', ['middleware' => 'auth', 'uses' => 'MemoController@update']);
 
 	// search
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'SearchController@postSearch']);
@@ -55,5 +59,7 @@ Route::group(['middleware' => 'web'],function()
 	Route::post('wishlist/add',['middleware' => 'auth', 'uses' => 'WishListController@addWishList']);
 	Route::post('wishlist/delete',['middleware' => 'auth', 'uses' => 'WishListController@deleteFromWishList']);
 	Route::get('wishlist/show/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
+
+
 
 });

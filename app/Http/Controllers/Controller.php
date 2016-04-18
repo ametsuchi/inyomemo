@@ -55,9 +55,16 @@ class Controller extends BaseController
 
     	$item = $data["Items"]->Item;
 
+        // 著者が複数ある場合あり
+        $author = "";
+        foreach ($item->ItemAttributes->Author as $value) {
+            $author = $author.",".$value;
+        }
+        $author = mb_substr($author, 1);
+
     	$results = array();
     	$results['title'] = $item->ItemAttributes->Title;
-    	$results['author'] = $item->ItemAttributes->Author;
+    	$results['author'] = $author;
     	$results['image'] = $item->LargeImage->URL;
     	$results['mimage'] = $item->MediumImage->URL;
     	$results['simage'] = $item->SmallImage->URL;
