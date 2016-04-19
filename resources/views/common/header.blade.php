@@ -16,9 +16,21 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
-                <span class="mdl-layout__title">
-                    <span class="mdl-layout__title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
-                </span>
+                <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
+                <div class="doc-header-user">
+                    <img class="doc-avator" src="{{$user->avatar}}">
+                    <span>{{$user->name}}</span>
+            <button id="demo-menu-lower-right"
+                class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="demo-menu-lower-right">
+                    <li class="mdl-menu__item"><i class="fa fa-cloud-upload"></i>Evernote連携</li>
+                    <li class="mdl-menu__item"><i class="fa fa-sign-out"></i>ログアウト</li>
+                    </ul>
+                </div>
             </div>
             <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">

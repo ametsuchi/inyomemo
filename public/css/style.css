@@ -16,13 +16,28 @@ a {
 }
 
 .mdl-layout__title {
-  font-size: 14px;
-  text-align: center;
+  text-align: left;
+  font-weight: 300;
+}
+
+.doc-title {
+  width: 50%;
+  padding-left: 50px;
+}
+
+.doc-header-user {
+  width: 50%;
+  text-align: right;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 300;
 }
 
 .is-compact .mdl-layout__title span {
   display: none;
+}
+
+.mdl-menu__item i {
+  margin-right: 3px;
 }
 
 .doc-main {
@@ -34,13 +49,17 @@ a {
 }
 
 .doc-logo {
-  background: url(images/logo.png) 50% no-repeat;
-  background-size: cover;
   height: 150px;
   width: 150px;
   margin: auto auto 10px;
 }
 
+.doc-avator {
+  width: 30px;
+  height: 30px;
+  text-align: right;
+  margin-right: 10px;
+}
 .is-compact .doc-logo {
   height: 50px;
   width: 50px;
@@ -166,17 +185,38 @@ section .mdl-grid .mdl-grid {
 }
 
 /** detail **/
-.doc-detail-image {
-  display: block;
-  margin: 0 auto;
+
+blockquote{
+    background-color:#EFEFEF;
+    padding:3em;
+    position:relative;
+    z-index:1;
+    font-style: normal;
+    font-size: 1em;
+}
+blockquote:before, blockquote:after{
+    font-family:"FontAwesome";
+    font-size:1.5em;
+    color: #9FA0A0;
+    line-height:1em;
+    position:absolute;
+    z-index:-1;
 }
 
-.doc-quote-div {
-  padding-left: 15px; 
+blockquote:before{
+    content:"\f10d";
+    left:5px;
+    top:5px;
 }
 
-.doc-quote-icon {
-  color: #dcdcdc; 
+blockquote:after{
+    content:"\f10e";
+    right:5px;
+    bottom:5px;
+}
+
+.doc-image-div {
+  text-align: center;
 }
 
 .doc-quote-text {

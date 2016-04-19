@@ -60,6 +60,8 @@ class WishListController extends Controller
             $data["currentPage"] = $page;
         }
 
+        // ユーザー
+        $data["user"] = $user;
         return view('pages.wishlist',$data);
     }
 

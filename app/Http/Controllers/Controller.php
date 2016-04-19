@@ -159,7 +159,6 @@ class Controller extends BaseController
     	return $results;
     }
 
-
     function urlencode_RFC3986($str)
 	{
     	return str_replace('%7E', '~', rawurlencode($str));

@@ -48,10 +48,7 @@ class MemoController extends Controller
     	$res['notes'] = $notes;
 
         // ユーザー情報
-        $res['avatar'] = null;// 適当な一時画像をつかう
-        $res['name'] = "";
-        $res['avatar'] = $user->avatar;
-        $res['name'] = $user->name;
+        $res['user'] = $user;
 
     	return view('pages.home',$res);
     }
@@ -98,6 +95,9 @@ class MemoController extends Controller
     	$res['author'] = $author;
     	$res['image_url'] = $image_url;
         $res['amazon_url'] = $amazon_url;
+
+        // ユーザー
+        $res['user'] = $user;
  
 
     	return view('pages.memo',$res);
@@ -140,6 +140,9 @@ class MemoController extends Controller
         $data["quote"] = $note->quote;
         $data["note"] = $note->note;
         $data["id"] = $note->id;
+        // ユーザー情報
+        $data["user"] = Auth::user();
+
         return view("pages.edit",$data);
     }
 

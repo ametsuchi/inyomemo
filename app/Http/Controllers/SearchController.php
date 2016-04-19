@@ -57,7 +57,8 @@ class SearchController extends Controller
     		$data["keyword"] = $keyword;
     		$data["currentPage"] = $page;
     	}
-
+        // ユーザー
+        $data["user"] = Auth::user();
     	return view('pages.search',$data);
     }
 

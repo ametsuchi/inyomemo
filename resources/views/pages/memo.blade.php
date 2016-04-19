@@ -2,7 +2,7 @@
 @section('content')
 <main class="mdl-layout__content">
             <div class="mdl-grid mdl-cell mdl-cell--12-col" >
-                <div class="mdl-cell--2-col mdl-cell--1-col-phone">
+                <div class="mdl-cell--2-col mdl-cell--1-col-phone doc-image-div">
                     <a class="" href="{{ $amazon_url }}" id="amazon_link"><img class="doc-detail-image book-image" src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image"></a>
                 </div>
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
@@ -43,12 +43,9 @@
         <!-- row -->
         <div class="mdl-cell mdl-cell--12-col">
             @if(strlen($note->quote) != 0)
-            <div class="doc-quote-div">
-            <i class="material-icons doc-quote-icon">format_quote</i>
-            <div class="doc-quote-text">
-                {!! nl2br(e($note->quote)) !!}
-            </div>
-            </div>
+            <blockquote>
+                <span>{!! nl2br(e($note->quote)) !!}</span>
+            </blockquote>
             @endif
         </div>
         <div class="mdl-cell mdl-cell--12-col doc-detail-note">
