@@ -41,6 +41,9 @@ Route::group(['middleware' => 'web'],function()
 	Route::get("/evernote/authorize",'EvernoteController@getTemporaryCredentials');
 	Route::get("/evernote/callback",'EvernoteController@callback');
 
+	Route::get("/evernote/getNotebook",'EvernoteController@getNotebookGuid');
+
+
 	// login
 	Route::auth();
 	Route::get('auth/{provider}', 'LoginController@login');
