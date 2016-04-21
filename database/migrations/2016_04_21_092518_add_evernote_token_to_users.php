@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDelFlgToWishlists extends Migration
+class AddEvernoteTokenToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddDelFlgToWishlists extends Migration
      */
     public function up()
     {
-        Schema::table('wishlists', function (Blueprint $table) {
-            $table->boolean("del_flg")->default(false);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string("evernote_token",500);
         });
     }
 
@@ -24,7 +24,7 @@ class AddDelFlgToWishlists extends Migration
      */
     public function down()
     {
-        Schema::table('wishlists', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

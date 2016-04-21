@@ -29,6 +29,10 @@ class LoginController extends Controller
     	return $this->socialite->driver($provider)->redirect();
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect("/");
+    }
    public function callback($provider)
 	{
     	// ユーザー情報取得

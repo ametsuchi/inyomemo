@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "53eb6b774bf2b772e48675807908d435",
-    "content-hash": "98a798add5e03172b8fc8e70ca201462",
+    "hash": "c1ca53d7882564e66325bf62cac56349",
+    "content-hash": "765f2e6773617106c35e54368b49d055",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -562,6 +562,48 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "evernote/evernote",
+            "version": "1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evernote/evernote-sdk-php.git",
+                "reference": "a0aa139ec81af610d314be1b70bee74947401790"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evernote/evernote-sdk-php/zipball/a0aa139ec81af610d314be1b70bee74947401790",
+                "reference": "a0aa139ec81af610d314be1b70bee74947401790",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache"
+            ],
+            "authors": [
+                {
+                    "name": "Evernote and contributors",
+                    "homepage": "https://github.com/evernote/evernote-sdk-php/contributors"
+                }
+            ],
+            "description": "Evernote PHP SDK",
+            "homepage": "https://github.com/evernote/evernote-sdk-php",
+            "keywords": [
+                "api",
+                "evernote",
+                "sdk"
+            ],
+            "time": "2013-06-12 20:33:05"
         },
         {
             "name": "guzzle/guzzle",

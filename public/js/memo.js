@@ -74,7 +74,7 @@ $(function(){
     });
 
     // 削除
-    $("section").on("click",function(){
+    $("section").on("click",".doc-delete",function(){
         var id = $(this).attr("id").replace("delete","");
         $("#note"+id).remove();
 
@@ -84,7 +84,7 @@ $(function(){
                 url
             }
         );
-    },".doc-delete");
+    });
 
     // 編集
     $("section").on("click",".doc-edit",function(){
@@ -96,7 +96,6 @@ $(function(){
     // 編集ボタンと削除ボタン追加
     $(document).on("mouseenter",".note",function(){
             var id = $(this).attr("id").replace("note","");
-            console.log("id",id);
             $("#delete"+id).show();
             $("#edit"+id).show();
         }

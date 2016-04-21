@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="/js/all.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/js/header.js"></script>
 </head>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
@@ -27,8 +29,8 @@
 
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="demo-menu-lower-right">
-                    <li class="mdl-menu__item"><i class="fa fa-cloud-upload"></i>Evernote連携</li>
-                    <li class="mdl-menu__item"><i class="fa fa-sign-out"></i>ログアウト</li>
+                    <li class="mdl-menu__item" id="evernote"><i class="fa fa-cloud-upload"></i>Evernote連携</li>
+                    <li class="mdl-menu__item" id="logout"><i class="fa fa-sign-out"></i>ログアウト</li>
                     </ul>
                 </div>
             </div>
@@ -40,6 +42,24 @@
                     <a class="mdl-navigation__link" href="/search">検索</a>
                 </nav>
             </div>
+
+  <!-- evernote連携ダイアログ -->
+  <dialog class="mdl-dialog">
+    <h5 class="mdl-dialog__title">Evernoteと連携</h5>
+    <div class="mdl-dialog__content">
+      <p>
+        投稿された内容をEvernoteにバックアップします。<br />
+      </p>
+        <div id="loading">
+        <div id="loading_image" class="mdl-spinner mdl-js-spinner is-active"></div>loading...
+        </div>
+        <a href="" id="evernote_oauth">連携を許可</a>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">閉じる</button>
+    </div>
+  </dialog>
+
         </header>
         @yield('content')
 </body>

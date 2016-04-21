@@ -159,6 +159,17 @@ class Controller extends BaseController
     	return $results;
     }
 
+    protected function getCallbackUrl()
+    {
+        $thisUrl = (empty($_SERVER['HTTPS'])) ? "http://" : "https://";
+        $thisUrl .= $_SERVER['SERVER_NAME'];
+        $thisUrl .= ($_SERVER['SERVER_PORT'] == 80 || $_SERVER['SERVER_PORT'] == 443) ? "" : (":".$_SERVER['SERVER_PORT']);
+        $thisUrl .= "/evernote/callback";
+
+        return $thisUrl;
+    }
+
+
     function urlencode_RFC3986($str)
 	{
     	return str_replace('%7E', '~', rawurlencode($str));

@@ -24,30 +24,43 @@
 Route::group(['middleware' => 'web'],function()
 {
 
+	Route::get('/',function(){
+		if (Auth::check()){
+			return redirect("/home");
+		}else{
+			return redirect("/auth/login");
+		}
+	});
+	
 	Route::get('/auth/login',function()
 	{
         return view('pages.login');
 	});
 
+	// evernote
+	Route::get("/evernote/authorize",'EvernoteController@getTemporaryCredentials');
+	Route::get("/evernote/callback",'EvernoteController@callback');
 
 	// login
 	Route::auth();
 	Route::get('auth/{provider}', 'LoginController@login');
 	Route::get('callback/{provider}', 'LoginController@callback');
+	Route::post('callback/{provider}', 'LoginController@callback');
+	Route::get('logout','LoginController@logout');
 
 
 	// amaon api testing
-	Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	//Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
-	Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
-	Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
+	// Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
+	// Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
+	// //Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
+	// Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
+	// Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
 
 	// memo
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 	Route::get('memo/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@show']);
 	Route::post('memo/post', ['middleware' => 'auth', 'uses' => 'MemoController@post']);
-	Route::get('memo/delete/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@logicalDelete']);
+	Route::get('memo/delete/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@delete']);
 	Route::get('memo/edit/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@edit']);
 	Route::post('memo/edit/{id}/save', ['middleware' => 'auth', 'uses' => 'MemoController@update']);
 

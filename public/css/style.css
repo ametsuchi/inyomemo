@@ -40,6 +40,18 @@ a {
   margin-right: 3px;
 }
 
+.mdl-dialog {
+  width: 300px;
+}
+
+.mdl-dialog__title {
+  font-weight: 300;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+
+}
+
+
+/** main */
 .doc-main {
   background-color:  #f1f1f1;
 }

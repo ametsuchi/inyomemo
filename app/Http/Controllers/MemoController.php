@@ -63,7 +63,6 @@ class MemoController extends Controller
     	// 既存メモ
     	$showNotes = Note::where('userid',$user->id)
     	->where('isbn',$isbn)
-        ->where('del_flg',false)
     	->orderBy('created_at','desc')
     	->get();
 
@@ -127,16 +126,18 @@ class MemoController extends Controller
         return $savedNote[0]->id;
     }
 
-    public function logicalDelete($id){
+    public function delete($id){
         $note = Note::find($id);
-        $note->del_flg = true;
-        $note->save();
+        $note->delete();
     }
 
     public function edit($id){
         $note = Note::find($id);
         $data = [];
         $data["page"] = $note->page;
+        if($note->page == 0){
+            $data["page"] = "";
+        }
         $data["quote"] = $note->quote;
         $data["note"] = $note->note;
         $data["id"] = $note->id;
