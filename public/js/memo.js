@@ -69,6 +69,14 @@ $(function(){
                 $("#addDiv").attr("id","note"+id);
                 $("#add_delete").attr("id","delete"+id);
                 $("#add_edit").attr("id","edit"+id);
+                $.get(
+                    '/evernote/writeevernote',
+                    {
+                        'isbn': isbn,
+                        'title': title,
+                        'author': author,
+                    }
+                    );
             }
     	);
     });
@@ -82,7 +90,21 @@ $(function(){
         $.get(
             {
                 url
-            }
+            },
+            function(){
+                var isbn = $("#isbn").val();
+                var title = $("#title").text();
+                var author = $("#author").text();
+
+                $.get(
+                    '/evernote/writeevernote',
+                    {
+                        'isbn': isbn,
+                        'title': title,
+                        'author': author,
+                    }
+                );
+            } 
         );
     });
 

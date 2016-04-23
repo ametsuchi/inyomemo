@@ -27,16 +27,28 @@ class EvernoteController extends Controller
 	public $noteBookStore = null;
 	
 	/**
+	 * Evernoteに書き込み（通常投稿）.
 	 * 
 	 */
-	public function testNote(Request $request){
+	public function writingNoteToEvernote(Request $request){
+		$loginUser = Auth::user();
+        $evernote_notebooks = EvernoteNotebook::where('userid',$loginUser->id)->get();
 
+        if(count($evernote_notebooks) == 0){
+        	return;
+        }
+
+
+		$isbn = $request->input("isbn");
+		$title = $request->input("title");
+		$author = $request->input("author");
 
    		$notebookGuid = $this->getNotebookGuid($request);
-   		$guid = $this->getNote("4797673036 ","世界の辺境とハードボイルド室町時代",'高野',$notebookGuid);
+   		$guid = $this->getNote($isbn,$title,$author,$notebookGuid);
    		return $guid;
    }
-   	// ↑temp
+   
+
 
 
 
