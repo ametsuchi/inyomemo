@@ -17,7 +17,7 @@
 </head>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
+            <div class="mdl-layout__header-row doc-logo-row ">
                 <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
                 <div class="doc-header-user">
                     <img class="doc-avator" src="{{$user->avatar}}">

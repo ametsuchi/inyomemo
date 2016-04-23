@@ -42,6 +42,7 @@ Route::group(['middleware' => 'web'],function()
 	Route::get("/evernote/callback",'EvernoteController@callback');
 
 	Route::get("/evernote/getNotebook",'EvernoteController@getNotebookGuid');
+	Route::get("/evernote/testtitle",'EvernoteController@testNote');
 
 
 	// login
