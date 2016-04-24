@@ -88,8 +88,6 @@
 
 
 </main>
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript" src="/js/autosize.min.js"></script>
-<script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="/js/memo.js"></script>
 @stop

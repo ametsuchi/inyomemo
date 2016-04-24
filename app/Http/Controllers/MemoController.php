@@ -141,6 +141,9 @@ class MemoController extends Controller
         $data["quote"] = $note->quote;
         $data["note"] = $note->note;
         $data["id"] = $note->id;
+        $data["isbn"] = $note->isbn;
+        $data["title"] = $note->title;
+        $data["author"] = $note->author;
         // ユーザー情報
         $data["user"] = Auth::user();
 

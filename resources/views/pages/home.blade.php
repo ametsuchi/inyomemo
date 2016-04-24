@@ -19,9 +19,6 @@
         <h5 class="doc-sub-title"><i class="fa fa-comment-o"></i>最近の投稿</h5>
     </div>
 
-    <a href="/evernote/testtitle">test</a>
-
-
     @foreach($notes as $note)
     <section class="section--center">
         <div class="mdl-grid portfolio-max-width">

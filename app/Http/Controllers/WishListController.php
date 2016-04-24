@@ -84,6 +84,9 @@ class WishListController extends Controller
     	$wishlist->publication_date = $request->input('publicationDate');
 
     	$wishlist->save();
+
+        // evernoteに書き込み
+        $this->writingWishListToEvernote($user->id);
     }
 
     public function deleteFromWishList(Request $request){
@@ -93,6 +96,9 @@ class WishListController extends Controller
     	$wishlist = Wishlist::where('userid',$user->id)
     	->where('isbn',$request->input('isbn'))
     	->delete();
+
+        // evernoteに書き込み
+        $this->writingWishListToEvernote($user->id);
     }
 
 }
