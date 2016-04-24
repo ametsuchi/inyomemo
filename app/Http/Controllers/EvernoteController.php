@@ -98,7 +98,7 @@ class EvernoteController extends Controller
         if(empty($oauth_verifier)){
         	// 連携拒否
         	if(count($evernote_notebooks) > 0) {
-        		$evernote_notebooks->delete();
+        		EvernoteNotebook::where('userid',$loginUser->id)->delete();
         	}
 	        return $this->redirectOriginalUrl($request);
         }
