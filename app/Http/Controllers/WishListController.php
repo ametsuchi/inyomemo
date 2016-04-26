@@ -29,7 +29,7 @@ class WishListController extends Controller
         }
 
 
-        // 取得件数r
+        // 取得件数
         $take = 10;
         $skip = $page * $take - $take;
 

@@ -113,7 +113,7 @@ class MemoController extends Controller
         $note->author = $request->input("author");
         $note->quote = $request->input("quote");
         $note->note = $request->input("note");
-        $note->image_url = $request->input("image_url");
+        $note->image_url = trim($request->input("image_url"));
         $note->amazon_url = $request->input("amazon_url");
         $note->page = $request->input("page");
         $note->save();

@@ -32,6 +32,18 @@ class SearchController extends Controller
 		$keyword = $request->input('keyword');
 		$page = $request->input('page',1);
 
+
+        if(empty($keyword)){
+            $data["results"] = [];
+            $data["totalPages"] = 0;
+            $data["pages"] = [];
+            $data["keyword"] = $keyword;
+            $data["currentPage"] = $page;
+            $data["user"] = Auth::user();
+            $data["message"] = "キーワードを入力してください";
+            return view('pages.search',$data);
+        }
+
     	$results = $this->amazonItemSearch($keyword,$page);
     	$data = [];
     	if(count($results) > 0){
@@ -59,6 +71,7 @@ class SearchController extends Controller
     	}
         // ユーザー
         $data["user"] = Auth::user();
+        $data["message"] = "";
     	return view('pages.search',$data);
     }
 

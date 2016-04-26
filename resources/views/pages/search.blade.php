@@ -10,7 +10,7 @@
                     <div class="mdl-grid doc-search-field mdl-cell mdl-cell--10-col  mdl-cell--3-col-phone mdl-cell--7-col-tablet">
                         <input class="mdl-cell mdl-cell--12-col doc-search-text" type="text" id="card_search" name="keyword" placeholder="本を検索" value="{{ $keyword }}">
                     </div>
-                        <button type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone mdl-cell--1-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <button type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone mdl-cell--1-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored doc-search-button">
                             <i class="material-icons">search</i>
                         </button>
               </div>
@@ -18,6 +18,14 @@
         </div>
     	<h5 class="doc-sub-title"><i class="material-icons">search</i>検索結果</h5>
     </div>
+
+    @if (!empty($message))
+    <div class="mdl-grid portfolio-max-width">
+    	<div class="mdl-cell mdl-cell--12-col doc-error-message">
+    		{{ $message }}
+    	</div>
+    </div>
+    @endif
 
     
     @foreach($results as $item)

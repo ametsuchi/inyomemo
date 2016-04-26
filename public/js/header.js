@@ -42,4 +42,12 @@ $(function(){
       dialog.close();
     });
 
+    // 検索ボタン
+    $("#card-search").keypress(function(event){
+        if(event.which == 13){
+            $(".doc-search-button").click();
+            return false;
+        }
+    });
+
 });

@@ -33,7 +33,7 @@
     <ul class="pageNav01">
 		
     	@if ($currentPage != 1)
-		<li><a href="/wishlist/show/{{ $currentPage -1 }}">&laquo; 前</a></li>
+		<li><a href="/wishlist/{{ $currentPage -1 }}">&laquo; 前</a></li>
 		@endif
 
 		@foreach($pages as $page)
@@ -41,26 +41,18 @@
 			@if ($page == $currentPage)
 				<span>{{ $page }}</span>
 			@else
-				<a href="/wishlist/show/{{ $page }}">{{ $page }}</a>
+				<a href="/wishlist/{{ $page }}">{{ $page }}</a>
 			@endif
 		</li>
 		@endforeach
 
 		@if ($totalPages != 1)
 		@if ($currentPage != $totalPages)
-		<li><a href="/wishlist/show/{{ $currentPage +1 }}">次 &raquo;</a></li>
+		<li><a href="/wishlist/{{ $currentPage +1 }}">次 &raquo;</a></li>
 		@endif
 		@endif
 </ul>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript">
-	$.ajaxSetup({
-        	headers: {
-        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    	    }
-	});
 
 	$('.add-list-button').click(function(){
 		var isbn = $(this).attr('id');

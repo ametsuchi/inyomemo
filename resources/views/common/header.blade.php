@@ -38,9 +38,9 @@
             <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link is-active" href="/home">メモ</a>
-                    <a class="mdl-navigation__link" href="/wishlist/show">ほしいものリスト</a>
+                    <a class="mdl-navigation__link" href="/wishlist">ほしいものリスト</a>
                     <a class="mdl-navigation__link" href="/archive">読んだ本一覧</a>
-                    <a class="mdl-navigation__link" href="/search">検索</a>
+                    <a class="mdl-navigation__link" href="/archive/search">検索</a>
                 </nav>
             </div>
 

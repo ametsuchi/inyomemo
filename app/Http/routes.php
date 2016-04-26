@@ -67,14 +67,18 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('memo/edit/{id}', ['middleware' => 'auth', 'uses' => 'MemoController@edit']);
 	Route::post('memo/edit/{id}/save', ['middleware' => 'auth', 'uses' => 'MemoController@update']);
 
-	// search
+	// book search
 	Route::post('search', ['middleware' => 'auth', 'uses' => 'SearchController@postSearch']);
 	Route::get('search', ['middleware' => 'auth', 'uses' => 'SearchController@search']);
 
 	// wishList
 	Route::post('wishlist/add',['middleware' => 'auth', 'uses' => 'WishListController@addWishList']);
 	Route::post('wishlist/delete',['middleware' => 'auth', 'uses' => 'WishListController@deleteFromWishList']);
-	Route::get('wishlist/show/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
+	Route::get('wishlist/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
+
+	// memo search
+	Route::get('archive/search', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
+	Route::post('archive/search/{page?}', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
 
 
 
