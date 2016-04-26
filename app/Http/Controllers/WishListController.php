@@ -25,7 +25,6 @@ class WishListController extends Controller
             $data["totalPages"] = $count / 10;
         }else{
             $data["totalPages"] = floor($count / 10) + 1;
-            info($data["totalPages"]);
         }
 
 

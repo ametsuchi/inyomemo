@@ -76,6 +76,9 @@ Route::group(['middleware' => 'web'],function()
 	Route::post('wishlist/delete',['middleware' => 'auth', 'uses' => 'WishListController@deleteFromWishList']);
 	Route::get('wishlist/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
 
+	// archive
+	Route::get('archive/{page?}',['middleware' => 'auth', 'uses' => 'ArchiveController@show']);
+
 	// memo search
 	Route::get('archive/search', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
 	Route::post('archive/search/{page?}', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
