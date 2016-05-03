@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Note;
 use Auth;
+use DB;
 
 class MemoController extends Controller
 {
@@ -16,34 +17,16 @@ class MemoController extends Controller
         // ユーザー情報
         $user = Auth::user();
 
+        $query = "select title,author,image_url,max(id),isbn";
+        $query .= "     from notes ";
+        $query .= "     where userid = ?";
+        $query .= "     group by title,author,image_url,isbn";
+        $query .= "     order by max(id) desc";
 
-    	$notes = Note::where('userid',$user->id)
-    	->orderBy('created_at','desc')
-    	->take(10)
-    	->get();
+        $params = array();
+        $params[] = $user->id;
+        $notes = DB::select($query,$params);
 
-    	// 同一本への投稿が連続している場合まとめる
-    	$comments = [];
-    	$count = count($notes);
-
-    	for($i=0;$i<$count;$i++){
-    		// コメントセット生成
-    		$comment = [];
-    		$comment["comment"] = "".$notes[$i]->quote." ".$notes[$i]->note;
-    		$comment["created_at"] = $notes[$i]->created_at;
-    		$comments[] = $comment;
-    		if($i < $count-1){
-    			if($notes[$i]->isbn != $notes[$i+1]->isbn){
-    				$notes[$i]->comments = $comments;
-    				$comments = [];
-    			}else{
-    				unset($notes[$i]);
-    			}
-    		}else{
-    			$notes[$i]->comments = $comments;
-    			$comments = [];
-    		}
-    	}
 
     	$res['notes'] = $notes;
 

@@ -51,14 +51,6 @@ Route::group(['middleware' => 'web'],function()
 	Route::post('callback/{provider}', 'LoginController@callback');
 	Route::get('logout','LoginController@logout');
 
-
-	// amaon api testing
-	// Route::get('/', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	// Route::get('index', ['middleware' => 'auth', 'uses' => 'NoteController@index']);
-	// //Route::post('search', ['middleware' => 'auth', 'uses' => 'NoteController@search']);
-	// Route::get('searchbooklists/{page?}', ['middleware' => 'auth', 'uses' => 'NoteController@searchBookLists']);
-	// Route::post('notesubmit', ['middleware' => 'auth', 'uses' => 'NoteController@notesubmit']);
-
 	// memo
 	Route::get('home', ['middleware' => 'auth', 'uses' => 'MemoController@index']);
 	Route::get('memo/{isbn}', ['middleware' => 'auth', 'uses' => 'MemoController@show']);

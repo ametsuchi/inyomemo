@@ -16,7 +16,7 @@
               </div>
             </form>
         </div>
-        <h5 class="doc-sub-title"><i class="fa fa-comment-o"></i>最近の投稿</h5>
+        <h5 class="doc-sub-title"><i class="fa fa-commenting"></i>最近読んだ本</h5>
     </div>
 
     @foreach($notes as $note)
@@ -24,19 +24,13 @@
         <div class="mdl-grid portfolio-max-width">
             <div class="mdl-grid mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
                 <div class="mdl-card__media mdl-cell--2-col mdl-cell--1-col-phone">
-                    <a href="/memo/{{$note->isbn}}"><img class="book-image" src=" {{ $note->image_url }}" border="0" alt="" style="max-width:113px;"></a>
+                    <a href="/memo/{{$note->isbn}}"><img class="book-image" src=" {{ $note->image_url }}" border="0" alt="" ></a>
                 </div>
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
                     <a href="/memo/{{$note->isbn}}"><h2 class="mdl-card__title-text">{{ $note->title }}</h2></a>
                     <div class="mdl-card__supporting-text padding-top">
                         <span>{{ $note->author }}</span>
                     </div>
-                    @foreach($note->comments as $comment)
-                    <div class="doc-about-card section__text mdl-card__supporting-text no-left-padding">
-                        <p>{{ $comment["comment"]}} </p>
-                        <span>{{ $comment["created_at"] }}</span>
-                    </div>
-                    @endforeach
                 </div>
             </div>
         </div>

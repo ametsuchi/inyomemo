@@ -194,12 +194,18 @@ section .mdl-grid .mdl-grid {
   width: 100%;
 }
 
+
+.mdl-card__title-text {
+  font-size: 24px;
+}
+
 @media (max-width: 479px) {
     .mdl-card__title-text{
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: bold;
     }
 }
+
 
 /** detail **/
 
@@ -337,11 +343,24 @@ ul.pageNav01 li a:hover {
   background: rgba(0, 0, 0, 0.2);
 }
 
+.book-image {
+  max-width: 100px;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),
+              0 1px 10px 0 rgba(0,0,0,.12),
+              0 2px 4px -1px rgba(0,0,0,.2);
+}
+
+
 @media (max-width: 479px) {
   .book-image {
     width: 100%;
     height: auto;
   }
+}
+
+
+.mdl-card {
+  min-height: 50px;
 }
 
 .portfolio-max-width {

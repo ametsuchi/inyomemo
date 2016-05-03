@@ -6,6 +6,23 @@ $.ajaxSetup({
 
 
 $(function(){
+  
+  // navigation
+  $(".mdl-navigation__link").removeClass("is-active");
+  var pathname = window.location.pathname;
+  console.log("pathname",pathname);
+  if(pathname.startsWith('/memo')){
+    $("#nav_memo").addClass("is-active");
+  }else if(pathname.startsWith("/home")){
+    $("#nav_memo").addClass("is-active");
+  }else if(pathname.startsWith("/wishlist")){
+    $("#nav_wishlist").addClass("is-active");
+  }else if(pathname.startsWith("/archive/search")){
+    $("#nav_search").addClass("is-active");
+  }else{
+    $("#nav_archive").addClass("is-active");
+  }
+
 
 	// header
 	var logout = document.getElementById("logout");
