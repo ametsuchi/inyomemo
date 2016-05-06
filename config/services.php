@@ -38,13 +38,13 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://192.168.33.10:8000/callback/github',
+        'redirect' => 'http://192.168.11.10/callback/github',
     ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://192.168.33.10:8000/callback/twitter',
+        'redirect' => 'http://192.168.11.10/callback/twitter',
     ],
 
 

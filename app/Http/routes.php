@@ -72,8 +72,8 @@ Route::group(['middleware' => 'web'],function()
 	Route::get('archive/{page?}',['middleware' => 'auth', 'uses' => 'ArchiveController@show']);
 
 	// memo search
-	Route::get('archive/search', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
-	Route::post('archive/search/{page?}', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
+	Route::get('wordsearch', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
+	Route::post('wordsearch/{page?}', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
 
 
 

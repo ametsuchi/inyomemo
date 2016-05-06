@@ -19,7 +19,10 @@ class MemoSearchController extends Controller
 			$data["user"] = Auth::user();
 			$data["keyword"] = "";
 			$data["message"] = "";
-    	return view('pages.memosearch',$data);
+            $data["currentPage"] = $page;
+            $data["totalPages"] = 1;
+    	    $data["pages"] = [];
+        return view('pages.memosearch',$data);
     	}
 
     	$user = Auth::user();

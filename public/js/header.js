@@ -5,8 +5,8 @@ $.ajaxSetup({
 });
 
 
-$(function(){
-  
+
+ $(function(){ 
   // navigation
   $(".mdl-navigation__link").removeClass("is-active");
   var pathname = window.location.pathname;
@@ -26,17 +26,19 @@ $(function(){
 
 	// header
 	var logout = document.getElementById("logout");
-	logout.addEventListener("click",function(){
-		location.href = "/logout";
-	});
+	if (logout != null){
+    logout.addEventListener("click",function(){
+      location.href = "/logout";
+    });
+  }
 
 	var dialog = document.querySelector('dialog');
-    var showDialogButton = document.getElementById('evernote');
+  var showDialogButton = document.getElementById('evernote');
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
-    showDialogButton.addEventListener('click', function() {
-    	var url = window.location.href;
+  $(".evernoteLink").on('click', function() {
+      var url = window.location.href;
 
 	    dialog.showModal();
 	    $("#loading").show();
@@ -66,5 +68,4 @@ $(function(){
             return false;
         }
     });
-
 });

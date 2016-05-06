@@ -4,7 +4,7 @@
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">
-            <form action="/archive/search" method="post">
+            <form action="/wordsearch" method="post">
             {{ csrf_field() }}
               <div class="mdl-grid">
                     <div class="mdl-grid mdl-cell mdl-cell--12-col  mdl-cell--4-col-phone mdl-cell--8-col-tablet">
@@ -54,7 +54,7 @@
     <ul class="pageNav01">
 		
     	@if ($currentPage != 1)
-		<li><a href="/archive/search/{{ $currentPage -1 }}">&laquo; 前</a></li>
+		<li><a href="/wordsearch/{{ $currentPage -1 }}">&laquo; 前</a></li>
 		@endif
 
 		@foreach($pages as $page)
@@ -62,14 +62,14 @@
 			@if ($page == $currentPage)
 				<span>{{ $page }}</span>
 			@else
-				<a href="/archive/search/{{ $page }}">{{ $page }}</a>
+				<a href="/wordsearch/{{ $page }}">{{ $page }}</a>
 			@endif
 		</li>
 		@endforeach
 
 		@if ($totalPages != 1)
 		@if ($currentPage != $totalPages)
-		<li><a href="/archive/search/{{ $currentPage +1 }}">次 &raquo;</a></li>
+		<li><a href="/wordsearch/{{ $currentPage +1 }}">次 &raquo;</a></li>
 		@endif
 		@endif
 </ul>

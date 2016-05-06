@@ -15,6 +15,11 @@ a {
           justify-content: center;
 }
 
+.doc-search-button {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
 .mdl-layout__title {
   text-align: left;
   font-weight: 300;

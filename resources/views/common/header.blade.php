@@ -17,33 +17,37 @@
     <script type="text/javascript" src="/js/header.js"></script>
 </head>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row doc-logo-row ">
+        <header class="mdl-layout__header mdl-layout--no-desktop-drawer-button">
+            <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
                 <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
                 <div class="doc-header-user">
                     <img class="doc-avator" src="{{$user->avatar}}">
                     <span>{{$user->name}}</span>
-            <button id="demo-menu-lower-right"
-                class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="demo-menu-lower-right"
+                    class="mdl-button mdl-js-button mdl-button--icon">
                 <i class="material-icons">more_vert</i>
                 </button>
 
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="demo-menu-lower-right">
-                    <li class="mdl-menu__item" id="evernote"><i class="fa fa-cloud-upload"></i>Evernote連携</li>
+                    <li class="mdl-menu__item evernoteLink" id="evernote"><i class="fa fa-cloud-upload"></i>Evernote連携</li>
                     <li class="mdl-menu__item" id="logout"><i class="fa fa-sign-out"></i>ログアウト</li>
                     </ul>
                 </div>
             </div>
-            <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link" id="nav_memo" href="/home">メモ</a>
                     <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist">ほしいものリスト</a>
                     <a class="mdl-navigation__link" id="nav_archive" href="/archive">読んだ本一覧</a>
-                    <a class="mdl-navigation__link" id="nav_search" href="/archive/search">検索</a>
+                    <a class="mdl-navigation__link" id="nav_search" href="/wordsearch">検索</a>
                 </nav>
             </div>
-
+            <!-- mobile menu -->
+            <div class="mdl-layout__header-row mdl-layout--small-screen-only">
+                <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
+                <div class="mdl-layout-spacer"></div>
+            </div>
   <!-- evernote連携ダイアログ -->
   <dialog class="mdl-dialog">
     <h5 class="mdl-dialog__title">Evernoteと連携</h5>
@@ -62,6 +66,20 @@
   </dialog>
 
         </header>
+
+  <div class="mdl-layout__drawer">
+                <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" id="nav_memo" href="/home">メモ</a>
+        <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist">ほしいものリスト</a>
+        <a class="mdl-navigation__link" id="nav_archive" href="/archive">読んだ本一覧</a>
+        <a class="mdl-navigation__link" id="nav_search" href="/wordsearch">検索</a>
+        <a class="mdl-navigation__link evernoteLink" id="evernote" href="#">Evernoteと連携</a>
+        <a class="mdl-navigation__link" id="logout" href="/logout">ログアウト</a>
+    </nav>
+  </div>
+
+
         @yield('content')
 </body>
 </html>
