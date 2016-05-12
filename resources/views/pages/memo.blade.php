@@ -21,24 +21,28 @@
     	   <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
            <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="note" name="note" rows="5" placeholder="メモを記録…"></textarea>
             <div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>
-            <button  id="save" type="button" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone mdl-cell--3-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+            <button  id="save" type="button" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone mdl-cell--3-col-tablet mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                 name="save">
                         Save
             </button>
         </div>
         <input type="hidden" id="isbn" name="isbn" value="{{ $isbn }}">
+
     <hr class="doc-horizontal">
     <section id="memo_section">
     @foreach($notes as $note)
-    <div class="mdl-grid mdl-cell mdl-cell--12-col note" id="note{{$note->id}}">
+    <div class="mdl-grid mdl-cell mdl-cell--2-col--phone mdl-cell--12-col note" id="note{{$note->id}}">
         <div class="mdl-cell mdl-cell--4-col doc-detail-page">
         @if($note->page != 0)
             P.{{$note->page}}
         @endif
         </div>
-        <div class="mdl-cell mdl-cell--8-col doc-detail-icon" style="text-align:right">
+        <div class="mdl-cell mdl-cell--8-col mdl-layout--large-screen-only doc-detail-icon" style="text-align:right">
             <button class="mdl-button mdl-js-button mdl-button--icon doc-edit" id="edit{{$note->id}}"><i class="material-icons">mode_edit</i></button>
             <button class="mdl-button mdl-js-button mdl-button--icon doc-delete" id="delete{{$note->id}}"><i class="material-icons">delete_forever</i></button>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col--phone mdl-layout--small-screen-only">
+            <button class="mdl-button mdl-js-button mdl-button--icon doc-mobile-edit" id="edit{{$note->id}}"><i class="material-icons">more_horiz</i></button>           
         </div>
         <!-- row -->
         <div class="mdl-cell mdl-cell--12-col">

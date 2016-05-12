@@ -74,7 +74,52 @@ class MemoTest extends TestCase
     		->see($testQuote)
     		->see($testNote)
     		->see($testImageUrl)
-    		->see($testAmazonUrl);
+    		->see($testAmazonUrl)
+            ->dontSee("P.0");
+    }
+
+    /**
+     * 既存のメモありの表示(ページあり)
+     *
+     * @return void
+     */
+    public function testShowWritedMemoPage(){
+        // テスト用ダミーデータ
+        $testUserId = -1;
+        $testIsbn = '12345678';
+        $testTitle = 'テストタイトル';
+        $testAuthor = '作者名';
+        $testQuote = '引用部分';
+        $testNote = 'メモ部分';
+        $testImageUrl = 'http://dummy.image.1234';
+        $testAmazonUrl = 'http://dummy.amazon.1234';
+
+        $note = new App\Note;
+        $note->userId = $testUserId;
+        $note->isbn = $testIsbn;
+        $note->title = $testTitle;
+        $note->author = $testAuthor;
+        $note->quote = $testQuote;
+        $note->note = $testNote;
+        $note->image_url = $testImageUrl;
+        $note->amazon_url = $testAmazonUrl;
+        $note->page = 100;
+
+        $note->save();
+
+
+        $user = factory(App\User::class)->create();
+        $user->id = -1;
+
+        $this->actingAs($user)
+            ->visit('/memo/'.$testIsbn)
+            ->see($testTitle)
+            ->see($testAuthor)
+            ->see($testQuote)
+            ->see($testNote)
+            ->see($testImageUrl)
+            ->see($testAmazonUrl)
+            ->see("P.100");
     }
 
     /**
@@ -144,10 +189,14 @@ class MemoTest extends TestCase
     	// 操作
 
     	$this->actingAs($user)
-    	->visit('/memo/'.$testIsbn)
-    	->type($testQuote,'quote')
-    	->type($testNote,'note')
-    	->press('save');
+            ->post("/memo/post",["page"=>0,
+                        "quote" => $testQuote,
+                        "note" => $testNote,
+                        "title" => $testTitle,
+                        "author" => $testAuthor,
+                        "image_url" => $testImageUrl,
+                        "amazon_url" => $testAmazonUrl,
+                        "isbn" => $testIsbn]);
 
     	// DBの値確認
     	$this->seeInDatabase('notes',
@@ -200,10 +249,15 @@ class MemoTest extends TestCase
 
     	// 操作
 
-    	$this->actingAs($user)
-    	->visit('/memo/'.$testIsbn)
-    	->type($testNote,'note')
-    	->press('save');
+        $this->actingAs($user)
+            ->post("/memo/post",["page"=>0,
+                        "quote" => "",
+                        "note" => $testNote,
+                        "title" => $testTitle,
+                        "author" => $testAuthor,
+                        "image_url" => $testImageUrl,
+                        "amazon_url" => $testAmazonUrl,
+                        "isbn" => $testIsbn]);
 
     	// DBの値確認
     	$this->seeInDatabase('notes',
@@ -255,9 +309,15 @@ class MemoTest extends TestCase
 
     	// 操作
 
-    	$this->actingAs($user)
-    	->visit('/memo/'.$testIsbn)
-    	->press('save');
+        $this->actingAs($user)
+            ->post("/memo/post",["page"=>0,
+                        "quote" => "",
+                        "note" => "",
+                        "title" => $testTitle,
+                        "author" => $testAuthor,
+                        "image_url" => $testImageUrl,
+                        "amazon_url" => $testAmazonUrl,
+                        "isbn" => $testIsbn]);
 
     	// DBの値確認
     	$this->seeInDatabase('notes',
@@ -271,6 +331,7 @@ class MemoTest extends TestCase
     		 'userid' => $user->id
     		 ]
     		);
+
     }
 
 
@@ -309,10 +370,15 @@ class MemoTest extends TestCase
 
     	// 操作
 
-    	$this->actingAs($user)
-    	->visit('/memo/'.$testIsbn)
-    	->type($testQuote,'quote')
-    	->press('save');
+        $this->actingAs($user)
+            ->post("/memo/post",["page"=>0,
+                        "quote" => $testQuote,
+                        "note" => "",
+                        "title" => $testTitle,
+                        "author" => $testAuthor,
+                        "image_url" => $testImageUrl,
+                        "amazon_url" => $testAmazonUrl,
+                        "isbn" => $testIsbn]);
 
     	// DBの値確認
     	$this->seeInDatabase('notes',
@@ -327,7 +393,5 @@ class MemoTest extends TestCase
     		 ]
     		);
     }
-
-
 
 }

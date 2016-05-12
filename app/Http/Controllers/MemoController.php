@@ -17,16 +17,24 @@ class MemoController extends Controller
         // ユーザー情報
         $user = Auth::user();
 
-        $query = "select title,author,image_url,max(id),isbn";
-        $query .= "     from notes ";
-        $query .= "     where userid = ?";
-        $query .= "     group by title,author,image_url,isbn";
-        $query .= "     order by max(id) desc";
+        // $query = "select title,author,image_url,max(id),isbn";
+        // $query .= "     from notes ";
+        // $query .= "     where userid = ?";
+        // $query .= "     group by title,author,image_url,isbn";
+        // $query .= "     order by max(id) desc";
+        // $query .= "     limit 10";
 
-        $params = array();
-        $params[] = $user->id;
-        $notes = DB::select($query,$params);
+        // $params = array();
+        // $params[] = $user->id;
+        // $notes = DB::select($query,$params);
 
+        $notes = DB::table('notes')
+                    ->select(DB::raw('title,author,image_url,max(id),isbn'))
+                    ->where('userid','=',$user->id)
+                    ->groupBy('title','author','image_url','isbn')
+                    ->orderBy('max(id)','desc')
+                    ->take(10)
+                    ->get();
 
     	$res['notes'] = $notes;
 

@@ -11,8 +11,9 @@ use DB;
 
 class MemoSearchController extends Controller
 {
-    public function search(Request $request,$page = 1){
+    public function search(Request $request){
     	$keyword = $request->input("keyword");
+        $page = $request->input("page");
 
     	if(empty($keyword)){
 			$data["notes"] = [];
@@ -22,12 +23,16 @@ class MemoSearchController extends Controller
             $data["currentPage"] = $page;
             $data["totalPages"] = 1;
     	    $data["pages"] = [];
-        return view('pages.memosearch',$data);
+            return view('pages.memosearch',$data);
     	}
 
+        if(empty($page)){
+            $page = 1;
+        }
+
     	$user = Auth::user();
-    	//
-    	$query = 'select distinct isbn,title,author,image_url from notes where userid = ? and (';
+    	
+    	$query = 'select distinct isbn,title,author,image_url,max(id) from notes where userid = ? and (';
     	$array =  preg_split('/[\s|\x{3000}]+/u', $keyword);
     	$params = array();
     	$params[] = $user->id;
@@ -38,18 +43,21 @@ class MemoSearchController extends Controller
     		$query .= ' quote like ? or';
     		$query .= ' note like ? ) and';
 			
-			$params[] = "%".$param."%";
-			$params[] = "%".$param."%";
-			$params[] = "%".$param."%";
-			$params[] = "%".$param."%";
+            $escapedParam = $this->escapeLike($param);
+
+			$params[] = "%".$escapedParam."%";
+			$params[] = "%".$escapedParam."%";
+			$params[] = "%".$escapedParam."%";
+			$params[] = "%".$escapedParam."%";
     	}
 
     	$query = substr($query, 0,-3);
     	info($query);
     	$query .= ')';
+        $query .= ' group by isbn,title,author,image_url';
+        $query .= ' order by max(id) desc';
 
 		$notes = DB::select($query,$params);
-
 
 		// ぺジネーション関係
 		$take = 30;
@@ -83,5 +91,14 @@ class MemoSearchController extends Controller
 
 		return view('pages.memosearch',$data);
 
+    }
+
+    /**
+     * エスケープ(Like句用)
+     *
+     * @return エスケープ文字列
+     **/
+    function escapeLike($str){
+        return str_replace('%', '\%', $str);
     }
 }

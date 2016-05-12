@@ -54,7 +54,7 @@
     <ul class="pageNav01">
 		
     	@if ($currentPage != 1)
-		<li><a href="/wordsearch/{{ $currentPage -1 }}">&laquo; 前</a></li>
+		<li><a href="/wordsearch?keyword={{$keyword}}&amp;page={{ $currentPage -1 }}">&laquo; 前</a></li>
 		@endif
 
 		@foreach($pages as $page)
@@ -62,14 +62,14 @@
 			@if ($page == $currentPage)
 				<span>{{ $page }}</span>
 			@else
-				<a href="/wordsearch/{{ $page }}">{{ $page }}</a>
+				<a href="/wordsearch?keyword={{$keyword}}&amp;page={{ $page }}">{{ $page }}</a>
 			@endif
 		</li>
 		@endforeach
 
 		@if ($totalPages != 1)
 		@if ($currentPage != $totalPages)
-		<li><a href="/wordsearch/{{ $currentPage +1 }}">次 &raquo;</a></li>
+		<li><a href="/wordsearch?keyword={{$keyword}}&amp;page={{ $currentPage +1 }}">次 &raquo;</a></li>
 		@endif
 		@endif
 </ul>

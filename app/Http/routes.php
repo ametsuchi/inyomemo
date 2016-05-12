@@ -73,8 +73,5 @@ Route::group(['middleware' => 'web'],function()
 
 	// memo search
 	Route::get('wordsearch', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
-	Route::post('wordsearch/{page?}', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
-
-
-
+	Route::post('wordsearch', ['middleware' => 'auth', 'uses' => 'MemoSearchController@search']);
 });

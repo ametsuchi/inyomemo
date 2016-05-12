@@ -216,11 +216,12 @@ section .mdl-grid .mdl-grid {
 
 blockquote{
     background-color:#EFEFEF;
-    padding:3em;
+    padding:3em 2em 3em 2em;
     position:relative;
     z-index:1;
     font-style: normal;
     font-size: 1em;
+    margin:0px;
 }
 blockquote:before, blockquote:after{
     font-family:"FontAwesome";
@@ -254,7 +255,6 @@ blockquote:after{
 }
 
 .doc-detail-page {
-  padding-left: 15px;
   margin: 0 0 0 8px;
 }
 
@@ -266,7 +266,12 @@ blockquote:after{
 }
 
 .doc-detail-note {
-  padding-left: 15px;
+}
+
+.doc-mobile-edit {
+  text-align: right;
+  color: #9FA0A0;
+  margin:0px;
 }
 
 .doc-detail-hr {
