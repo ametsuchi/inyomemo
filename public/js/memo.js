@@ -33,10 +33,11 @@ $(function(){
         }
 
         if(page == 0){
-            $("#add_page","#newDiv").remove();
+           // $("#add_page","#newDiv").remove();
         }else{
             $("#add_page","#newDiv").text("P." + page);
         }
+        $("#add_more").hide();
         $("#newDiv").show(1000);
         // reset
         $("#page").val("");
@@ -59,8 +60,9 @@ $(function(){
     		},
             function(id){
                 $("#addDiv").attr("id","note"+id);
-                $("#add_delete").attr("id","delete"+id);
-                $("#add_edit").attr("id","edit"+id);
+                $("#add_delete").attr("id","delete"+id).attr("name","delete"+id);
+                $("#add_edit").attr("id","edit"+id).attr("name","edit"+id);
+                $("#add_more").attr("id","more"+id).show();
                 $.get(
                     '/evernote/writeevernote',
                     {
@@ -74,9 +76,15 @@ $(function(){
     });
 
     // 削除
-    $("section").on("click",".doc-delete",function(){
-        var id = $(this).attr("id").replace("delete","");
+    $(document).on("click",".doc-delete",function(){
+        // var id = $(this).attr("id").replace("delete","");
+        var id = $(this).attr("name").replace("delete","");
         $("#note"+id).remove();
+
+        var dialog = document.getElementById('moreDialog');
+        if (! dialog.showModal) {
+            dialog.close();
+        }
 
         var url = "/memo/delete/" + id;
         $.get(
@@ -101,8 +109,8 @@ $(function(){
     });
 
     // 編集
-    $("section").on("click",".doc-edit",function(){
-        var id = $(this).attr("id").replace("edit","");
+    $(document).on("click",".doc-edit",function(){
+        var id = $(this).attr("name").replace("edit","");
         location.href = "/memo/edit/" + id;
     });
 
@@ -121,6 +129,30 @@ $(function(){
             $("#edit"+id).hide();
         }
     );
+
+    // mobile版
+    $(document).on("click",".doc-more",function(){
+            var id = $(this).attr("id").replace("more","");
+            var dialog = document.getElementById('moreDialog');
+
+            // id 返ってくるまで編集させない保険
+            if(id == "add_"){
+                return;
+            }
+            $("#dialog-delete").attr("name","delete" + id);
+            $("#dialog-edit").attr("name","edit" + id);
+
+            dialog.showModal();
+    });
+
+    $(document).on("click","#dialog-close",function(){
+        var dialog = document.getElementById('moreDialog');
+        dialog.close();
+    });
+
+
+
+    
 
 });
 

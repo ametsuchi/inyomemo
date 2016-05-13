@@ -23,8 +23,12 @@ class LoginController extends Controller
     }
 
 
-    public function login($provider)
+    public function login($provider,Request $request)
     {
+        // ログイン継続チェックボックスをsessionに
+        $remember = $request->input("remember");
+        info($remember);
+        $request->session()->pull('remember',$remember);
     	// ソーシャルログイン処理
     	return $this->socialite->driver($provider)->redirect();
     }
@@ -33,7 +37,7 @@ class LoginController extends Controller
         Auth::logout();
         return redirect("/");
     }
-   public function callback($provider)
+   public function callback($provider,Request $request)
 	{
     	// ユーザー情報取得
     	$userData = $this->socialite->driver($provider)->user();
@@ -57,8 +61,18 @@ class LoginController extends Controller
     		$user = $users[0];
     	}
 
-    	Auth::login($user);
-    	return redirect('home');
+        // ログイン継続か否か
+        $remember = $request->session()->get("remember");
+        // Todo::
+        $remember = true;
+
+
+    	Auth::login($user,$remember);
+        if(Auth::viaRemember()){
+            info("remember login :".$user->id);
+        }
+
+        return redirect('home');
 	}
 
 }

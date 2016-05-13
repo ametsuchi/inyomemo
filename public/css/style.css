@@ -256,6 +256,7 @@ blockquote:after{
 
 .doc-detail-page {
   margin: 0 0 0 8px;
+  padding-top: 10px;
 }
 
 .doc-detail-icon {
@@ -290,6 +291,37 @@ blockquote:after{
 
 .doc-page-field {
   width: 50px;
+}
+
+.doc-memo-memu {
+  text-align: right;
+}
+
+.doc-close-button:focus {
+  background-color: #fff!important;
+}
+
+.doc-dialog-close {
+  text-align: right;
+  margin-right: 3px;
+  color: #9FA0A0;
+}
+
+.doc-more i{
+  margin: 0px;
+}
+
+.doc-more-dialog {
+  padding: 0;
+}
+
+.doc-more-dialog .mdl-grid {
+  padding: 0;
+}
+
+.doc-more-dialog .mdl-grid .mdl-cell{
+  margin-top:0px;
+
 }
 
 /** search **/
