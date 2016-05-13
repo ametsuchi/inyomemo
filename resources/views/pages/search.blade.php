@@ -44,9 +44,11 @@
                 </div>
                 <!-- row -->
 				<div class="mdl-cell mdl-cell--8-col mdl-layout--large-screen-only"></div>
-				<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list-button add">
-  					<i class="material-icons">add</i>ADD WISH LIST
-				</button>
+					@if ($item['add'] != "add")
+					<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list-button add">
+  						<i class="material-icons">add</i>ほしいものリストに追加
+					</button>
+					@endif
 				<input type="hidden" name="isbn" value="{{ $item['isbn'] }}" >
 				<input type="hidden" name="title" value="{{ $item['title'] }}" id="title{{ $item['isbn'] }}">
 				<input type="hidden" name="author" value="{{ $item['author'] }}" id="author{{ $item['isbn'] }}">

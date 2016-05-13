@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Note;
 use App\Wishlist;
 use Auth;
+use DB;
 
 class SearchController extends Controller
 {
@@ -47,7 +48,30 @@ class SearchController extends Controller
     	$results = $this->amazonItemSearch($keyword,$page);
     	$data = [];
     	if(count($results) > 0){
-	    	$data["results"] = $results["items"];
+            $wishlists = DB::table('wishlists')
+                            ->where('userid',"=",Auth::user()->id)
+                            ->lists('isbn');
+            $items = array();
+            foreach ($results["items"] as $item) {
+                $newItem = array();
+
+                if(in_array($item["isbn"], $wishlists)){
+                    $newItem["add"] = "add";
+                }else{
+                    $newItem["add"] = "";
+                }
+                // ?
+                $newItem["title"] = $item["title"];
+                $newItem["author"] = $item["author"];
+                $newItem["image"] = $item["image"];
+                $newItem["isbn"] = $item["isbn"];
+                $newItem["publicationDate"] = $item["publicationDate"];
+                $newItem["url"] = $item["url"];
+
+                $items[] = $newItem;
+            }
+
+	    	$data["results"] = $items;
 	    	$data["totalPages"] = $results["totalPages"];
 
     		// ページャーがforだとsyntax errorになるので配列に入れてやる

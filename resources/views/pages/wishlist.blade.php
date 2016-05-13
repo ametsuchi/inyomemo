@@ -3,7 +3,7 @@
 <main class="mdl-layout__content doc-main">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
-    	<h5 class="doc-sub-title"><i class="material-icons">book</i>Wish List</h5>
+    	<h5 class="doc-sub-title">ほしいものリスト</h5>
     </div>
     @foreach($results as $item)
     <section id="card{{ $item->isbn }}">
@@ -14,7 +14,7 @@
                     <a href="{{$item->amazon_url}}"><img class="book-image" src=" {{ $item->image_url }}" border="0" alt="" style="max-width:113px;"></a>
                 </div>
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
-                    <a href="{{$item->amazon_url}}"><h2 class="mdl-card__title-text">{{ $item->title }}<i class="fa fa-amazon"></i></h2></a>
+                    <a href="{{$item->amazon_url}}"><h2 class="mdl-card__title-text">{{ $item->title }}</h2></a>
                     <div class="mdl-card__supporting-text padding-top">
                         <span>{{ $item->author }},{{ str_replace('-','/',$item->publication_date) }}</span>
                     </div>
@@ -22,7 +22,7 @@
                 <!-- row -->
 				<div class="mdl-cell mdl-cell--8-col mdl-layout--large-screen-only"></div>
 				<button type="button" id="{{ $item->isbn }}" class="mdl-button mdl-js-button mdl-button--raised add-list-button del">
-  					<i class="material-icons">remove</i>DELETE FROM LIST
+  					<i class="material-icons">remove</i>ほしいものリストから削除
 				</button>
 				<input type="hidden" name="isbn" value="{{ $item->isbn }}" >
             </div>
