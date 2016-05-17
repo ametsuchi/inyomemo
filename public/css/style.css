@@ -37,6 +37,32 @@ a {
   font-weight: 300;
 }
 
+.doc-mobile-user {
+  color: #fff;
+  background-color: rgb(34,43,52);
+
+  width: 100%;
+/*  text-align: center;
+  padding-top:30px;
+*/
+}
+
+.bbb{
+  display: inline-block;
+  width: 50%;
+}
+.aaa{
+  text-align: right;
+  display: inline-block;
+  width:50%;
+  margin-left:auto;
+  margin-right: 0;
+}
+
+.doc-mobile-user span{
+  font-size: 1em!important;
+}
+
 .is-compact .mdl-layout__title span {
   display: none;
 }
@@ -54,6 +80,7 @@ a {
   font-family: "Roboto","Helvetica","Arial",sans-serif;
 
 }
+
 
 
 /** main */
@@ -329,6 +356,22 @@ blockquote:after{
   margin-left: auto;
 }
 
+.doc-add-list {
+  text-align: right;
+}
+
+.doc-add-list span {
+  font-size: 0.5em;
+}
+
+.new {
+  color:#9FA0A0;
+}
+
+.error {
+  color: red;
+  display: none;
+}
 
 ul.pageNav01 {
   margin: 0 0 10px;
@@ -360,29 +403,17 @@ ul.pageNav01 li a:hover {
 }
 
 /** wish list */
-.doc-amazon-button{
+.mdl-select{
+  margin-left: 8px;
+}
+.doc-setting {
+  color: #9FA0A0;
+  margin-top:20px;
+  font-size: 1em;
 }
 
-.portfolio-blog-card-full-bg {
-  background: url(images/example-blog03.jpg) center / cover;
-}
-
-.portfolio-blog-card-event-bg {
-  background: url(images/example-blog05.jpg) center / cover;
-}
-
-.portfolio-blog-card-strip-bg {
-  background: url(images/example-blog06.jpg) center / cover;
-}
-
-.portfolio-blog-card-compact .mdl-card__title {
-  padding-bottom: 0;
-}
-
-.portfolio-blog-card-bg > .mdl-card__actions {
-  height: 52px;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.2);
+.doc-wish-delete {
+  text-align: right;
 }
 
 .book-image {
@@ -438,30 +469,10 @@ ul.pageNav01 li a:hover {
   padding: 10px 0 0;
 }
 
-.portfolio-share-btn {
-  position: relative;
-  float: right;
-  top: -4px;
+.right {
+  text-align: right;
 }
 
-.demo-card-event > .mdl-card__actions {
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    box-sizing: border-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.portfolio-contact .mdl-textfield {
-  width: 100%;
-}
-
-.portfolio-contact form {
-  max-width: 550px;
-  margin: auto;
-}
 
 footer {
   background-image: url(images/footer-background.png);

@@ -44,11 +44,12 @@
                 </div>
                 <!-- row -->
 				<div class="mdl-cell mdl-cell--8-col mdl-layout--large-screen-only"></div>
-					@if ($item['add'] != "add")
-					<button type="button" id="{{ $item['isbn'] }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-list-button add">
-  						<i class="material-icons">add</i>ほしいものリストに追加
-					</button>
-					@endif
+				<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone doc-add-list">
+				<button class="mdl-button mdl-js-button add-list-button" id="{{$item['isbn']}}">
+					<i class="material-icons">add</i><span>リストに追加</span>
+				</button>
+				</div>
+
 				<input type="hidden" name="isbn" value="{{ $item['isbn'] }}" >
 				<input type="hidden" name="title" value="{{ $item['title'] }}" id="title{{ $item['isbn'] }}">
 				<input type="hidden" name="author" value="{{ $item['author'] }}" id="author{{ $item['isbn'] }}">
@@ -82,37 +83,55 @@
 </ul>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!-- dialog -->
+<dialog class="mdl-dialog" id="addDialog">
+    <div class="mdl-dialog__content">
+      <p>
+        ほしいものリストに追加
+      </p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select">
+  		    <input class="mdl-textfield__input" type="text" id="select-section" value="未分類" readonly="readonly"/>
+  		    <label class="mdl-textfield__label" for="select-section">リスト名</label>
+  		    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-section">
+      		    <li class="mdl-menu__item list-select">未分類</li>
+      		    @foreach($lists as $list)
+      		    <li class="mdl-menu__item list-select">{{$list->name}}</li>
+      		    @endforeach
+      		    <li class="mdl-menu__item list-select new">新規作成…</li>
+    	   </ul>
+		</div>
+    </div>
+   	<div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button mdl-button--raised close" style="width:80px">閉じる</button>
+      <button type="button" id="addlist" class="mdl-button mdl-button--raised mdl-button--colored addListButton" style="width:80px">追加</button>
+    </div>
+
+</dialog>
+
+
 <script type="text/javascript">
-	$.ajaxSetup({
-        	headers: {
-        	    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    	    }
+var new_flg = false;
+$(function(){
+	$('.add-list-button').on("click",function(){
+
+		// show dialog
+		var dialog = document.getElementById("addDialog");
+		dialog.showModal();
+		var isbn = $(this).attr("id");
+		$(".addListButton").attr("id","add" + isbn);
+	});
+	$(".close").on("click",function(){
+		var dialog = document.getElementById("addDialog");
+		dialog.close();
 	});
 
-	$('.add-list-button').click(function(){
-		var isbn = $(this).attr('id');
-
-		if($(this).hasClass('del')){
-			$(this).addClass('mdl-button--colored');
-			$(this).addClass('add');
-			$(this).removeClass('del');
-			$(this).html('<i class="material-icons">add</i>ADD WISH LIST');
-
-			$.post(
-				'/wishlist/delete',
-				{
-					'isbn':isbn
-				}
-			);			
-
-		}else{
-			$(this).removeClass('mdl-button--colored');
-			$(this).addClass('del');
-			$(this).removeClass('add');
-			$(this).html('<i class="material-icons">remove</i>DELETE FROM LIST');
-
-			$.post(
+	$(".addListButton").on("click",function(){
+		var name = $("#select-section").val();
+		var isbn = $(this).attr("id").replace("add","");
+		var dialog = document.getElementById("addDialog");
+		dialog.close();
+		$.post(
 				'/wishlist/add',
 				{
 					'isbn':isbn,
@@ -120,11 +139,39 @@
 					'author':$('#author'+isbn).val(),
 					'imageUrl':$('#imageUrl'+isbn).val(),
 					'amazonUrl'	:$('#amazonUrl'+isbn).val(),
-					'publicationDate':$('#publicationDate'+isbn).val()
+					'publicationDate':$('#publicationDate'+isbn).val(),
+					'name':name,
+					'new_flg':new_flg
 				}
-			);			
-		}
+			);
+
 	});
+
+	$('div.mdl-select > ul > li').click(function(e) {
+        var text = $(e.target).text();
+        $(e.target).parents('.mdl-select').addClass('is-dirty').children('input').val(text);
+
+        if($(this).hasClass("new")){
+			new_flg = true;
+		}else{
+			new_flg = false;
+		}
+    });
+});
+
+
+
+			// 	$.post(
+			// 	'/wishlist/add',
+			// 	{
+			// 		'isbn':isbn,
+			// 		'title':$('#title'+isbn).val(),
+			// 		'author':$('#author'+isbn).val(),
+			// 		'imageUrl':$('#imageUrl'+isbn).val(),
+			// 		'amazonUrl'	:$('#amazonUrl'+isbn).val(),
+			// 		'publicationDate':$('#publicationDate'+isbn).val()
+			// 	}
+			// );	
 </script>
 
 </main>

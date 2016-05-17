@@ -66,7 +66,10 @@ Route::group(['middleware' => 'web'],function()
 	// wishList
 	Route::post('wishlist/add',['middleware' => 'auth', 'uses' => 'WishListController@addWishList']);
 	Route::post('wishlist/delete',['middleware' => 'auth', 'uses' => 'WishListController@deleteFromWishList']);
-	Route::get('wishlist/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
+	Route::get('wishlist/rename',['middleware' => 'auth', 'uses' => 'WishListController@renameTitle']);
+	Route::get('wishlist/deletelist',['middleware' => 'auth', 'uses' => 'WishListController@deleteWishList']);
+	Route::get('wishlist/{titleid}/{page?}',['middleware' => 'auth', 'uses' => 'WishListController@show']);
+
 
 	// archive
 	Route::get('archive/{page?}',['middleware' => 'auth', 'uses' => 'ArchiveController@show']);

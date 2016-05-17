@@ -212,14 +212,16 @@ class Controller extends BaseController
     /**
     * ほしいものリストをＥｖｅｒｎｏｔｅに書き込み 
     */
-    protected function writingWishListToEvernote($userid){
+    protected function writingWishListToEvernote($userid,$name,$titleid){
         $evernote_notebooks = EvernoteNotebook::where('userid',$userid)->get();
 
+        info("evernote wishlist :start");
         if(count($evernote_notebooks) == 0 || empty($evernote_notebooks[0]->token)){
+        info("evernote wishlist :empty");
             return;
         }
         $notebookGuid = $this->getNotebookGuid();
-        $guid = $this->updateWishList($notebookGuid);
+        $guid = $this->updateWishList($notebookGuid,$name,$titleid);
 
         return $guid;
     }
@@ -293,9 +295,12 @@ class Controller extends BaseController
 
 
         // DBに紐づけを保存
-        EvernoteNote::where('userid',Auth::user()->id)
-                    ->where('isbn',$isbn)->delete();
+        $links =  EvernoteNote::where('userid',Auth::user()->id)
+                    ->where('isbn',$isbn)->get();
         $isbnlink = new EvernoteNote;
+        if(count($links) > 0){
+            $isbnlink = $links[0];            
+        }
         $isbnlink->userid = Auth::user()->id;
         $isbnlink->isbn = $isbn;
         $isbnlink->note_guid =$newGuid;
@@ -311,11 +316,14 @@ class Controller extends BaseController
      * ノートを更新（ほしいものリスト）
      *
      * @param $親ノートブックのＧＵＩＤ
-     * @param $note->guid
+     * @param $リストの名前
+     * @param $wishListTitleId
      */
-    protected function updateWishList($parentNotebookGuid){
+    protected function updateWishList($parentNotebookGuid,$name,$titleid){
+        info("evernote update wishlist");
+
         $noteIsbnLink = EvernoteNote::where('userid',Auth::user()->id)
-                        ->where('isbn','wishlist')->get();
+                        ->where('isbn','wishlist_'.$titleid)->get();
 
         $guid = null;
         $store = $this->getNoteStore();
@@ -330,23 +338,31 @@ class Controller extends BaseController
 
         $tags = array();
         $tags[] = "bikm";
-        $tags[] = "ほしいものリスト";
+        $tags[] = "ほしいものリスト"; // タグにリスト名は入れない。
 
+        // タイトル 
+        $noteTitle = "ほしいものリスト（".$name."）";
         // 本文作成
-        $content = $this->createContentForWishlist();
+        $content = $this->createContentForWishlist($titleid);
         // Evernoteにノート更新
-        $newGuid = $this->updateNote($guid,$parentNotebookGuid,"ほしいものリスト",$tags,$content);
+        $newGuid = $this->updateNote($guid,$parentNotebookGuid,$noteTitle,$tags,$content);
 
+        info("evernote update wishlist:note write");
 
         // DBに紐づけを保存
-        EvernoteNote::where('userid',Auth::user()->id)
-                    ->where('isbn','wishlist')->delete();
+        // isbn を 「wishlist_xxx」にする
+        $links = EvernoteNote::where('userid',Auth::user()->id)
+                    ->where('isbn','wishlist_'.$titleid)->get();
         $isbnlink = new EvernoteNote;
+        if(count($links) > 0){
+            $isbnlink = $links[0];
+        }
         $isbnlink->userid = Auth::user()->id;
-        $isbnlink->isbn = 'wishlist';
+        $isbnlink->isbn = 'wishlist_'.$titleid;
         $isbnlink->note_guid =$newGuid;
         $isbnlink->save();
 
+        info("evernote update wishlist:db save.");
         return $newGuid;
 
     }
@@ -398,6 +414,7 @@ class Controller extends BaseController
         return $thisUrl;
     }
 
+// todo;;;;evernoteから既存のノートブック引っ張ってくる。
     /**
      * 新規にノートブックを作成
      *
@@ -405,7 +422,7 @@ class Controller extends BaseController
      */
     protected function createNotebook($store,$accessToken,$user){
         $newNotebook = new Notebook();
-        $newNotebook->name = "bkim_notebook_test";
+        $newNotebook->name = "bkim_notebook_backup";
         $createdNotebook = $store->createNotebook($accessToken,$newNotebook);
         $notebookGuid = $createdNotebook->guid;
         // DBに保存
@@ -465,9 +482,14 @@ class Controller extends BaseController
         return $note->guid;
     }
 
-    protected function createContentForWishlist(){
+    /** 
+     * ほしいものリスト用の本文生成
+     *
+     * @return Ｅｖｅｒｎｏｔｅ本文
+     **/
+    protected function createContentForWishlist($titleid){
         $user = Auth::user();
-        $wishlists = Wishlist::where('userid',$user->id)->orderby('id','desc')->get();
+        $wishlists = Wishlist::where('userid',$user->id)->where('titleid',$titleid)->orderby('id','desc')->get();
 
         $content = "";
         $content .= '<a href="'.$this->getHostUrl().'/wishlist/show'.'">bkimでこのページを編集</a><br/>';

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Note;
-use App\Wishlist;
+use App\WishlistTitle;
 use Auth;
 use DB;
 
@@ -33,6 +33,7 @@ class SearchController extends Controller
 		$keyword = $request->input('keyword');
 		$page = $request->input('page',1);
 
+        $user =  Auth::user();
 
         if(empty($keyword)){
             $data["results"] = [];
@@ -48,30 +49,7 @@ class SearchController extends Controller
     	$results = $this->amazonItemSearch($keyword,$page);
     	$data = [];
     	if(count($results) > 0){
-            $wishlists = DB::table('wishlists')
-                            ->where('userid',"=",Auth::user()->id)
-                            ->lists('isbn');
-            $items = array();
-            foreach ($results["items"] as $item) {
-                $newItem = array();
-
-                if(in_array($item["isbn"], $wishlists)){
-                    $newItem["add"] = "add";
-                }else{
-                    $newItem["add"] = "";
-                }
-                // ?
-                $newItem["title"] = $item["title"];
-                $newItem["author"] = $item["author"];
-                $newItem["image"] = $item["image"];
-                $newItem["isbn"] = $item["isbn"];
-                $newItem["publicationDate"] = $item["publicationDate"];
-                $newItem["url"] = $item["url"];
-
-                $items[] = $newItem;
-            }
-
-	    	$data["results"] = $items;
+	    	$data["results"] = $results["items"];
 	    	$data["totalPages"] = $results["totalPages"];
 
     		// ページャーがforだとsyntax errorになるので配列に入れてやる
@@ -84,7 +62,11 @@ class SearchController extends Controller
     		$data["keyword"] = $keyword;
     		$data["currentPage"] = $page;
 
-
+            // wishList
+            $titleList = WishListTitle::where('userid','=',$user->id)
+                    ->orderBy('id')
+                    ->get();
+            $data["lists"] = $titleList;
     	}else{
     		// Todo:Amazonの戻り値、検索結果0と制限引っかかったときの区別つく？
 	    	$data["results"] = [];
@@ -94,7 +76,7 @@ class SearchController extends Controller
     		$data["currentPage"] = $page;
     	}
         // ユーザー
-        $data["user"] = Auth::user();
+        $data["user"] = $user;
         $data["message"] = "";
     	return view('pages.search',$data);
     }

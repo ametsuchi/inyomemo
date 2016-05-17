@@ -38,7 +38,7 @@
             <div class="mdl-layout__header-row doc-navigation-row mdl-layout__header--waterfall mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link" id="nav_memo" href="/home">メモ</a>
-                    <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist">ほしいものリスト</a>
+                    <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist/0">ほしいものリスト</a>
                     <a class="mdl-navigation__link" id="nav_archive" href="/archive">読んだ本一覧</a>
                     <a class="mdl-navigation__link" id="nav_search" href="/wordsearch">検索</a>
                 </nav>
@@ -68,10 +68,12 @@
         </header>
 
   <div class="mdl-layout__drawer">
-                <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
+                <div class="mdl-layout__title doc-title doc-mobile-user">
+                    <div class="bbb">bkim</div><div class="aaa"><img class="doc-avator" src="{{$user->avatar}}"></div>
+                </div>
     <nav class="mdl-navigation">
         <a class="mdl-navigation__link" id="nav_memo" href="/home">メモ</a>
-        <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist">ほしいものリスト</a>
+        <a class="mdl-navigation__link" id="nav_wishlist" href="/wishlist/0">ほしいものリスト</a>
         <a class="mdl-navigation__link" id="nav_archive" href="/archive">読んだ本一覧</a>
         <a class="mdl-navigation__link" id="nav_search" href="/wordsearch">検索</a>
         <a class="mdl-navigation__link evernoteLink" id="evernote" href="#">Evernoteと連携</a>

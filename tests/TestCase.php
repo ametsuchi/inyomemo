@@ -48,6 +48,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     }
 
 
+
     /**
      * ダミーデータつくる.保存しない.(Note)
      *

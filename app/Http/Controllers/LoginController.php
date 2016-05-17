@@ -46,11 +46,15 @@ class LoginController extends Controller
     	->where('socialite_id',$userData->getId())
     	->take(1)
     	->get();
+
+        // name
+        // Githubはnickname
+        $name = $userData->getNickName();
     	
     	$user = null;
     	if(count($users) == 0){
 	    	$user = User::create([
-	    		'name' => $userData->getNickname(),
+	    		'name' => $name,
 	    		'socialite_id' => $userData->getId(),
 	    		'email' => $userData->getEmail(),
 	    		'avatar' => $userData->getAvatar(),
@@ -59,6 +63,11 @@ class LoginController extends Controller
 
     	}else{
     		$user = $users[0];
+
+            $user->name = $name;
+            $user->email = $userData->getEmail();
+            $user->avatar = $userData->getAvatar();
+            $user->save();
     	}
 
         // ログイン継続か否か
@@ -68,11 +77,8 @@ class LoginController extends Controller
 
 
     	Auth::login($user,$remember);
-        if(Auth::viaRemember()){
-            info("remember login :".$user->id);
-        }
 
-        return redirect('home');
+       return redirect('home');
 	}
 
 }

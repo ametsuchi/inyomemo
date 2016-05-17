@@ -114,8 +114,15 @@ class EvernoteController extends Controller
                $accessToken  = $accessTokenInfo['oauth_token'];
 
                if(count($evernote_notebooks) > 0){
+                    //更新
                		$evernote_notebooks[0]->token = $accessToken;
                		$evernote_notebooks[0]->save();
+               }else{
+                    // 新規作成
+                    $evernote = new EvernoteNotebook;
+                    $evernote->userid = $loginUser->id;
+                    $evernote->token = $accessToken;
+                    $evernote->save();
                }
         }
 
