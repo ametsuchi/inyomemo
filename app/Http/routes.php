@@ -42,7 +42,7 @@ Route::group(['middleware' => 'web'],function()
 	Route::get("/evernote/callback",'EvernoteController@callback');
 
 	Route::get("evernote/writeevernote",['middleware' => 'auth', 'uses' =>'EvernoteController@writingNoteToEvernote']);
-
+	Route::get("evernote/delete/{titleid}",['middleware' => 'auth', 'uses' =>'EvernoteController@deleteNote']);
 
 	// login
 	Route::auth();

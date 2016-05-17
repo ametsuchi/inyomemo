@@ -119,7 +119,6 @@
             dialog.showModal();
         });
 
-// Comp!!!!!
         $("#setting-rename").on("click",function(){
             var titleid = $("#setting-name").attr("name");
             var name = $("#setting-name").val();
@@ -153,6 +152,7 @@
                 },
                 function(){
                     window.location.href = "/wishlist/0";
+                    $.get('/evernote/delete/'+titleid);
                 }
             );
         });

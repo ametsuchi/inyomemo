@@ -21,6 +21,7 @@ use App\EvernoteNotebook;
 use App\EvernoteNote;
 use App\Note as DbNote;
 use App\Wishlist;
+use App\WishListTitle;
 
 
 class EvernoteController extends Controller
@@ -74,7 +75,7 @@ class EvernoteController extends Controller
                 $request->session()->push('accessUrl',$request->input("url"));
 
         }else{
-        	error("evernote oauth failed.");
+        	Log::error("evernote oauth failed.");
         }
 
         return $authorizeUrl;
@@ -129,12 +130,19 @@ class EvernoteController extends Controller
         return $this->redirectOriginalUrl($request);
     }
 
+    public function deleteNote(Request $request,$titleid){
+        // evernoteに書き込み
+        $this->deleteWishListToEvernote(Auth::user()->id,$titleid);
+        EvernoteNote::where('isbn','wishlist_'.$titleid)->delete();
+    }
+
     function redirectOriginalUrl(Request $request){
         // 元のページを表示
         $redirectUrl = $request->session()->pull('accessUrl');
         $redirectUrl = str_replace($this->getHostUrl(),"",$redirectUrl);
         return redirect(substr($redirectUrl[0],1));    	
     }
+
 
 
 }

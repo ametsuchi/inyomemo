@@ -215,9 +215,9 @@ class Controller extends BaseController
     protected function writingWishListToEvernote($userid,$name,$titleid){
         $evernote_notebooks = EvernoteNotebook::where('userid',$userid)->get();
 
-        info("evernote wishlist :start");
+        Log::debug("evernote wishlist :start");
         if(count($evernote_notebooks) == 0 || empty($evernote_notebooks[0]->token)){
-        info("evernote wishlist :empty");
+            Log::debug("evernote wishlist :empty");
             return;
         }
         $notebookGuid = $this->getNotebookGuid();
@@ -226,7 +226,27 @@ class Controller extends BaseController
         return $guid;
     }
 
+    protected function deleteWishListToEvernote($userid,$titleid){
+        $evernote_notebooks = EvernoteNotebook::where('userid',$userid)->get();
 
+        if(count($evernote_notebooks) == 0 || empty($evernote_notebooks[0]->token)){
+            Log::debug("evernote wishlist :empty");
+            return;
+        }
+        $notebookGuid = $this->getNotebookGuid();
+        // 削除
+        $titleGuid = EvernoteNote::where('userid',$userid)
+                    ->where('isbn','wishlist_'.$titleid)
+                    ->select('note_guid')
+                    ->get();
+        $store = $this->getNoteStore();
+        if(count($titleGuid) == 0){
+            return;
+        }
+        //noteStore.deleteNote(authToken, created2.getGuid());
+        info($titleGuid[0]->note_guid);
+        $store->deleteNote($evernote_notebooks[0]->token,$titleGuid[0]->note_guid);
+    }
 
     /**
      * ノートブックのGUIDを取得
@@ -291,7 +311,7 @@ class Controller extends BaseController
         // 本文作成
         $content = $this->createContent($isbn);
         // Evernoteにノート更新
-        $newGuid = $this->updateNote($guid,$parentNotebookGuid,$title,$tags,$content);
+        $newGuid = $this->updateNote($guid,$parentNotebookGuid,$title,$tags,$content,false);
 
 
         // DBに紐づけを保存
@@ -320,7 +340,7 @@ class Controller extends BaseController
      * @param $wishListTitleId
      */
     protected function updateWishList($parentNotebookGuid,$name,$titleid){
-        info("evernote update wishlist");
+        Log::debug("evernote update wishlist");
 
         $noteIsbnLink = EvernoteNote::where('userid',Auth::user()->id)
                         ->where('isbn','wishlist_'.$titleid)->get();
@@ -345,7 +365,7 @@ class Controller extends BaseController
         // 本文作成
         $content = $this->createContentForWishlist($titleid);
         // Evernoteにノート更新
-        $newGuid = $this->updateNote($guid,$parentNotebookGuid,$noteTitle,$tags,$content);
+        $newGuid = $this->updateNote($guid,$parentNotebookGuid,$noteTitle,$tags,$content,true);
 
         info("evernote update wishlist:note write");
 
@@ -362,7 +382,7 @@ class Controller extends BaseController
         $isbnlink->note_guid =$newGuid;
         $isbnlink->save();
 
-        info("evernote update wishlist:db save.");
+        Log::debug("evernote update wishlist:db save.");
         return $newGuid;
 
     }
@@ -438,7 +458,7 @@ class Controller extends BaseController
      *
      * @param isbn,title,ノートブックのguid
      */
-    protected function updateNote($noteGuid,$parentNotebookGuid,$title,$tags,$content){
+    protected function updateNote($noteGuid,$parentNotebookGuid,$title,$tags,$content,$isWishList){
         $store = $this->getNoteStore();
         $evernote_notebooks = EvernoteNotebook::where('userid',Auth::user()->id)->get();
         $accessToken = $evernote_notebooks[0]->token;
@@ -452,7 +472,9 @@ class Controller extends BaseController
             }else{
             // 既存のノートの更新の場合はタイトルとタグを既存の優先
                 $tags = $oldNote->tagNames;
-                $title = $oldNote->title;
+                if(!$isWishList){
+                    $title = $oldNote->title;
+                }
             }
         }
         // ノート更新

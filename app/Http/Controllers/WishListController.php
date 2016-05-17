@@ -175,13 +175,21 @@ class WishListController extends Controller
     	// ユーザー情報
     	$user = Auth::user();
 
+        $listTitle = WishListTitle::find($request->input('titleid'));
+        $name = "";
+        if($request->input('titleid') == 0){
+            $name = "未分類";
+        }else{
+            $name = $listTitle[0]->name;
+        }
+
     	$wishlist = Wishlist::where('userid',$user->id)
     	->where('isbn',$request->input('isbn'))
         ->where('titleid',$request->input('titleid'))
     	->delete();
 
         // evernoteに書き込み
-        $this->writingWishListToEvernote($user->id,$name,$titleid);
+        $this->writingWishListToEvernote($user->id,$name,$request->input('titleid'));
     }
 
     /**
@@ -214,7 +222,7 @@ class WishListController extends Controller
 
 
     /**
-     * ほしいものリストを削除 + Ｅｖｅｒｎｏｔｅ書き込み
+     * ほしいものリストを削除
      * @return void
      **/
     public function deleteWishList(Request $request){
@@ -234,9 +242,6 @@ class WishListController extends Controller
         $wishlists = Wishlist::where('userid','=',$user->id)
                     ->where('titleid','=',$titleid)
                     ->delete();
-
-        // evernoteに書き込み
-        //$this->writingWishListToEvernote($user->id);
     }
 
 }
