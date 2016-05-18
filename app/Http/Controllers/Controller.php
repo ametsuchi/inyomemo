@@ -255,6 +255,7 @@ class Controller extends BaseController
      */
     protected function getNotebookGuid(){
 
+//　Ｅｖｅｒｎｏｔｅから検索して取得する処理追加。
             $user = Auth::user();
             $evernote_notebooks = EvernoteNotebook::where('userid',Auth::user()->id)->get();
             $accessToken = $evernote_notebooks[0]->token;
@@ -265,6 +266,15 @@ class Controller extends BaseController
             if(empty($store)){
                 return;
             }
+
+            foreach ($store->listNotebooks() as $notebook) {
+                if($notebook->name == "bkim"){
+                    $notebookGuid = $notebook->guid;
+                    Log::debug("get Guid");
+                    break;
+                }
+            }
+
             $notebooks = $store->listNotebooks();
             if(!empty($notebookGuid)){
                 try{
@@ -434,7 +444,6 @@ class Controller extends BaseController
         return $thisUrl;
     }
 
-// todo;;;;evernoteから既存のノートブック引っ張ってくる。
     /**
      * 新規にノートブックを作成
      *
@@ -442,7 +451,7 @@ class Controller extends BaseController
      */
     protected function createNotebook($store,$accessToken,$user){
         $newNotebook = new Notebook();
-        $newNotebook->name = "bkim_notebook_backup";
+        $newNotebook->name = "bkim";
         $createdNotebook = $store->createNotebook($accessToken,$newNotebook);
         $notebookGuid = $createdNotebook->guid;
         // DBに保存
@@ -514,7 +523,7 @@ class Controller extends BaseController
         $wishlists = Wishlist::where('userid',$user->id)->where('titleid',$titleid)->orderby('id','desc')->get();
 
         $content = "";
-        $content .= '<a href="'.$this->getHostUrl().'/wishlist/show'.'">bkimでこのページを編集</a><br/>';
+        $content .= '<a href="'.$this->getHostUrl().'/wishlist/'.$titleid.'">bkimでこのページを編集</a><br/>';
         $content .= '<hr></hr>';
         foreach ($wishlists as $wishlist) {
             $content .= '<h3>'.$wishlist->title.'</h3>';
