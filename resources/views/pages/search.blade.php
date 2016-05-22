@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content doc-main">
+<main class="doc-main mdl-layout__container">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">
@@ -110,6 +110,9 @@
 </dialog>
 
 
+
+
+</main>
 <script type="text/javascript">
 var new_flg = false;
 $(function(){
@@ -173,6 +176,4 @@ $(function(){
 			// 	}
 			// );	
 </script>
-
-</main>
 @stop

@@ -175,11 +175,11 @@ class WishListController extends Controller
     	// ユーザー情報
     	$user = Auth::user();
 
-        $listTitle = WishListTitle::find($request->input('titleid'));
         $name = "";
         if($request->input('titleid') == 0){
             $name = "未分類";
         }else{
+            $listTitle = WishListTitle::find($request->input('titleid'))->get();
             $name = $listTitle[0]->name;
         }
 

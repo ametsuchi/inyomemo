@@ -4,9 +4,16 @@ a {
 
 }
 
+.mdl-layout__container {
+  background-color:  #f1f1f1!important;
+}
+
+ 
+
 .doc-header {
   position: relative;
 }
+
 
 .doc-header .mdl-layout__header-row {
   padding: 0;
@@ -86,6 +93,10 @@ a {
 /** main */
 .doc-main {
   background-color:  #f1f1f1;
+}
+
+.mdl-mini-footer__link-list {
+  
 }
 
 .is-compact .doc-logo-row {
@@ -473,9 +484,4 @@ ul.pageNav01 li a:hover {
   text-align: right;
 }
 
-
-footer {
-  background-image: url(images/footer-background.png);
-  background-size: cover;
-}
 

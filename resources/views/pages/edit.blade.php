@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content">
+<main class="doc-main">
     <!-- edit -->
 <!--    <form action="/memo/edit/{{$id}}/save" method="post">-->
         <div class="mdl-grid mdl-cell mdl-cell--12-col">

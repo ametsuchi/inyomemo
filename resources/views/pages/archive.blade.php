@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content doc-main">
+<main class="doc-main">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
     	<h5 class="doc-sub-title"><i class="material-icons">book</i>一覧</h5>

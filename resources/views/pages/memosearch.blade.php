@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content doc-main">
+<main class="doc-main">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">
@@ -53,7 +53,7 @@
 
     <ul class="pageNav01">
 		
-    	@if ($currentPage != 1)
+    	@if ($currentPage != 1 && $totalPages != 1)
 		<li><a href="/wordsearch?keyword={{$keyword}}&amp;page={{ $currentPage -1 }}">&laquo; 前</a></li>
 		@endif
 

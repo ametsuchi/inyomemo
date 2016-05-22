@@ -312,6 +312,7 @@ class wishListTest extends TestCase
         // 未分類
         $noCategory = $this->makeDataWishlist(0);
         // ほかのデータ。
+        $list = $this->makeDataWishTitle();
         $wish = new App\Wishlist;
 
         $wish->isbn = $noCategory->isbn;
@@ -320,18 +321,19 @@ class wishListTest extends TestCase
         $wish->author = "author".$this->makeRandStr(3);
         $wish->image_url = "http://dummy/".$this->makeRandStr(3);
         $wish->amazon_url = "http://amazon".$this->makeRandStr(3);
-        $wish->titleid = 1;
+        $wish->titleid = $list->id;
 
         $wish->save();
 
+
         $this->actingAs($user)
-        	->post("/wishlist/delete",["titleid" => 1,"isbn" => $noCategory->isbn]);
+        	->post("/wishlist/delete",["titleid" => $list->id,"isbn" => $noCategory->isbn]);
 
         // 確認
         $this->seeInDatabase('wishlists',
         	["userid" => -1,"titleid" => 0,"isbn" => $noCategory->isbn])
         ->dontSeeInDatabase('wishlists',
-        	["userid" => -1,"titleid" => 1,"isbn" => $noCategory->isbn]); 	
+        	["userid" => -1,"titleid" => $list->id,"isbn" => $noCategory->isbn]); 	
 
     }
 

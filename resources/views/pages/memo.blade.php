@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content">
+<main class="">
             <div class="mdl-grid mdl-cell mdl-cell--12-col" >
                 <div class="mdl-cell--2-col mdl-cell--1-col-phone doc-image-div">
                     <a class="" href="{{ $amazon_url }}" id="amazon_link"><img class="doc-detail-image book-image" src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image"></a>

@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content doc-main">
+<main class="doc-main">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
     	<h5 class="doc-sub-title">ほしいものリスト</h5>
@@ -53,7 +53,6 @@
     @endforeach
 
     <ul class="pageNav01">
-		
     	@if ($currentPage != 1)
 		<li><a href="/wishlist/{{$titleid}}/{{ $currentPage -1 }}">&laquo; 前</a></li>
 		@endif
@@ -68,7 +67,7 @@
 		</li>
 		@endforeach
 
-		@if ($totalPages != 1)
+		@if ($totalPages != 1 && $totalPages != 0)
 		@if ($currentPage != $totalPages)
 		<li><a href="/wishlist/{{$titleid}}/{{ $currentPage +1 }}">次 &raquo;</a></li>
 		@endif

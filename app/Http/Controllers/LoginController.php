@@ -27,8 +27,7 @@ class LoginController extends Controller
     {
         // ログイン継続チェックボックスをsessionに
         $remember = $request->input("remember");
-        info($remember);
-        $request->session()->pull('remember',$remember);
+        $request->session()->push('remember',$remember);
     	// ソーシャルログイン処理
     	return $this->socialite->driver($provider)->redirect();
     }
@@ -71,10 +70,13 @@ class LoginController extends Controller
     	}
 
         // ログイン継続か否か
-        $remember = $request->session()->get("remember");
-        // Todo::
-        $remember = true;
-
+        $rememberArray = $request->session()->pull("remember");
+        $remember = false;
+        if(count($rememberArray) > 0){
+            if($rememberArray[0] == "true"){
+                $remember = true;
+            }
+        }
 
     	Auth::login($user,$remember);
 

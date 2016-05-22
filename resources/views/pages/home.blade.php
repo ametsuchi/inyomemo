@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main class="mdl-layout__content doc-main">
+<main class=" doc-main">
     <!-- search -->
     <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">

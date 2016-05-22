@@ -1,0 +1,91 @@
+body {
+	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+.wapper {
+	background-size: cover;
+	background-image: url("./image/book.jpg");
+	height: 100%;
+}
+
+.logo {
+	font-size: 72px;
+	text-align: center;
+	padding-top: 50px;
+}
+.logo span {
+	margin-left: 5px;
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-weight: 300;
+}
+.subtitle {
+	text-align: center;
+	font-size: 18px;
+	margin-top: 10px;
+}
+.button {
+	margin: 10px;
+	text-align: center;
+}
+.button-top {
+	margin-top: 30px;
+}
+.button button {
+	text-transform: inherit;
+	width: 250px;
+}
+button i{
+	margin-right: 5px;
+}
+.twitter {
+	background-color: #55acee;
+	color:#fff;
+}
+.twitter:hover{
+	background-color: #55acee;
+	color:#fff;
+	opacity: 0.5;
+}
+.github {
+	background-color: gray;
+	color:#fff;
+}
+.github:hover {
+	background-color: gray;
+	color:#fff;
+	opacity: 0.5;
+}
+.center {
+	text-align: center;
+}
+.exsam {
+	text-align: center;
+	margin-top: 40px;
+}
+.box {
+	display: inline-block;
+	text-align: center;
+	width: 300px;
+	background-color: #d3d3d3;
+	padding: 10px;
+	border-radius: 0.5em;
+	margin: 15px;
+}
+.box i {
+	font-size: 42px;
+	padding: 5px;
+}
+.title {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+.mdl-mini-fotter {
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.mdl-mini-footer div{
+	margin: auto;
+}
+.mdl-mini-footer a{
+	color: #fff;
+}
