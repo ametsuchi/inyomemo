@@ -63,6 +63,7 @@ class MemoController extends Controller
     	$title = "";
     	$author = "";
         $amazon_url = "";
+        $message = "";
 
     	if(count($showNotes) > 0){
             // 
@@ -75,16 +76,23 @@ class MemoController extends Controller
             // Amazonから書籍情報取得
             $amazon = $this->amazonItemLookup($isbn);
 
-            $title = $amazon['title'];
-            $author = $amazon['author'];
-            $image_url = $amazon['mimage'];
-            $amazon_url = $amazon['url'];
+
+            if(!empty($amazon)){
+                $title = $amazon['title'];
+                $author = $amazon['author'];
+                $image_url = $amazon['mimage'];
+                $amazon_url = $amazon['url'];
+            }else{
+                $message = "Amazonから書籍情報の取得に失敗しました。申し訳ありませんが、再読み込みをお願いします。";
+
+            }
         }
 
     	$res['title'] = $title;
     	$res['author'] = $author;
     	$res['image_url'] = $image_url;
         $res['amazon_url'] = $amazon_url;
+        $res['message'] = $message;
 
         // ユーザー
         $res['user'] = $user;

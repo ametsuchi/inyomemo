@@ -25,6 +25,21 @@
       <span class="mdl-layout-title doc-title"><i class="fa fa-book"></i>bkim</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
+      <!-- search -->
+      本を検索
+      <div style="margin-right: 15px;">
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" id="sample6">
+            <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+          </div>
+        </div>
+      </form>
+      </div>
       <!-- user -->
       <div>
             <img class="doc-avator" src="{{$user->avatar}}">
@@ -41,10 +56,10 @@
     </div>
     <!-- tab -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a herf="#" class="mdl-layout__tab is-active">メモ</a>
-        <a href="#" class="mdl-layout__tab">ほしいものリスト</a>
-        <a href="#" class="mdl-layout__tab">読んだ本</a>
-        <a href="#" class="mdl-layout__tab">検索</a>
+        <a herf="/home" class="mdl-layout__tab is-active">メモ</a>
+        <a href="/wishlist/0" class="mdl-layout__tab">ほしいものリスト</a>
+        <a href="/archive" class="mdl-layout__tab">読んだ本</a>
+        <a href="/wordsearch" class="mdl-layout__tab">検索</a>
   </header>
   <div class="mdl-layout__drawer">
     <nav class="mdl-navigation">
@@ -93,6 +108,9 @@
             <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-color--grey-500 mdl-color-text--white doc-delete" name="delete">削除</button>
         </div>
     </div>
+
+ @yield('more')
+
   <footer class="mdl-mini-footer">
       <div class="mdl-mini-footer__left-section">
       お問合せ

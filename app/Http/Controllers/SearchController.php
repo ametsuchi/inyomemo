@@ -74,6 +74,7 @@ class SearchController extends Controller
 	    	$data["pages"] = [];
     		$data["keyword"] = $keyword;
     		$data["currentPage"] = $page;
+            $data["lists"] = [];
     	}
         // ユーザー
         $data["user"] = $user;

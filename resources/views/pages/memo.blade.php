@@ -2,12 +2,18 @@
 @section('content')
 <div class="max-width center doc-memo">
 
+  @if(!empty($message))
+  <div class="error">
+    {{$message}}
+  </div>
+  @endif
+
   <div class="mdl-grid mdl-cell mdl-cell--12-col" >
-    <div class="mdl-cell--2-col mdl-cell--1-col-phone doc-image-div">
-        <a class="" href="{{ $amazon_url }}" id="amazon_link"><img src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image"></a>
+    <div class="mdl-cell--2-col mdl-cell--4-col-phone doc-image-div">
+        <a class="doc-memo-title" href="{{ $amazon_url }}" id="amazon_link"><img src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image doc-memo-image"></a>
     </div>
-    <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
-        <a href="{{ $amazon_url }}"><span class="mdl-card__title-text" id="title">{{ $title }}</span></a>
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--4-col-phone">
+        <a href="{{ $amazon_url }}"><span class="mdl-card__title-text doc-memo-title" id="title">{{ $title }}</span></a>
             <div class="mdl-card__supporting-text">
               <span id="author">{{ $author }}</span>
             </div>
@@ -69,7 +75,7 @@
 
   <!-- post用 -->
   <div class="addDiv" id="add_div" >
-  <div id="add" class="doc-memo-detail mdl-color-text--blue-grey-900" id="note{{$note->id}}">
+  <div id="add" class="doc-memo-detail mdl-color-text--blue-grey-900">
     <div class="doc-page">
       <span id="add_page"><!-- page --></span>
 
@@ -94,8 +100,6 @@
     <hr class="doc-horizontal">
   </div>
   </div>
-
-<span id="test">test</span>
 
 </div>
 <script type="text/javascript" src="/js/autosize.min.js"></script>

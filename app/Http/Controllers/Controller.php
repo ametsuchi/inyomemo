@@ -87,7 +87,7 @@ class Controller extends BaseController
     	$results['title'] = $item->ItemAttributes->Title;
     	$results['author'] = $author;
     	$results['image'] = $item->LargeImage->URL;
-    	$results['mimage'] = $item->MediumImage->URL;
+    	$results['mimage'] = preg_replace('/SL+[0-9]*+_.jpg+$/',"SX100_.jpg",$item->MediumImage->URL);
     	$results['simage'] = $item->SmallImage->URL;
         $results['url'] = $item->DetailPageURL;
     	return $results;
@@ -145,8 +145,13 @@ class Controller extends BaseController
     		$result = array();
     		$result["title"] = $item->ItemAttributes->Title;
     		$result["author"] = $item->ItemAttributes->Author;
-    		$result["image"] = $item->MediumImage->URL;
-    		$result["isbn"] = $item->ItemAttributes->ISBN;
+    		// 画像サイズを編集
+            // SXｘｘｘ形式のリンクにすることでAmazon側でなんか都合のいいリンクにしてくれるらしい
+            $url = $item->MediumImage->URL;
+
+            $result["image"] = preg_replace('/SL+[0-9]*+_.jpg+$/',"SX100_.jpg",$url);
+
+            $result["isbn"] = $item->ItemAttributes->ISBN;
             // ISBNがない商品はASINをセット
             if($result["isbn"] == ""){
                 $result["isbn"] = $item->ASIN;
