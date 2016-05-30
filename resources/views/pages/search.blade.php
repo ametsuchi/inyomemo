@@ -28,15 +28,29 @@
             </header>
             <div class="mdl-card mdl-cell section__text">
               <div class="mdl-card__supporting-text">
+
+            <div class="mdl-card__menu">
+    			<a href="#addListDialog" rel="leanModal" name="{{$item['isbn']}}" class="addListOpen mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="more{{$item['isbn']}}">
+      				<i class="material-icons">more_vert</i>
+    			</a>
+  			</div>
+  			<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="more{{$item['isbn']}}">
+              <a href="{{$item['url']}}"><li class="mdl-menu__item list-select">Amazonの詳細ページへ</li></a>
+              <a href="#addListDialog" rel="leanModal" class="addListOpen" name="{{$item['isbn']}}">
+              	<li class="mdl-menu__item list-select new">ほしいものリストに追加</li>
+              </a>
+         	</ul>
+
+
+
                 <h5>{{$item['title']}}</h5>
-                <span>{{$item['author']}},{{ str_replace('-','/',$item['publicationDate']) }}</span>
+                <div>{{$item['author']}}<br/>{{ str_replace('-','/',$item['publicationDate']) }}</div>
               </div>
-              <div class="mdl-card__actions padding0">
+              <div class="mdl-card__actions">
                 <a href="/memo/{{$item['isbn']}}" class="mdl-button">メモを編集</a>
-                <a href="{{$item['url']}}" class="mdl-button">Amazonの詳細ページへ</a>
-                <a href="#addListDialog" rel="leanModal" class="addListOpen mdl-button" name="{{$item['isbn']}}">ほしいものリストに追加</a>
               </div>
             </div>
+
 </section>
 				<input type="hidden" name="isbn" value="{{ $item['isbn'] }}" >
 				<input type="hidden" name="title" value="{{ $item['title'] }}" id="title{{ $item['isbn'] }}">

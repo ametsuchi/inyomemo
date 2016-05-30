@@ -114,12 +114,12 @@ section > header{
 }
 
 section > .section__book-image {
-  max-width: 113px;
+  max-width: 100px;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 section > .section__text {
-	width: calc(100% - 113px);
+	width: calc(100% - 100px);
 }
 
 @media (max-width: 479px) {
@@ -157,23 +157,39 @@ section .section__text {
   padding-top: 8px;
 }
 
+
 section .section__text h5 {
-  margin: 20px;
   margin-bottom: 0.5em;
 }
+
+section .section__text > div {
+  margin: 5px 20px 20px 20px;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+section .section__text a {
+  margin-right: 10px;
+}
+
 
 @media (max-width: 479px) {
 	section .section__text h5 {
 		font-size:14px;
-		margin-top: 10px;	
+		margin: 10px 0 5px 0;
+    font-size: 12px;
 	}
+
+  section .section__text > div{
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  section .section__text a {
+  margin-right: 3px;
+  }
 }
 
-section .section__text span {
-  margin: 20px;
-  text-align: left;
-  margin-bottom: 0.5em;
-}
 
 
 section .section__text a {
@@ -208,6 +224,7 @@ section .section__circle-container > .section__circle-container__circle {
 .mdl-card > * {
   height: auto;
 }
+
 .mdl-card .mdl-card__supporting-text {
   flex-grow: 1;
   padding: 0;
@@ -239,6 +256,8 @@ section .section__circle-container > .section__circle-container__circle {
 }
 .mdl-card__supporting-text + .mdl-card__actions {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 0;
+  text-align: center;
 }
 
 
@@ -321,6 +340,14 @@ blockquote:after{
 }
 
 /** search **/
+section .mdl-card__menu {
+  position: inherit;
+  margin: 10px;
+  color: gray;
+  margin-left: auto;
+  float: right;
+}
+
 /** pager **/
 ul.pageNav01 {
   margin: 0 0 10px;

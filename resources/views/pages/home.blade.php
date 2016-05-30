@@ -27,7 +27,7 @@
             <div class="mdl-card mdl-cell section__text">
               <div class="mdl-card__supporting-text">
                 <h5>{{$note->title}}</h5>
-                <span>{{$note->author}}</span>
+                <div>{{$note->author}}</div>
               </div>
               <div class="mdl-card__actions">
                 <a href="/memo/{{$note->isbn}}" class="mdl-button">メモを編集</a>
