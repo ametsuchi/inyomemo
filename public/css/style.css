@@ -1,14 +1,16 @@
+html,body {
+  font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color:   rgb(0,188,230);
   text-decoration: none;
 
 }
 
-.mdl-layout__container {
-  background-color:  #f1f1f1!important;
-}
-
- 
 
 .doc-header {
   position: relative;
@@ -86,17 +88,6 @@ a {
   font-weight: 300;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
 
-}
-
-
-
-/** main */
-.doc-main {
-  background-color:  #f1f1f1;
-}
-
-.mdl-mini-footer__link-list {
-  
 }
 
 .is-compact .doc-logo-row {
@@ -217,7 +208,7 @@ a {
 
 .doc-search-card {
   min-height: 50px;
-  paddng:10px;
+  padding:10px;
 }
 
 .doc-error-message {

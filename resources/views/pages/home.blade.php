@@ -1,40 +1,22 @@
-@extends('common.header')
+@extends('common.base')
 @section('content')
-<main class=" doc-main">
-    <!-- search -->
-    <div class="mdl-grid portfolio-max-width">
-        <div class="mdl-cell mdl-cell--12-col  mdl-card doc-search-card mdl-shadow--4dp">
-            <form action="/search" method="post">
-            {{ csrf_field() }}
-              <div class="mdl-grid">
-                    <div class="mdl-grid doc-search-field mdl-cell mdl-cell--10-col  mdl-cell--3-col-phone mdl-cell--7-col-tablet">
-                        <input class="mdl-cell mdl-cell--12-col doc-search-text" type="text" id="card_search" name="keyword" placeholder="本を検索">
-                    </div>
-                        <button type="submit" class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone mdl-cell--1-col-tablet doc-search-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored doc-search-button">
-                            <i class="material-icons">search</i>
-                        </button>
+<div class="max-width center">
+<h5 class="doc-page-title"><i class="fa fa-book"></i>最近読んだ本</h5>
+ @foreach($notes as $note)
+<section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp doc-card">
+            <header class="section__book-image">
+              <img src="{{$note->image_url}}">
+            </header>
+            <div class="mdl-card mdl-cell section__text">
+              <div class="mdl-card__supporting-text">
+                <h5>{{$note->title}}</h5>
+                <span>{{$note->author}}</span>
               </div>
-            </form>
-        </div>
-        <h5 class="doc-sub-title"><i class="fa fa-commenting"></i>最近読んだ本</h5>
-    </div>
-
-    @foreach($notes as $note)
-    <section class="section--center">
-        <div class="mdl-grid portfolio-max-width">
-            <div class="mdl-grid mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
-                <div class="mdl-card__media mdl-cell--2-col mdl-cell--1-col-phone">
-                    <a href="/memo/{{$note->isbn}}"><img class="book-image" src=" {{ $note->image_url }}" border="0" alt="" ></a>
-                </div>
-                <div class="mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
-                    <a href="/memo/{{$note->isbn}}"><h2 class="mdl-card__title-text">{{ $note->title }}</h2></a>
-                    <div class="mdl-card__supporting-text padding-top">
-                        <span>{{ $note->author }}</span>
-                    </div>
-                </div>
+              <div class="mdl-card__actions">
+                <a href="/memo/{{$note->isbn}}" class="mdl-button">メモを編集</a>
+              </div>
             </div>
-        </div>
-    </section>
-    @endforeach
-</main>
+          </section>
+@endforeach
+</div>
 @stop

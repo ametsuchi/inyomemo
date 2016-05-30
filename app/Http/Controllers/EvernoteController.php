@@ -22,6 +22,7 @@ use App\EvernoteNote;
 use App\Note as DbNote;
 use App\Wishlist;
 use App\WishListTitle;
+use Illuminate\Cookie\CookieJar;
 
 
 class EvernoteController extends Controller
@@ -55,7 +56,7 @@ class EvernoteController extends Controller
      *
      * @return 認証用ＵＲＬ
      */
-    public function getTemporaryCredentials(Request $request)
+    public function getTemporaryCredentials(CookieJar $cookieJar, Request $request)
     {
 
     	$client = new Client(array(
@@ -66,13 +67,10 @@ class EvernoteController extends Controller
 		$requestTokenInfo = $client->getRequestToken($callbackUrl);
 		$authorizeUrl = $client->getAuthorizeUrl($requestTokenInfo['oauth_token']);
 
-		if ($requestTokenInfo) {			
-                $request->session()->push('requestToken',$requestTokenInfo['oauth_token']);
-                $request->session()->push('requestTokenSecret',$requestTokenInfo['oauth_token_secret']);
-                $currentStatus = 'Obtained temporary credentials';
-
-                // 現在アクセス中のページ保存
-                $request->session()->push('accessUrl',$request->input("url"));
+		if ($requestTokenInfo) {
+                    $cookieJar->queue(cookie('requestToken',$requestTokenInfo['oauth_token'], 45000));
+                    $cookieJar->queue(cookie('requestTokenSecret',$requestTokenInfo['oauth_token_secret'], 45000));
+                    $cookieJar->queue(cookie('accessUrl',$request->input("url"), 45000));
 
         }else{
         	Log::error("evernote oauth failed.");
@@ -108,8 +106,9 @@ class EvernoteController extends Controller
 	  		'consumerKey' => env('EVERNOTE_CONSUMER_KEY'),
   			'consumerSecret' => env('EVERNOTE_CONSUMER_SECRET'),
             'sandbox' => env('EVERNOTE_SANDBOX')));
-    	$requestToken = $request->session()->pull('requestToken')[0];
-    	$requestTokenSecret = $request->session()->pull('requestTokenSecret')[0];
+        $requestToken = $request->cookie('requestToken');
+        $requestTokenSecret = $request->cookie('requestTokenSecret');
+
         $accessTokenInfo = $client->getAccessToken($requestToken,$requestTokenSecret,$oauth_verifier);
         if ($accessTokenInfo) {
                $accessToken  = $accessTokenInfo['oauth_token'];
@@ -138,8 +137,9 @@ class EvernoteController extends Controller
 
     function redirectOriginalUrl(Request $request){
         // 元のページを表示
-        $redirectUrl = $request->session()->pull('accessUrl');
+        $redirectUrl = $request->cookie('accessUrl');
         $redirectUrl = str_replace($this->getHostUrl(),"",$redirectUrl);
+        $redirectUrl = str_replace("#evernoteDialog", "", $redirectUrl);
         return redirect(substr($redirectUrl[0],1));    	
     }
 

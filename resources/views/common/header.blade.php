@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
@@ -8,18 +8,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>bkim -読書家のためのシンプルなメモアプリ</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-light_blue.min.css" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-indigo.min.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/common.css">
     <script type="text/javascript" src="/js/all.js"></script>
     <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="/js/header.js"></script>
 </head>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-js-layout mdl-layout__header--scroll">
         <header class="mdl-layout__header mdl-layout--no-desktop-drawer-button">
-            <div class="mdl-layout__header-row doc-logo-row mdl-layout--large-screen-only">
-                <span class="mdl-layout__title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
+            <div class="mdl-layout__header-row mdl-layout--large-screen-only">
+                <span class="mdl-layout-title doc-title"><i class="fa fa-book" style="margin-right:3px;"></i>bkim</span>
                 <div class="doc-header-user">
                     <img class="doc-avator" src="{{$user->avatar}}">
                     <span>{{$user->name}}</span>
@@ -49,7 +49,7 @@
                 <div class="mdl-layout-spacer"></div>
             </div>
   <!-- evernote連携ダイアログ -->
-  <dialog class="mdl-dialog">
+  <!--<dialog class="mdl-dialog" id="everdialog">
     <h5 class="mdl-dialog__title">Evernoteと連携</h5>
     <div class="mdl-dialog__content">
       <p>
@@ -63,7 +63,7 @@
     <div class="mdl-dialog__actions">
       <button type="button" class="mdl-button close">閉じる</button>
     </div>
-  </dialog>
+  </dialog>-->
 
         </header>
 

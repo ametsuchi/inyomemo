@@ -1,0 +1,309 @@
+body *{
+	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+a {
+	text-decoration: none;		
+}
+
+.max-width {
+	max-width: 900px;
+	margin: auto;
+}
+
+.addDiv {
+	display: none;
+}
+
+/** header **/
+.doc-title {
+	margin-left: 5px;
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-weight: 300;
+	font-size: 32px;
+}
+
+.doc-title i {
+	margin-right: 3px;
+}
+
+.doc-avator {
+	width: 30px;
+	height: 30px;
+}
+
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+.dialog {
+  background: none repeat scroll 0 0 #FFFFFF;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  display: none;
+  padding: 30px;
+  width: 300px;
+  padding-top: 10px;
+ }
+
+.loading {
+	display: none;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
+	/** tab barの下線 **/
+	height: 3px!important;
+}
+
+.doc-page-title {
+	text-align: left;
+}
+
+.doc-page-title i {
+	margin-right: 3px;
+}
+
+/** navigation **/
+.doc-drawer-header {
+	background-color: #9e9e9e;
+	color: #fff;
+	padding-left: 16px;
+}
+
+.mdl-navigation {
+	padding-top: 0!important;
+}
+
+.doc-drawer-image {
+	padding-top: 24px;
+}
+
+.doc-drawer-image img{
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+
+.doc-drawer-name {
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-size: 14px;
+	height: 30px;
+	padding-top: 10px;
+
+}
+/** home **/
+/** card **/
+section > header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section > .section__book-image {
+  max-width: 113px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+section > .section__text {
+	width: calc(100% - 113px);
+}
+
+@media (max-width: 479px) {
+	section > .section__book-image {
+  		max-width: 30%;
+	}
+
+	section > .section__text {
+		width: 60%!important;
+	}
+}
+
+section > header > .material-icons {
+  font-size: 3rem;
+}
+
+section > button {
+  position: absolute;
+  z-index: 99;
+  top: 8px;
+  right: 8px;
+}
+
+section .section__circle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+section .section__text {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+section .section__text h5 {
+  margin: 20px;
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 479px) {
+	section .section__text h5 {
+		font-size:14px;
+		margin-top: 10px;	
+	}
+}
+
+section .section__text span {
+  margin: 20px;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+
+section .section__text a {
+  text-decoration: none;
+  text-align: centr;
+}
+
+section .section__circle-container > .section__circle-container__circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin: 8px 0;
+}
+
+.mdl-card {
+  height: auto;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.doc-card {
+	margin-bottom: 20px;
+}
+.mdl-card > * {
+  height: auto;
+}
+.mdl-card .mdl-card__supporting-text {
+  flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.mdl-card__supporting-text h5 {
+  margin: 0;
+  text-align: left;
+}
+
+.mdl-card__actions {
+  margin: 0;
+  padding: 4px 40px;
+  color: inherit;
+}
+
+.mdl-card__actions a {
+  color: #00BCD4;
+  margin: 0;
+  font-weight: bold;
+}
+.mdl-card__actions a:hover,
+.mdl-card__actions a:active {
+  color: inherit;
+  background-color: transparent;
+}
+.mdl-card__supporting-text + .mdl-card__actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+
+/** memo **/
+.doc-memo .mdl-cell {
+	text-align: left;
+}
+
+.doc-memo .mdl-cell button {
+	text-align: center;
+}
+
+blockquote{
+    background-color:#EFEFEF;
+    padding:3em 2em 3em 2em;
+    position:relative;
+    z-index:1;
+    font-style: normal;
+    font-size: 1em;
+    margin:0px;
+}
+blockquote:before, blockquote:after{
+    font-family:"FontAwesome";
+    font-size:1.5em;
+    color: #9FA0A0;
+    line-height:1em;
+    position:absolute;
+    z-index:-1;
+}
+
+blockquote:before{
+    content:"\f10d";
+    left:5px;
+    top:5px;
+}
+
+blockquote:after{
+    content:"\f10e";
+    right:5px;
+    bottom:5px;
+}
+
+.doc-memo-detail {
+	text-align: left;
+}
+
+.doc-memo-detail > div,
+.doc-memo-detail blockquote
+{
+	margin: 15px 50px 15px 15px;
+}
+
+.doc-page {
+	margin-right: 5px !important;
+}
+
+.doc-page > div {
+	float: right;
+}
+
+.doc-dialog-button {
+	width: 300px;
+	text-align: center;
+	margin: 10px;
+}
+
+.doc-dialog-button button {
+	width: 250px;
+}
+/** common **/
+.center {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+.right {
+	text-align: right;
+}

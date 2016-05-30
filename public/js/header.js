@@ -32,34 +32,69 @@ $.ajaxSetup({
     });
   }
 
-	var dialog = document.querySelector('dialog');
-  var showDialogButton = document.getElementById('evernote');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-  $(".evernoteLink").on('click', function() {
-      var url = window.location.href;
+  $('a[rel*=leanModal]').leanModal(
+    {
+        overlay : 0.5,               // 背面の透明度 
+        closeButton: ".modal_close"  // 閉じるボタンのCSS classを指定
+  });
 
-	    dialog.showModal();
-	    $("#loading").show();
-	    $("#loading_image").addClass("is-active");
-	    $("#evernote_oauth").hide();  
-    　// 認証用URLを受け取る
-    	 $.get(
-     		'/evernote/authorize',
-     		{url : url}
-     		,
-     		function(url){
-    	 		$("#evernote_oauth").attr("href",url);
-    	 		$("#loading").hide();
-    	 		$("#loading_image").removeClass("is-active");
-    	 		$("#evernote_oauth").show();
-     		}
-	     );
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
+  $('a[rel*=leanModal]').click(function(){
+    $("#loading_image").removeClass("is-active");
+  });
+
+});
+
+  // evernoteの連携
+  function ever(){
+      var oauthUrl = "";
+      var url = window.location.href;
+      // loading 表示
+      $("#loading").show();
+      $("#loading_image").addClass("is-active");
+      // 認証用URLを受け取る
+      $.get(
+         '/evernote/authorize',
+         {url : url}
+         ,
+         function(url){
+           $("#loading").hide();
+           $("#loading_image").removeClass("is-active");
+           close_modal("#evernoteDialog");
+           window.location.href = url;
+         }
+       );
+  }
+
+
+
+	// var dialog = document.getElementById("everdialog");
+ //  var showDialogButton = document.getElementById('evernote');
+ //    if (! dialog.showModal) {
+ //      dialogPolyfill.registerDialog(dialog);
+ //    }
+ //  $(".evernoteLink").on('click', function() {
+ //      var url = window.location.href;
+
+	//     dialog.showModal();
+	//     $("#loading").show();
+	//     $("#loading_image").addClass("is-active");
+	//     $("#evernote_oauth").hide();  
+ //    　// 認証用URLを受け取る
+ //    	 $.get(
+ //     		'/evernote/authorize',
+ //     		{url : url}
+ //     		,
+ //     		function(url){
+ //    	 		$("#evernote_oauth").attr("href",url);
+ //    	 		$("#loading").hide();
+ //    	 		$("#loading_image").removeClass("is-active");
+ //    	 		$("#evernote_oauth").show();
+ //     		}
+	//      );
+ //    });
+ //    dialog.querySelector('.close').addEventListener('click', function() {
+ //      dialog.close();
+ //    });
 
     // 検索ボタン
     $("#card-search").keypress(function(event){
@@ -68,79 +103,10 @@ $.ajaxSetup({
             return false;
         }
     });
-});
 
-/*--------------------------------------------------------------------------*
- *  
- *  footerFixed.js
- *  
- *  MIT-style license. 
- *  
- *  2007 Kazuma Nishihata [to-R]
- *  http://blog.webcreativepark.net
- *  
- *--------------------------------------------------------------------------*/
 
-new function(){
-  
-  var footerId = "footer";
-  //メイン
-  function footerFixed(){
-    //ドキュメントの高さ
-    var dh = document.getElementsByTagName("body")[0].clientHeight;
-    //フッターのtopからの位置
-    document.getElementById(footerId).style.top = "0px";
-    var ft = document.getElementById(footerId).offsetTop;
-    //フッターの高さ
-    var fh = document.getElementById(footerId).offsetHeight;
-    //ウィンドウの高さ
-    if (window.innerHeight){
-      var wh = window.innerHeight;
-    }else if(document.documentElement && document.documentElement.clientHeight != 0){
-      var wh = document.documentElement.clientHeight;
-    }
-    if(ft+fh<wh){
-      document.getElementById(footerId).style.position = "relative";
-      document.getElementById(footerId).style.top = (wh-fh-ft-1)+"px";
-    }
-  }
-  
-  //文字サイズ
-  function checkFontSize(func){
-  
-    //判定要素の追加 
-    var e = document.createElement("div");
-    var s = document.createTextNode("S");
-    e.appendChild(s);
-    e.style.visibility="hidden"
-    e.style.position="absolute"
-    e.style.top="0"
-    document.body.appendChild(e);
-    var defHeight = e.offsetHeight;
-    
-    //判定関数
-    function checkBoxSize(){
-      if(defHeight != e.offsetHeight){
-        func();
-        defHeight= e.offsetHeight;
-      }
-    }
-    setInterval(checkBoxSize,1000)
-  }
-  
-  //イベントリスナー
-  function addEvent(elm,listener,fn){
-    try{
-      elm.addEventListener(listener,fn,false);
-    }catch(e){
-      elm.attachEvent("on"+listener,fn);
-    }
-  }
+    // modal
+    function close_modal(modal_id){
+      console.log(modal_id);
+      $("#lean_overlay").fadeOut(200);$(modal_id).css({"display":"none"})}
 
-  addEvent(window,"load",footerFixed);
-  addEvent(window,"load",function(){
-    checkFontSize(footerFixed);
-  });
-  addEvent(window,"resize",footerFixed);
-  
-}

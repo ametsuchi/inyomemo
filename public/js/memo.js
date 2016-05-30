@@ -17,24 +17,23 @@ $(function(){
         var $add = $("#add_div").children();
         var noteBr = note.replace(/\r\n/g,"<br />");
         noteBr = noteBr.replace(/(\n|\r)/g,"<br />");
+        var quoteBr = quote.replace(/\r\n/g,"<br />");
+        quoteBr = quoteBr.replace(/(\n|\r)/g,"<br />");
 
 
         $cloneDiv = $add.clone();
-        $cloneDiv.attr("id","newDiv").prependTo("section");
+
+        $cloneDiv.attr("id","newDiv").prependTo("#memo-detail");
         $("#add_note","#newDiv").html(note);
         $("#add_time","#newDiv").html(date);
 
         if(quote === ""){
-            $("#add_quote_div","#newDiv").remove();
+            $("#add_quote","#newDiv").remove();
         }else{
-            var quoteBr = quote.replace(/\r\n/g,"<br />");
-            quoteBr = quoteBr.replace(/(\n|\r)/g,"<br />");
-            $("#add_quote","#newDiv").html(quoteBr);
+            $("#add_quote","#newDiv").html("<span>" + quoteBr + "</span>");
         }
 
-        if(page == 0){
-           // $("#add_page","#newDiv").remove();
-        }else{
+        if(page != 0){
             $("#add_page","#newDiv").text("P." + page);
         }
         $("#add_more").hide();
@@ -60,9 +59,7 @@ $(function(){
     		},
             function(id){
                 $("#addDiv").attr("id","note"+id);
-                $("#add_delete").attr("id","delete"+id).attr("name","delete"+id);
-                $("#add_edit").attr("id","edit"+id).attr("name","edit"+id);
-                $("#add_more").attr("id","more"+id).show();
+                $("#add_more").attr("name",id).show();
                 $.get(
                     '/evernote/writeevernote',
                     {
@@ -77,14 +74,10 @@ $(function(){
 
     // 削除
     $(document).on("click",".doc-delete",function(){
-        // var id = $(this).attr("id").replace("delete","");
-        var id = $(this).attr("name").replace("delete","");
+        var id = $(this).attr("name");
         $("#note"+id).remove();
 
-        var dialog = document.getElementById('moreDialog');
-        if (! dialog.showModal) {
-            dialog.close();
-        }
+        close_modal("#memoDialog");
 
         var url = "/memo/delete/" + id;
         $.get(
@@ -110,49 +103,52 @@ $(function(){
 
     // 編集
     $(document).on("click",".doc-edit",function(){
-        var id = $(this).attr("name").replace("edit","");
+        var id = $(this).attr("name");
         location.href = "/memo/edit/" + id;
     });
 
 
-    // 編集ボタンと削除ボタン追加
-    $(document).on("mouseenter",".note",function(){
-            var id = $(this).attr("id").replace("note","");
-            $("#delete"+id).show();
-            $("#edit"+id).show();
-        }
-    );
 
-    $(document).on("mouseleave",".note",function(){
-            var id = $(this).attr("id").replace("note","");
-            $("#delete"+id).hide();
-            $("#edit"+id).hide();
-        }
-    );
+// $('#openEditDialog').on(function(){
 
-    // mobile版
-    $(document).on("click",".doc-more",function(){
-            var id = $(this).attr("id").replace("more","");
-            var dialog = document.getElementById('moreDialog');
 
-            // id 返ってくるまで編集させない保険
-            if(id == "add_"){
-                return;
-            }
-            $("#dialog-delete").attr("name","delete" + id);
-            $("#dialog-edit").attr("name","edit" + id);
+//   $('#openEditDialog').leanModal(
+//     {
+//         overlay : 0.5,               // 背面の透明度 
+//         closeButton: ".modal_close"  // 閉じるボタンのCSS classを指定
+//   });
+// });
 
-            dialog.showModal();
-    });
+  $('.openEditDialog').on("click",function(e){
+                console.log("?");
 
-    $(document).on("click","#dialog-close",function(){
-        var dialog = document.getElementById('moreDialog');
-        dialog.close();
-    });
+        var id = $(this).attr("name").replace("menu","");
+        $(".doc-edit").attr("name",id);
+        $(".doc-delete").attr("name",id);
 
 
 
+        var o=options;
+        var modal_id="#memoDialog";
+                $("#lean_overlay").click(function(){
+                    close_modal(modal_id)});
+                $(o.closeButton).click(function(){
+                    close_modal(modal_id)});
+                var modal_height=$(modal_id).outerHeight();
+                var modal_width=$(modal_id).outerWidth();
+                $("#lean_overlay").css({"display":"block",opacity:0});
+                $("#lean_overlay").fadeTo(200,o.overlay);
+                $(modal_id).css({"display":"block","position":"fixed","opacity":0,"z-index":11000,"left":50+"%","margin-left":-(modal_width/2)+"px","top":"30%"});
+                $(modal_id).fadeTo(200,1);
+                e.preventDefault();
+  });
     
+
+    // dialog setting
+    var defaults={top:100,overlay:0.5,closeButton:null};
+    var overlay=$("<div id='lean_overlay'></div>");
+    $("body").append(overlay);
+    var options=$.extend(defaults,options);
 
 });
 
@@ -169,3 +165,17 @@ function getLocaleDateString()
         + date.toLocaleTimeString();
     return dateStr.substr(0,dateStr.length-3);
 }
+
+// らいぶらりのやつ、動的にひもづけできない
+function　openDialog(options){
+
+    console.log("openDialog");
+
+
+    return aaa(options);
+} 
+
+
+            // var o=options;
+            // $(".openEditDialog").on("click",function(e){
+            //     );
