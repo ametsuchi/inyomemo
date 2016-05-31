@@ -39,4 +39,9 @@
 @endforeach
 </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    document.title = "最近読んだ本 - bkim";
+  });
+</script>
 @stop

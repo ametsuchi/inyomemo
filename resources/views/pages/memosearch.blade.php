@@ -66,9 +66,14 @@
     @endforeach
 
     @if ($totalPages != 1)
-    @if ($currentPage != $totalPages)
+    @if ($currentPage != $totalPages && $totalPages != 0)
     <li><a href="/wordsearch?keyword={{$keyword}}&amp;page={{ $currentPage +1 }}">次 &raquo;</a></li>
     @endif
     @endif
 </ul>
+    <script type="text/javascript">
+    $(function(){
+        document.title = "過去記事検索 - bkim";
+    });
+    </script>
 @stop

@@ -24,5 +24,10 @@
 
 	<script type="text/javascript" src="/js/autosize.min.js"></script>
 	<script type="text/javascript" src="/js/edit.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        document.title = "{{$title}} - bkim";
+    });
+    </script>
 </div>
 @stop

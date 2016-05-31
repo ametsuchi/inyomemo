@@ -8,19 +8,20 @@ $.ajaxSetup({
 
  $(function(){ 
   // navigation
-  $(".mdl-navigation__link").removeClass("is-active");
+  $(".mdl-layout__tab").removeClass("is-active");
   var pathname = window.location.pathname;
-  console.log("pathname",pathname);
   if(pathname.startsWith('/memo')){
     $("#nav_memo").addClass("is-active");
   }else if(pathname.startsWith("/home")){
     $("#nav_memo").addClass("is-active");
   }else if(pathname.startsWith("/wishlist")){
     $("#nav_wishlist").addClass("is-active");
-  }else if(pathname.startsWith("/archive/search")){
+  }else if(pathname.startsWith("/wordsearch")){
     $("#nav_search").addClass("is-active");
-  }else{
+  }else if(pathname.startsWith("/archive")){
     $("#nav_archive").addClass("is-active");
+  }else{
+    $("#nav_memo").addClass("is-active");
   }
 
 

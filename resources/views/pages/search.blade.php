@@ -79,6 +79,11 @@
 </div>
 </div>
     <script type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        document.title = "検索 - bkim";
+    });
+    </script>
 @stop
 
 @section('more')

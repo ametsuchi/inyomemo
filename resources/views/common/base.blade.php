@@ -18,6 +18,17 @@
     <script type="text/javascript" src="/js/header.js"></script>
 </head>
 <body>
+<!-- moblie -->
+<div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header mdl-layout--small-screen-only mobile-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout-icon"></div>
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title doc-title"><i class="fa fa-book"></i>bkim</span>
+    </div>
+  </header>
+</div>
+
+<!-- desktop header -->
 <div class="mdl-layout mdl-js-layout mdl-layout--no-desktop-drawer-button">
   <header class="mdl-layout__header mdl-layout__header--scroll">
     <div class="mdl-layout__header-row">
@@ -55,10 +66,10 @@
     </div>
     <!-- tab -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a href="/home" class="mdl-layout__tab">メモ</a>
-        <a href="/wishlist/0" class="mdl-layout__tab">ほしいものリスト</a>
-        <a href="/archive" class="mdl-layout__tab">読んだ本</a>
-        <a href="/wordsearch" class="mdl-layout__tab">検索</a>
+        <a href="/home" id="nav_memo" class="mdl-layout__tab">メモ</a>
+        <a href="/wishlist/0" id="nav_wishlist" class="mdl-layout__tab">ほしいものリスト</a>
+        <a href="/archive" id="nav_archive" class="mdl-layout__tab">読んだ本</a>
+        <a href="/wordsearch" id="nav_search" class="mdl-layout__tab">検索</a>
   </header>
   <div class="mdl-layout__drawer">
     <nav class="mdl-navigation">
@@ -74,8 +85,8 @@
       <a class="mdl-navigation__link" href="/wishlist/0">ほしいものリスト</a>
       <a class="mdl-navigation__link" href="/archive">読んだ本</a>
       <a class="mdl-navigation__link" href="/wordsearch">検索</a>
-      <a class="mdl-navigation__link" href="">Evernoteと連携</a>
-      <a class="mdl-navigation__link" href="">ログアウト</a>
+      <a class="mdl-navigation__link" a rel="leanModal" href="#evernoteDialog">Evernoteと連携</a>
+      <a class="mdl-navigation__link" href="/logout">ログアウト</a>
     </nav>
   </div>
   <main class="mdl-layout__content">

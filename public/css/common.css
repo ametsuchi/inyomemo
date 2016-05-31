@@ -7,7 +7,9 @@ a {
 	text-decoration: none;		
 }
 
-
+footer div{
+  color: #fff;
+}
 .max-width {
 	max-width: 900px;
 	margin: auto;
@@ -25,6 +27,9 @@ a {
   color: #fff;
 }
 
+.mdl-menu__item *,.mdl-menu__item {
+  color: #000;
+}
 .mdl-layout__tab-bar-container {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
@@ -91,7 +96,18 @@ a {
   background-color: white;
 }
 
+@media(min-width: 1024px){
+  .mobile-header {
+    display: none;
+  }
+}
+
 /** navigation **/
+.mdl-layout__drawer-button i {
+  color: #fff;
+}
+
+
 .doc-drawer-header {
 	background-color: #9e9e9e;
 	color: #fff;
