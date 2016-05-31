@@ -11,7 +11,7 @@
 
                         <button type="submit" class="mdl-cell mdl-cell--2-col mdl-button mdl-js-button mdl-button--raised mdl-button--colored
                          mdl-cell--2-col-tablet mdl-cell--1-col-phone">
-                            <i class="material-icons">search</i>
+                            <i class="material-icons search">search</i>
                         </button>
                 </div>
               </div>
@@ -22,7 +22,9 @@
  @foreach($notes as $note)
 <section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp doc-card">
             <header class="section__book-image">
+              
               <img src="{{$note->image_url}}" >
+              
             </header>
             <div class="mdl-card mdl-cell section__text">
               <div class="mdl-card__supporting-text">

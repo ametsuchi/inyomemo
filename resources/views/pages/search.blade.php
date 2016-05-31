@@ -12,7 +12,7 @@
 
                         <button type="submit" class="mdl-cell mdl-cell--2-col mdl-button mdl-js-button mdl-button--raised mdl-button--colored
                          mdl-cell--2-col-tablet mdl-cell--1-col-phone">
-                            <i class="material-icons">search</i>
+                            <i class="material-icons search">search</i>
                         </button>
                 </div>
               </div>
@@ -24,7 +24,9 @@
 @foreach($results as $item)
 <section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp doc-card">
             <header class="section__book-image">
+            	<a href="{{$item['url']}}">
             	<img src="{{$item['image']}}">
+            	</a>
             </header>
             <div class="mdl-card mdl-cell section__text">
               <div class="mdl-card__supporting-text">
@@ -34,15 +36,6 @@
       				<i class="material-icons">more_vert</i>
     			</a>
   			</div>
-  			<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="more{{$item['isbn']}}">
-              <a href="{{$item['url']}}"><li class="mdl-menu__item list-select">Amazonの詳細ページへ</li></a>
-              <a href="#addListDialog" rel="leanModal" class="addListOpen" name="{{$item['isbn']}}">
-              	<li class="mdl-menu__item list-select new">ほしいものリストに追加</li>
-              </a>
-         	</ul>
-
-
-
                 <h5>{{$item['title']}}</h5>
                 <div>{{$item['author']}}<br/>{{ str_replace('-','/',$item['publicationDate']) }}</div>
               </div>

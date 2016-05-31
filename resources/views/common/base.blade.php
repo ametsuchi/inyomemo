@@ -55,7 +55,7 @@
     </div>
     <!-- tab -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a herf="/home" class="mdl-layout__tab is-active">メモ</a>
+        <a href="/home" class="mdl-layout__tab">メモ</a>
         <a href="/wishlist/0" class="mdl-layout__tab">ほしいものリスト</a>
         <a href="/archive" class="mdl-layout__tab">読んだ本</a>
         <a href="/wordsearch" class="mdl-layout__tab">検索</a>
@@ -70,10 +70,10 @@
                 {{$user->name}}
             </div>
         </div>
-      <a class="mdl-navigation__link" href="">メモ</a>
-      <a class="mdl-navigation__link" href="">ほしいものリスト</a>
-      <a class="mdl-navigation__link" href="">読んだ本</a>
-      <a class="mdl-navigation__link" href="">検索</a>
+      <a class="mdl-navigation__link" href="/home">メモ</a>
+      <a class="mdl-navigation__link" href="/wishlist/0">ほしいものリスト</a>
+      <a class="mdl-navigation__link" href="/archive">読んだ本</a>
+      <a class="mdl-navigation__link" href="/wordsearch">検索</a>
       <a class="mdl-navigation__link" href="">Evernoteと連携</a>
       <a class="mdl-navigation__link" href="">ログアウト</a>
     </nav>

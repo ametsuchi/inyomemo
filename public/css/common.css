@@ -1,10 +1,12 @@
 body *{
 	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+  color: #37474f;
 }
 
 a {
 	text-decoration: none;		
 }
+
 
 .max-width {
 	max-width: 900px;
@@ -15,7 +17,22 @@ a {
 	display: none;
 }
 
+.search {
+  color: #fff;
+}
 /** header **/
+.mdl-layout__header-row,.mdl-layout__header-row *,.mdl-layout__tab-bar-container *{
+  color: #fff;
+}
+
+.mdl-layout__tab-bar-container {
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mdl-layout__tab-bar-button > i {
+  display: none;
+}
+
 .doc-title {
 	margin-left: 5px;
 	font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -160,6 +177,7 @@ section .section__text {
 
 section .section__text h5 {
   margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 section .section__text > div {
@@ -204,6 +222,9 @@ section .section__circle-container > .section__circle-container__circle {
   margin: 8px 0;
 }
 
+section i ,.doc-memo-detail i{
+  color: #78909c;
+}
 .mdl-card {
   height: auto;
   min-height: inherit;
@@ -273,12 +294,20 @@ section .section__circle-container > .section__circle-container__circle {
   }
 }
 
+.doc-memo {
+  margin-top: 30px;
+}
+
 .doc-memo .mdl-cell {
 	text-align: left;
 }
 
 .doc-memo .mdl-cell button {
 	text-align: center;
+}
+
+.doc-memo-subtitle {
+  margin-left: 10px;
 }
 
 blockquote{
@@ -352,7 +381,6 @@ section .mdl-card__menu {
 ul.pageNav01 {
   margin: 0 0 10px;
   padding: 10px 10px 5px;
-  background: #eee;
   text-align: center;
 }
 
@@ -378,6 +406,19 @@ ul.pageNav01 li a:hover {
   border-color: #00f;
 }
 
+/** wishlist **/
+.add-list-button {
+  margin-right: 10px;
+}
+
+@media (max-width: 479px) {
+  .add-list-button i{
+    font-size: 12px;
+  }
+  .wishlist section .mdl-card__menu {
+    margin: 0;
+  }
+}
 /** common **/
 .center {
 	text-align: center;
