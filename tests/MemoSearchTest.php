@@ -59,7 +59,7 @@ class MemoSearchTest extends TestCase
    			->see($noteTarget->title)
    			->see($noteTarget->author)
    			->see($noteTarget->image_url)
-   			->see('<a href="/memo/'.$noteTarget->isbn.'">')
+   			->see('/memo/'.$noteTarget->isbn)
    			->dontSee($noteDummy1->title)
    			->dontSee($noteDiffUser)
    			->see("<span>1</span>");
@@ -96,7 +96,7 @@ class MemoSearchTest extends TestCase
    			->see($noteTarget->title)
    			->see($noteTarget->author)
    			->see($noteTarget->image_url)
-   			->see('<a href="/memo/'.$noteTarget->isbn.'">')
+   			->see('/memo/'.$noteTarget->isbn)
    			->dontSee($noteDummy1->title)
    			->dontSee($noteDiffUser)
    			->see("<span>1</span>");
@@ -133,7 +133,7 @@ class MemoSearchTest extends TestCase
    			->see($noteTarget->title)
    			->see($noteTarget->author)
    			->see($noteTarget->image_url)
-   			->see('<a href="/memo/'.$noteTarget->isbn.'">')
+   			->see('/memo/'.$noteTarget->isbn)
    			->dontSee($noteDummy1->title)
    			->dontSee($noteDiffUser)
    			->see("<span>1</span>");
@@ -170,7 +170,7 @@ class MemoSearchTest extends TestCase
    			->see($noteTarget->title)
    			->see($noteTarget->author)
    			->see($noteTarget->image_url)
-   			->see('<a href="/memo/'.$noteTarget->isbn.'">')
+   			->see('/memo/'.$noteTarget->isbn)
    			->dontSee($noteDummy1->title)
    			->dontSee($noteDiffUser)
    			->see("<span>1</span>");

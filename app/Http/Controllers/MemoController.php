@@ -45,7 +45,11 @@ class MemoController extends Controller
     }
 
     public function show($isbn){
-    	$res = [];
+    	
+info("show?");
+
+
+        $res = [];
     	$res['isbn'] = $isbn;
 
         // ユーザー情報
@@ -57,6 +61,7 @@ class MemoController extends Controller
     	->orderBy('created_at','desc')
     	->get();
 
+info($showNotes);
     	$res['notes'] = $showNotes; 
 
     	$image_url = "";

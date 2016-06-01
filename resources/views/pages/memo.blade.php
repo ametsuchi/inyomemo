@@ -106,7 +106,7 @@
 <script type="text/javascript" src="/js/memo.js"></script>
 <script type="text/javascript">
   $(function(){
-    document.title = "{{$note->title}} - bkim";
+    document.title = "{{$title}} - bkim";
   });
 </script>
 @stop

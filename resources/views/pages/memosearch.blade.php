@@ -73,7 +73,7 @@
 </ul>
     <script type="text/javascript">
     $(function(){
-        document.title = "過去記事検索 - bkim";
+        document.title = "過去のメモから検索 - bkim";
     });
     </script>
 @stop

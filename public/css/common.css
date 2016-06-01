@@ -15,6 +15,12 @@ footer div{
 	margin: auto;
 }
 
+@media(max-width: 1024px){
+  .max-width {
+    margin-top: 70px;
+  }
+}
+
 .addDiv {
 	display: none;
 }
@@ -102,6 +108,10 @@ footer div{
   }
 }
 
+.mobile-header .doc-title {
+  font-size: 24px;
+}
+
 /** navigation **/
 .mdl-layout__drawer-button i {
   color: #fff;
@@ -144,6 +154,7 @@ section > header{
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
 }
 
 section > .section__book-image {
@@ -212,6 +223,7 @@ section .section__text a {
 		font-size:14px;
 		margin: 10px 0 5px 0;
     font-size: 12px;
+    font-weight: bold;
 	}
 
   section .section__text > div{
@@ -257,6 +269,7 @@ section i ,.doc-memo-detail i{
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
+  background-color: #fff;
 }
 .mdl-card > * {
   height: auto;
@@ -266,7 +279,7 @@ section i ,.doc-memo-detail i{
   flex-grow: 1;
   padding: 0;
   color: inherit;
-  width: 100%;
+  width: calc(100% - 5px);
   text-align: left;
 }
 
@@ -311,7 +324,18 @@ section i ,.doc-memo-detail i{
 }
 
 .doc-memo {
-  margin-top: 30px;
+  padding-top: 20px;
+  background: #fff;
+}
+
+.doc-edit {
+  background: #fff;
+}
+
+@media(max-width: 1024px){
+  .doc-memo,.doc-edit {
+    margin-top: 56px;
+  }
 }
 
 .doc-memo .mdl-cell {

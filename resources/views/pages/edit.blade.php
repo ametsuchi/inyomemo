@@ -1,7 +1,7 @@
 @extends('common.base')
 @section('content')
-<div class="max-width center">
-	        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+<div class="max-width center doc-edit">
+	        <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col left"><i class="material-icons">mode_edit</i>Edit</div>
             <div class="mdl-cell mdl-cell--12-col left">P. <input type="number" name="page" id="page" maxlength="5" class="doc-page-field" value="{{$page}}"></div>
     	    <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…">{{$quote}}</textarea>
@@ -19,8 +19,6 @@
         <input type="hidden" id="isbn" name="isbn" value="{{ $isbn }}">
         <input type="hidden" id="title" name="title" value="{{ $title }}">
         <input type="hidden" id="author" name="author" value="{{ $author }}">
-    
-    <hr class="doc-horizontal">
 
 	<script type="text/javascript" src="/js/autosize.min.js"></script>
 	<script type="text/javascript" src="/js/edit.js"></script>

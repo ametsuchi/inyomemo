@@ -43,6 +43,17 @@ $.ajaxSetup({
     $("#loading_image").removeClass("is-active");
   });
 
+  // 検索部分の入力範囲広げるためにロゴを消す
+  $("#exsearchMobile").on("focus",function(){
+    $(".mobile-logo").hide();
+  });
+
+  $("#exsearchMobile").on("blur",function(){
+    if($(this).val() == ""){
+      $(".mobile-logo").show();
+    }
+  });
+
 });
 
   // evernoteの連携

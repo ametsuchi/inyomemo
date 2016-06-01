@@ -44,7 +44,7 @@ class ArchiveTest extends TestCase
 
     	$this->actingAs($user)
     		->visit("/archive")
-    		->see("一覧");
+    		->see("読んだ本");
 
 
     }

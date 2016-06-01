@@ -44,7 +44,7 @@
                 <div>{{$note->author}}<br/>{{ str_replace('-','/',$note->publication_date) }}</div>
               </div>
               <div class="mdl-card__actions">
-                <a href="{{$note->amazon_url}}" class="mdl-button">Amazonの詳細ページへ</a>
+                <a href="{{$note->amazon_url}}" class="mdl-button">Amazonでみる</a>
               </div>
             </div>
 
