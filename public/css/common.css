@@ -119,9 +119,16 @@ footer div{
 
 
 .doc-drawer-header {
-	background-color: #9e9e9e;
 	color: #fff;
 	padding-left: 16px;
+}
+
+.mdl-layout__drawer * {
+  color: #fff!important;
+}
+
+.mdl-layout__drawer .mdl-navigation__link:hover {
+  background: #00838f!important;
 }
 
 .mdl-navigation {

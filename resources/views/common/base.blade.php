@@ -83,7 +83,7 @@
         <a href="/archive" id="nav_archive" class="mdl-layout__tab">読んだ本</a>
         <a href="/wordsearch" id="nav_search" class="mdl-layout__tab">検索</a>
   </header>
-  <div class="mdl-layout__drawer">
+  <div class="mdl-layout__drawer mdl-color--blue-grey-900">
     <nav class="mdl-navigation">
         <div class="doc-drawer-header">
             <div class="doc-drawer-image">
