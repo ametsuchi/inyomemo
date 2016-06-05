@@ -93,6 +93,8 @@
 
   $(function() {
 
+        document.title = "ほしいものリスト - honmemo!";
+
         $(".doc-setting").on("click",function(){
             $(".error").hide();
             $("#setting-loading").hide();

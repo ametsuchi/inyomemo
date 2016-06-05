@@ -24,7 +24,7 @@
 	<script type="text/javascript" src="/js/edit.js"></script>
     <script type="text/javascript">
     $(function(){
-        document.title = "{{$title}} - bkim";
+        document.title = "{{$title}} - honmemo!";
     });
     </script>
 </div>

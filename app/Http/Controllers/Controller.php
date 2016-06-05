@@ -90,6 +90,10 @@ class Controller extends BaseController
     	$results['mimage'] = preg_replace('/SL+[0-9]*+_.jpg+$/',"SX100_.jpg",$item->MediumImage->URL);
     	$results['simage'] = $item->SmallImage->URL;
         $results['url'] = $item->DetailPageURL;
+
+        if(empty($results['mimage'])){
+            $results['mimage'] = "/css/image/noimage.png";
+        }
     	return $results;
     }
 
@@ -150,6 +154,9 @@ class Controller extends BaseController
             $url = $item->MediumImage->URL;
 
             $result["image"] = preg_replace('/SL+[0-9]*+_.jpg+$/',"SX100_.jpg",$url);
+            if(empty($result["image"])){
+                $result["image"] = "/css/image/noimage.png";
+            }
 
             $result["isbn"] = $item->ItemAttributes->ISBN;
             // ISBNがない商品はASINをセット
@@ -273,7 +280,7 @@ class Controller extends BaseController
             }
 
             foreach ($store->listNotebooks() as $notebook) {
-                if($notebook->name == "bkim"){
+                if($notebook->name == "honmemo"){
                     $notebookGuid = $notebook->guid;
                     Log::debug("get Guid");
                     break;
@@ -456,7 +463,7 @@ class Controller extends BaseController
      */
     protected function createNotebook($store,$accessToken,$user){
         $newNotebook = new Notebook();
-        $newNotebook->name = "bkim";
+        $newNotebook->name = "honmemo";
         $createdNotebook = $store->createNotebook($accessToken,$newNotebook);
         $notebookGuid = $createdNotebook->guid;
         // DBに保存
@@ -528,7 +535,7 @@ class Controller extends BaseController
         $wishlists = Wishlist::where('userid',$user->id)->where('titleid',$titleid)->orderby('id','desc')->get();
 
         $content = "";
-        $content .= '<a href="'.$this->getHostUrl().'/wishlist/'.$titleid.'">bkimでこのページを編集</a><br/>';
+        $content .= '<a href="'.$this->getHostUrl().'/wishlist/'.$titleid.'">honmemoでこのページを編集</a><br/>';
         $content .= '<hr></hr>';
         foreach ($wishlists as $wishlist) {
             $content .= '<h3>'.$wishlist->title.'</h3>';
@@ -550,7 +557,7 @@ class Controller extends BaseController
         $content .= '<div>'.$notes[0]->author.'</div><br/>';
         $content .= '<img src="'.$notes[0]->image_url.'"></img><br/><br/>';
         $content .= '<a href="'.$notes[0]->amazon_url.'">amazonの詳細ページ</a><br/>';
-        $content .= '<a href="'.$this->getHostUrl().'/memo/'.$isbn.'">bkimでこのページを編集</a><br/>';
+        $content .= '<a href="'.$this->getHostUrl().'/memo/'.$isbn.'">honmemoでこのページを編集</a><br/>';
         $content .= '<br/><hr></hr>';
         //メモ
         foreach ($notes as $note) {

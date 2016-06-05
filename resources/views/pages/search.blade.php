@@ -81,7 +81,7 @@
     <script type="text/javascript" src="/js/search.js"></script>
     <script type="text/javascript">
     $(function(){
-        document.title = "検索 - bkim";
+        document.title = "検索 - honmemo!";
     });
     </script>
 @stop

@@ -41,7 +41,7 @@
 </div>
 <script type="text/javascript">
   $(function(){
-    document.title = "最近読んだ本 - bkim";
+    document.title = "最近読んだ本 - honmemo!";
   });
 </script>
 @stop

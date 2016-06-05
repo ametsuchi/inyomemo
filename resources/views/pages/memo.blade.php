@@ -10,7 +10,7 @@
 
   <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" >
     <div class="mdl-cell--2-col mdl-cell--4-col-phone doc-image-div">
-        <a class="doc-memo-title" href="{{ $amazon_url }}" id="amazon_link"><img src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image doc-memo-image"></a>
+        <a class="doc-memo-title" href="{{ $amazon_url }}" id="amazon_link"><img id="book_image" src=" {{ $image_url }}" border="0" alt="{{$title}}" style="max-width:113px;" id="book_image doc-memo-image"></a>
     </div>
     <div class="mdl-cell mdl-cell--10-col mdl-cell--4-col-phone">
         <a href="{{ $amazon_url }}"><span class="mdl-card__title-text doc-memo-title" id="title">{{ $title }}</span></a>
@@ -106,7 +106,7 @@
 <script type="text/javascript" src="/js/memo.js"></script>
 <script type="text/javascript">
   $(function(){
-    document.title = "{{$title}} - bkim";
+    document.title = "{{$title}} - honmemo!";
   });
 </script>
 @stop

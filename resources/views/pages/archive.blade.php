@@ -48,4 +48,9 @@
 
 </div>
 </div>
+    <script type="text/javascript">
+    $(function(){
+        document.title = "読んだ本 - honmemo!";
+    });
+    </script>
 @stop

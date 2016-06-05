@@ -6,7 +6,7 @@
     <meta name="description" content="A portfolio template that uses Material Design Lite.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>bkim -読書家のためのシンプルなメモアプリ</title>
+    <title>honmemo! -読書家のためのシンプルなメモアプリ</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -23,7 +23,7 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout-icon"></div>
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title doc-title mobile-logo"><i class="fa fa-book"></i>bkim</span>
+      <span class="mdl-layout-title doc-title mobile-logo"><i class="fa fa-book"></i>honmemo!</span>
       <div class="mdl-layout-spacer"></div>
       <form action="/search" method="post">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -45,7 +45,7 @@
   <header class="mdl-layout__header mdl-layout__header--scroll">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title doc-title"><i class="fa fa-book"></i>bkim</span>
+      <span class="mdl-layout-title doc-title"><i class="fa fa-book"></i>honmemo!</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- search -->

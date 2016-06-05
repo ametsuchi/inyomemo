@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-light_blue.min.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/login.css">
-	<title>bikm -読書家のためのシンプルなメモアプリ</title>
+	<title>honmemo! -読書家のためのシンプルなメモアプリ</title>
 </head>
 <body>
 <div class="wapper">
 
 <!-- logo -->
 <div class="logo">
-	<i class="fa fa-book"></i><span>bkim</span>
+	<i class="fa fa-book"></i><span>honmemo!</span>
 </div>
 <div class="subtitle">
 	<span>読書家のためのシンプルなメモアプリ</span>
