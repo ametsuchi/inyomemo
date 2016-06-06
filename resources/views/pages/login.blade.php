@@ -58,7 +58,7 @@
 </div>
 </main>
 <footer class="mdl-mini-footer" id="footer">
-	<div><a href="/#">お問い合せ</a></div>
+	<div><a href="/inquiry">お問い合せ</a></div>
 </footer>
 <script type="text/javascript" src="/js/login.js"></script>
 </body>

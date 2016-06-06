@@ -137,7 +137,7 @@
 
   <footer class="mdl-mini-footer">
       <div class="mdl-mini-footer__left-section">
-      <a href="">お問合せ</a>
+      <a href="/inquiry">お問合せ</a>
       </div>
   </footer>
 </div>

@@ -37,6 +37,11 @@ Route::group(['middleware' => 'web'],function()
         return view('pages.login');
 	});
 
+	// 問い合わせ
+	Route::get("/inquiry",'InquiryController@index');
+	Route::post("/inquiry/post",'InquiryController@post');
+
+
 	// evernote
 	Route::get("/evernote/authorize",'EvernoteController@getTemporaryCredentials');
 	Route::get("/evernote/callback",'EvernoteController@callback');
