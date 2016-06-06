@@ -1,4 +1,9 @@
 @extends('common.base')
+@section('title')
+<title>過去のメモから検索 - honmemo!</title>
+@stop
+
+
 @section('content')
 <div class="max-width center">
 <div class="home-main">
@@ -71,9 +76,4 @@
     @endif
     @endif
 </ul>
-    <script type="text/javascript">
-    $(function(){
-        document.title = "過去のメモから検索 - honmemo!";
-    });
-    </script>
 @stop

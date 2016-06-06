@@ -1,4 +1,8 @@
 @extends('common.base')
+@section('title')
+<title>最近読んだ本 - honmemo!</title>
+@stop
+
 @section('content')
 <div class="max-width center">
 <div class="home-main">
@@ -39,9 +43,4 @@
 @endforeach
 </div>
 </div>
-<script type="text/javascript">
-  $(function(){
-    document.title = "最近読んだ本 - honmemo!";
-  });
-</script>
 @stop

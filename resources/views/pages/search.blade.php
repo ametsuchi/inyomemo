@@ -1,4 +1,9 @@
 @extends('common.base')
+@section('title')
+<title>検索 - honmemo!</title>
+@stop
+
+
 @section('content')
 <div class="max-width center">
 <div class="home-main">
@@ -79,11 +84,6 @@
 </div>
 </div>
     <script type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(function(){
-        document.title = "検索 - honmemo!";
-    });
-    </script>
 @stop
 
 @section('more')

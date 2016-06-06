@@ -46,9 +46,6 @@ class MemoController extends Controller
 
     public function show($isbn){
     	
-info("show?");
-
-
         $res = [];
     	$res['isbn'] = $isbn;
 
@@ -61,7 +58,6 @@ info("show?");
     	->orderBy('created_at','desc')
     	->get();
 
-info($showNotes);
     	$res['notes'] = $showNotes; 
 
     	$image_url = "";
@@ -110,6 +106,9 @@ info($showNotes);
         // varidationとくになし
         $user = Auth::user();
         $note = new Note;
+
+
+ info($request->input("note"));       
          
         $note->userid = $user->id;
         $note->isbn = $request->input("isbn");

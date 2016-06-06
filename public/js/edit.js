@@ -1,6 +1,12 @@
 $(function(){
 	autosize(document.querySelectorAll('textarea'));
 
+    // mobileの時はフッター邪魔なので非表示
+    if($(window).width() < 500){
+        $("footer").hide();
+    }
+
+
 	$("#edit").click(function(){
 		$("#edit_saving").show();
 		$("#saving_image").addClass("is-active");

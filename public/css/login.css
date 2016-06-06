@@ -4,17 +4,15 @@
 body {
 	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
-.wapper {
-	background-size: cover;
-	background-image: url("./image/book.jpg");
-	height: 100%;
-}
 
 .logo {
-	font-size: 72px;
+	font-size: 50px;
 	text-align: center;
 	padding-top: 50px;
+	color: rgb(63,81,181);
 }
+
+
 .logo span {
 	margin-left: 5px;
 	font-family: 'Quicksand','ヒラギノ角ゴ Pro W3';
@@ -22,7 +20,7 @@ body {
 }
 .subtitle {
 	text-align: center;
-	font-size: 18px;
+	font-size: 14px;
 	margin-top: 10px;
 }
 .button {
@@ -68,18 +66,21 @@ button i{
 	display: inline-block;
 	text-align: center;
 	width: 300px;
-	background-color: #d3d3d3;
+	background-color:#f6f6f6;
 	padding: 10px;
 	border-radius: 0.5em;
 	margin: 15px;
+	vertical-align: top;
 }
 .box i {
 	font-size: 42px;
 	padding: 5px;
+	color:gray;
 }
 .title {
 	font-weight: bold;
 	font-size: 1.2em;
+	color: #4c4c4c;
 }
 .mdl-mini-fotter {
   -webkit-justify-content: center;
@@ -91,4 +92,15 @@ button i{
 }
 .mdl-mini-footer a{
 	color: #fff;
+	text-decoration: none;
+}
+
+@media (max-width: 479px){
+	.logo{
+		font-size:34px;
+	}
+}
+
+p {
+	color:#6c6c6c;
 }

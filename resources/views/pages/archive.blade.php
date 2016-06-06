@@ -1,4 +1,8 @@
 @extends('common.base')
+@section('title')
+<title>読んだ本 - honmemo!</title>
+@stop
+
 @section('content')
 <div class="max-width center">
 <div class="home-main wishlist">
@@ -48,9 +52,4 @@
 
 </div>
 </div>
-    <script type="text/javascript">
-    $(function(){
-        document.title = "読んだ本 - honmemo!";
-    });
-    </script>
 @stop

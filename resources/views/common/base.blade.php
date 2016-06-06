@@ -6,7 +6,9 @@
     <meta name="description" content="A portfolio template that uses Material Design Lite.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>honmemo! -読書家のためのシンプルなメモアプリ</title>
+
+@yield('title')
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -135,7 +137,7 @@
 
   <footer class="mdl-mini-footer">
       <div class="mdl-mini-footer__left-section">
-      お問合せ
+      <a href="">お問合せ</a>
       </div>
   </footer>
 </div>

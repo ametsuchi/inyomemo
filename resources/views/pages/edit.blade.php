@@ -1,4 +1,9 @@
 @extends('common.base')
+
+@section('title')
+<title>{{$title}} - honmemo!</title>
+@stop
+
 @section('content')
 <div class="max-width center doc-edit">
 	        <div class="mdl-grid">
@@ -22,10 +27,5 @@
 
 	<script type="text/javascript" src="/js/autosize.min.js"></script>
 	<script type="text/javascript" src="/js/edit.js"></script>
-    <script type="text/javascript">
-    $(function(){
-        document.title = "{{$title}} - honmemo!";
-    });
-    </script>
 </div>
 @stop
