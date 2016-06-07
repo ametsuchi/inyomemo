@@ -107,7 +107,10 @@
     <div class="page-content">
     @yield('content')
     </div>
-  </main>
+    <div class="center mobile-footer" id="footer">
+      <a href="/inquiry">お問合せ</a> 
+    </div>
+    </main>
     <!-- dialog -->
     <div class="dialog" id="evernoteDialog">
         <h5 class="mdl-title">Evernoteと連携を許可する</h5>

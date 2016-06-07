@@ -28,7 +28,26 @@ footer a{
   .max-width {
     margin-top: 70px;
   }
+
+  .mdl-mini-footer {
+    display: none;
+  }
+
+  .mobile-footer {
+    margin: 10px;
+  }
+
+  .mobile-footer a {
+    text-decoration: underline;
+  }
 }
+
+@media(min-width: 1023px){
+  .mobile-footer {
+    display: none;
+  }
+}
+
 
 .addDiv {
 	display: none;
