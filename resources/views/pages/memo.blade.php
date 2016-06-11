@@ -29,9 +29,9 @@
   <!-- edit -->
   <div class="mdl-grid mdl-cell mdl-cell--12-col left">
     <div class="mdl-cell mdl-cell--12-col"><i class="material-icons">mode_edit</i>Memo</div>
-      <div class="mdl-cell mdl-cell--12-col">P. <input type="number" name="page" id="page" maxlength="5" class="doc-page-field"></div>
-        <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
-        <textarea class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone doc-textarea" type="text" id="note" name="note" rows="5" placeholder="メモを記録…"></textarea>
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">P. <input type="number" name="page" id="page" maxlength="5" class="doc-page-field"></div>
+        <textarea class="doc-textarea" type="text" id="quote" name="quote" rows="5" placeholder="引用を記録…"></textarea>
+        <textarea class="doc-textarea" type="text" id="note" name="note" rows="5" placeholder="メモを記録…"></textarea>
         <div class="mdl-cell mdl-cell--10-col mdl-layout--large-screen-only"></div>
             <button  id="save" type="button" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone mdl-cell--3-col-tablet mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                 name="save">

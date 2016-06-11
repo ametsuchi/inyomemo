@@ -48,6 +48,7 @@ footer a{
 }
 
 
+
 .addDiv {
 	display: none;
 }
@@ -365,6 +366,16 @@ section i ,.doc-memo-detail i{
 .doc-edit {
   background: #fff;
 }
+
+.doc-textarea {
+  width: calc(100% - 30px);
+  margin: 10px;
+}
+
+.doc-textarea,.doc-page-field {
+  border: solid 0.3px #9FA0A0;
+}
+
 
 @media(max-width: 1024px){
   .doc-memo,.doc-edit {
