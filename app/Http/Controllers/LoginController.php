@@ -65,6 +65,9 @@ class LoginController extends Controller
 
             $user->name = $name;
             $user->email = $userData->getEmail();
+            if($user->email == null){
+                $user->email = "";
+            }
             $user->avatar = $userData->getAvatar();
             $user->save();
     	}
