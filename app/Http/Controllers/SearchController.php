@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Note;
-use App\WishlistTitle;
+use App\WishListTitle;
 use Auth;
 use DB;
 
