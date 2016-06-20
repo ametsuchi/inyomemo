@@ -5,6 +5,20 @@ body {
 	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 
+.social {
+	margin:10px 0;
+	text-align: right;
+}
+
+iframe {
+	width: 70px;
+	display: inline-block;
+}
+
+.pocket-btn {
+	display: inline-block;
+}
+
 .logo {
 	font-size: 50px;
 	text-align: center;
