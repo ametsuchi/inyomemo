@@ -56,4 +56,8 @@
             );
         });
 
+        $("#setting-close").on("click",function(){
+            close_modal("#settingWishlistDialog");
+        });
+
   });

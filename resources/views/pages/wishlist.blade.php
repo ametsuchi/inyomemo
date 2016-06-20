@@ -10,7 +10,8 @@
   <h5 class="doc-page-title"><i class="fa fa-star"></i>ほしいものリスト</h5>
 
     <div class="mdl-grid portfolio-max-width">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select
+         mdl-cell mdl-cell--10-col mdl-cell--3-col-phone">
           <input class="mdl-textfield__input" type="text" id="select-section" value="{{$selectedName}}" readonly="readonly"/>
           <label class="mdl-textfield__label" for="select-section">リスト名</label>
           <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-section">
@@ -22,9 +23,12 @@
          </ul>
         </div>
         @if($titleid != 0)
-        <a rel="leanModal" href="#settingWishlistDialog" class="mdl-button mdl-js-button mdl-button--icon doc-setting">
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone left">
+        <a rel="leanModal" href="#settingWishlistDialog" class="mdl-button mdl-js-button mdl-button--icon doc-setting
+        ">
           <i class="material-icons">settings</i>
         </a>
+        </div>
         @endif
     </div>
 
@@ -93,12 +97,12 @@
             <input class="mdl-textfield__input" type="text" id="setting-name" name="{{$titleid}}" value="{{$selectedName}}" maxlength="20" />
             <label class="mdl-textfield__label" for="select-section">リスト名をを変更…</label>
         </div>
-
     <div class="middle">
+
       <div style="display:none" id="setting-loading"><div id="setting-loading-image" class="mdl-spinner mdl-js-spinner is-active"></div>loading</div>
       <button type="button" id="setting-rename" class="mdl-button mdl-button--raised mdl-button--colored" style="width:80px">変更</button>
       <button type="button" id="setting-delete" class="mdl-button mdl-button--raised mdl-button--colored mdl-button--accent" style="width:80px">削除</button>
-      <button type="button" class="mdl-button mdl-button--raised close" style="width:80px">閉じる</button>
+      <button type="button" id="setting-close" class="mdl-button mdl-button--raised close" style="width:80px">閉じる</button>
     </div>
 
 

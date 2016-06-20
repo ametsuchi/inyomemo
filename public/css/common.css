@@ -503,6 +503,10 @@ ul.pageNav01 li a:hover {
   .wishlist section .mdl-card__menu {
     margin: 0;
   }
+
+  .wishlist .mdl-card__actions {
+    padding: 0;
+  }
 }
 /** common **/
 .center {
