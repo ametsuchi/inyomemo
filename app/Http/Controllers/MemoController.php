@@ -106,10 +106,6 @@ class MemoController extends Controller
         // varidationとくになし
         $user = Auth::user();
         $note = new Note;
-
-
- info($request->input("note"));       
-         
         $note->userid = $user->id;
         $note->isbn = $request->input("isbn");
         $note->title = $request->input("title");
