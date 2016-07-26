@@ -9,11 +9,11 @@ $(function(){
     var width = $img.width();
     var height = $img.height();
     var bookUrl = $img.attr("src");
-    alert(bookUrl);
     if(bookUrl.indexOf("SX100") !== -1){
         bookUrl = bookUrl.replace("SX100","SX200");
         $img.width(width);
         $img.height(height);
+        $img.attr("src",bookUrl);
     }
   }
 
