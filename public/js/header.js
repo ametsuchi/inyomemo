@@ -54,6 +54,21 @@ $.ajaxSetup({
     }
   });
 
+  // スマホ用の画像対応
+  var retinaSwitch = window.devicePixelRatio;
+  if(retinaSwitch == 2) {
+    $(".section__book-image > a > img").each(function(index){
+        var w = $(this).width();
+        var h = $(this).height();
+        var url = $(this).attr("src");
+        if(url.indexOf("SX100") !== -1){
+          url = url.replace("SX100","SX200");
+          $(this).attr("src",url);
+          $(this).width(w);
+          $(this).height(h);
+        }
+    });
+  }
 });
 
   // evernoteの連携

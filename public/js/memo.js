@@ -1,6 +1,22 @@
 $(function(){
     autosize(document.querySelectorAll('textarea'));
 
+      // スマホ用の画像対応
+  var retina = window.devicePixelRatio;
+
+  if(retina == 2) {
+    var $img = $("#book_image");
+    var width = $img.width();
+    var height = $img.height();
+    var bookUrl = $img.attr("src");
+    alert(bookUrl);
+    if(bookUrl.indexOf("SX100") !== -1){
+        bookUrl = bookUrl.replace("SX100","SX200");
+        $img.width(width);
+        $img.height(height);
+    }
+  }
+
     // mobileの時はフッター邪魔なので非表示
     if($(window).width() < 500){
         $("footer").hide();
@@ -147,7 +163,6 @@ $(function(){
                 $(modal_id).fadeTo(200,1);
                 e.preventDefault();
   });
-    
 
     // dialog setting
     var defaults={top:100,overlay:0.5,closeButton:null};
